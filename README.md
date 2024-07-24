@@ -1,16 +1,10 @@
 # placelook
 
-Placelook project
+Placelook - платформа для проведення екскурсій online
 
-## Getting Started
+Всі учасники поділяються на дві категорій – екскурсантів та екскурсоводів
 
-This project is a starting point for a Flutter application.
+Відповідно екскурсоводи транслюють свою екскурсію, екскурсанти – дивляться та слухають її. Також екскурсанти можуть направляти екскурсовода у потрібному їм напрямку при допомозі кнопок вправо, вліво, вверх, вниз та задавати питання у текстовому вигляді
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
