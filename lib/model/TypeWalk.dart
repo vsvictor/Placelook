@@ -1,0 +1,1 @@
+enum TypeWalk{PAID, FREE}
