@@ -1,4 +1,3 @@
-
 import 'package:placelook/model/Contact.dart';
 import 'package:uuid/uuid.dart';
 
@@ -8,20 +7,20 @@ class User {
   late EmailContact _email;
   final _uuid = Uuid();
 
-  User(this._name, this._email){
+  User(this._name, this._email) {
     _id = _uuid.v4();
   }
-  User.empty(){
+  User.empty() {
     _id = "";
     _name = "";
     _email = EmailContact("");
   }
-  User.Anonimus(){
+  User.Anonimus() {
     _id = _uuid.v4();
     _name = "Anonimus";
     _email = EmailContact.from("anonimus@gmail.com");
   }
-  User.clone(User aUser){
+  User.clone(User aUser) {
     _id = aUser.id;
     _name = aUser.name;
     _email = EmailContact.from(aUser.email);

@@ -1,9 +1,9 @@
-import 'package:placelook/model/Streamer.dart';
-import 'Languages.dart';
-import 'Location.dart';
-import 'TypeWalk.dart';
+import 'package:placelook/model/streamer.dart';
+import 'package:placelook/model/languages.dart';
+import 'package:placelook/model/location.dart';
+import 'package:placelook/model/type_walk.dart';
 
-class Walk{
+class Walk {
   final Location _location;
   final DateTime _time;
   final Streamer _who;
