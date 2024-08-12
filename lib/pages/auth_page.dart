@@ -64,7 +64,7 @@ class _AuthPageState extends State<AuthPage> {
                       ),
                       Padding(
                         padding: EdgeInsets.only(
-                            top: size.height * 0.05,
+                            top: size.height * 0.02,
                             left: size.width * 0.08,
                             right: size.width * 0.08),
                         child: Align(
@@ -97,6 +97,28 @@ class _AuthPageState extends State<AuthPage> {
                             ),
                           ),
                         ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(top: size.height * 0.02),
+                        child: Align(
+                            child: ElevatedButton(
+                          style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all<Color>(
+                                  const Color(0xff1D1617)),
+                              padding:
+                                  MaterialStateProperty.all<EdgeInsetsGeometry>(
+                                      EdgeInsets.only(
+                                          top: 8,
+                                          left: 64,
+                                          right: 64,
+                                          bottom: 8))),
+                          child: Text("Login",
+                              style: GoogleFonts.poppins(
+                                color: Colors.white,
+                                fontSize: size.height * 0.03,
+                              )),
+                          onPressed: onLogin,
+                        )),
                       ),
                       Padding(
                         padding: EdgeInsets.only(
@@ -167,4 +189,6 @@ class _AuthPageState extends State<AuthPage> {
       ),
     );
   }
+
+  void onLogin() {}
 }
