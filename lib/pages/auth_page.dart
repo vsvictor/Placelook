@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gif/gif.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:placelook/pages/signin_page.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage() : super();
@@ -117,7 +118,8 @@ class _AuthPageState extends State<AuthPage> {
                                 color: Colors.white,
                                 fontSize: size.height * 0.03,
                               )),
-                          onPressed: onLogin,
+                          onPressed: () => {
+                          },
                         )),
                       ),
                       Padding(
@@ -189,6 +191,4 @@ class _AuthPageState extends State<AuthPage> {
       ),
     );
   }
-
-  void onLogin() {}
 }
