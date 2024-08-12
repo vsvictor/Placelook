@@ -11,7 +11,8 @@ class Walk {
   final Languages _language;
   final TypeWalk _typeWalk;
 
-  Walk(this._location, this._time, this._who, this._duration, this._language, this._typeWalk);
+  Walk(this._location, this._time, this._who, this._duration, this._language,
+      this._typeWalk);
   Location get location => _location;
   DateTime get time => _time;
   Streamer get streamer => _who;
