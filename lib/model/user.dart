@@ -5,7 +5,7 @@ class User {
   late String _id;
   late String _name;
   late EmailContact _email;
-  final _uuid = Uuid();
+  final _uuid = const Uuid();
 
   User(this._name, this._email) {
     _id = _uuid.v4();
