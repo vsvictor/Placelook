@@ -14,28 +14,11 @@ class AuthPage extends StatefulWidget {
 
 class _AuthPageState extends State<AuthPage> {
   bool pwVisible = false;
-  late final TapGestureRecognizer _tapGestureSignin;
-  late final TapGestureRecognizer _tapGestureForgotPassword;
-  late final TextEditingController _loginController;
-  late final TextEditingController _passwordController;
+  late final TapGestureRecognizer _tapGestureSignin = TapGestureRecognizer()..onTap = _onTapSignin;
+  late final TapGestureRecognizer _tapGestureForgotPassword = TapGestureRecognizer()..onTap = _onTapForgotPassword;
+  late final TextEditingController _loginController = TextEditingController();
+  late final TextEditingController _passwordController = TextEditingController();
   @override
-  void initState() {
-    super.initState();
-    _tapGestureSignin = TapGestureRecognizer()..onTap = _onTapSignin;
-    _tapGestureForgotPassword = TapGestureRecognizer()
-      ..onTap = _onTapForgotPassword;
-    _loginController = TextEditingController();
-    _passwordController = TextEditingController();
-  }
-
-  @override
-  void dispose() {
-    _loginController.dispose();
-    _passwordController.dispose();
-    _tapGestureSignin.dispose();
-    _tapGestureForgotPassword.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
