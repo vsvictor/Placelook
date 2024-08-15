@@ -1,23 +1,37 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:arcgis_maps/arcgis_maps.dart';
+
+//https://basemaps.arcgis.com/arcgis/rest/services/World_Basemap_v2/VectorTileServer
 
 class MapPage extends StatefulWidget {
   const MapPage({super.key});
+
   @override
   _MapPageState createState() => _MapPageState();
 }
 
 class _MapPageState extends State<MapPage> {
-  //https://basemaps.arcgis.com/arcgis/rest/services/World_Basemap_v2/VectorTileServer
-  late Future _loadBasemapFuture;
+
   @override
   void initState() {
-    //AGMLAuthManager().setApiKey(dotenv.env['API_KEY'] ?? '');
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      body: Column(
+        children: [
+          Expanded(
+            child: ArcGISMapView(
+              controllerProvider: () {
+                return ArcGISMapView.createController()
+                  ..arcGISMap = ArcGISMap.withBasemapStyle(BasemapStyle.arcGISTopographic);
+              },
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

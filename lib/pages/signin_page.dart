@@ -18,12 +18,6 @@ class _SigninPageState extends State<SigninPage> {
   }
 
   @override
-  void dispose() {
-    _tapGestureLogin.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
@@ -58,14 +52,13 @@ class _SigninPageState extends State<SigninPage> {
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: size.height * 0.02),
-                    child: Text(
-                      "Sign in",
-                      style: GoogleFonts.poppins(
-                        color: const Color(0xff1D1617),
-                        fontSize: size.height * 0.05,
-                      ),
+                  child: Text(
+                    "Sign in",
+                    style: GoogleFonts.poppins(
+                      color: const Color(0xff1D1617),
+                      fontSize: size.height * 0.05,
                     ),
-
+                  ),
                 ),
                 Padding(
                   padding: EdgeInsets.only(
@@ -116,9 +109,9 @@ class _SigninPageState extends State<SigninPage> {
                   padding: EdgeInsets.only(top: size.height * 0.04),
                   child: ElevatedButton(
                     style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(
+                        backgroundColor: WidgetStateProperty.all<Color>(
                             const Color(0xff1D1617)),
-                        padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                        padding: WidgetStateProperty.all<EdgeInsetsGeometry>(
                             const EdgeInsets.only(
                                 top: 8, left: 64, right: 64, bottom: 8))),
                     child: Text("Sign in",

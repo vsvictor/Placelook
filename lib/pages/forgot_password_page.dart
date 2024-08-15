@@ -10,18 +10,7 @@ class ForgotPasswordPage extends StatefulWidget {
 }
 
 class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
-  late final TapGestureRecognizer _tapGestureLogin;
-  @override
-  void initState() {
-    super.initState();
-    _tapGestureLogin = TapGestureRecognizer()..onTap = _onTabLogin;
-  }
-
-  @override
-  void dispose() {
-    _tapGestureLogin.dispose();
-    super.dispose();
-  }
+  late final TapGestureRecognizer _tapGestureLogin = TapGestureRecognizer()..onTap = _onTabLogin;
 
   @override
   Widget build(BuildContext context) {
@@ -85,9 +74,9 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                   padding: EdgeInsets.only(top: size.height * 0.04),
                   child: ElevatedButton(
                     style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(
+                        backgroundColor: WidgetStateProperty.all<Color>(
                             const Color(0xff1D1617)),
-                        padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                        padding: WidgetStateProperty.all<EdgeInsetsGeometry>(
                             const EdgeInsets.only(
                                 top: 8, left: 64, right: 64, bottom: 8))),
                     child: Text("Send",

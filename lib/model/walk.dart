@@ -1,4 +1,3 @@
-import 'dart:html';
 
 import 'package:placelook/model/streamer.dart';
 import 'package:placelook/model/languages.dart';
@@ -13,6 +12,6 @@ class Walk {
   final Languages language;
   final TypeWalk typeWalk;
 
-  Walk(this.location, this.time, this.who, this.duration, {this.language = Languages.ENGLISH,
-      this.typeWalk = TypeWalk.FREE});
+  Walk(this.location, this.time, this.who, this.duration,
+      {this.language = Languages.ENGLISH, this.typeWalk = TypeWalk.FREE});
 }
