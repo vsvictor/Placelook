@@ -15,7 +15,7 @@ pluginManagement {
         mavenCentral()
         gradlePluginPortal()
         jcenter()
-        //maven { url 'https://esri.jfrog.io/artifactory/arcgis' }
+        maven { url 'https://esri.jfrog.io/artifactory/arcgis' }
     }
 }
 

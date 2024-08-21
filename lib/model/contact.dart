@@ -1,10 +1,10 @@
 sealed class AbstractContact {
-  AbstractContact();
+  const AbstractContact();
 }
 
 class EmailContact extends AbstractContact {
-  late final String _email;
-  EmailContact(this._email);
+  final String _email;
+  const EmailContact(this._email);
   EmailContact.from(this._email);
   String get email => _email;
 }

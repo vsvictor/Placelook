@@ -3,12 +3,12 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-class Avatar extends StatefulWidget {
+class AvatarWidger extends StatefulWidget {
   final Widget backgroundImage;
   final double radius;
   final Color colorBask;
   final XFile? img = null;
-  const Avatar(
+  const AvatarWidger(
       {super.key,
       required this.backgroundImage,
       required this.radius,
@@ -18,7 +18,7 @@ class Avatar extends StatefulWidget {
       _AvatarState(backgroundImage, radius, colorBask);
 }
 
-class _AvatarState extends State<Avatar> {
+class _AvatarState extends State<AvatarWidger> {
   File? _imgFile;
   Widget backgroundImage;
   double radius;

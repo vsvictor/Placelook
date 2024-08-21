@@ -1,0 +1,4 @@
+enum Role {
+  Guid,
+  Tripper,
+}
