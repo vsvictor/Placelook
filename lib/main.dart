@@ -1,7 +1,13 @@
+import 'package:Placelook/model/user.dart';
+import 'package:Placelook/pages/main_page.dart';
+import 'package:Placelook/viewmodel/user_view_model.dart';
+import 'package:Placelook/widgets/profile_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:placelook/pages/auth_page.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 void main() {
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   runApp(const App());
 }
 
@@ -12,11 +18,21 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
+  UserViewModel u = UserViewModel(User.empty());
+  @override
+  void initState() {
+    FlutterNativeSplash.remove();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: "Palcelook",
-        home: AuthPage());
+    return ProfileWidget(
+        profile: u,
+        child: MaterialApp(
+            //debugShowMaterialGrid: true,
+            debugShowCheckedModeBanner: false,
+            title: "Placelook",
+            home: MainPage()));
   }
 }
