@@ -1,6 +1,6 @@
+import 'package:Placelook/widgets/top_page_widget.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:gif/gif.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SigninPage extends StatefulWidget {
@@ -30,36 +30,7 @@ class _SigninPageState extends State<SigninPage> {
               child: SingleChildScrollView(
             child: Column(
               children: [
-                Padding(
-                  padding: EdgeInsets.only(top: size.height * 0.02),
-                  child: Text(
-                    "Placelook",
-                    style: GoogleFonts.poppins(
-                      color: const Color(0xff1D1617),
-                      fontSize: size.height * 0.04,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: size.height * 0.02),
-                  child: Gif(
-                    autostart: Autostart.loop,
-                    placeholder: (context) =>
-                        const Center(child: CircularProgressIndicator()),
-                    image: const AssetImage('assets/rick.gif'),
-                    height: size.height * 0.15,
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: size.height * 0.02),
-                  child: Text(
-                    "Sign in",
-                    style: GoogleFonts.poppins(
-                      color: const Color(0xff1D1617),
-                      fontSize: size.height * 0.05,
-                    ),
-                  ),
-                ),
+                TopPageWidget("Sign in"),
                 Padding(
                   padding: EdgeInsets.only(
                       top: size.height * 0.02,

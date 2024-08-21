@@ -1,1 +1,1 @@
-enum Languages { ENGLISH, FRANCH, GERMAN, UKRAINIAN }
+enum Languages { English, Franch, German, Ukranian, Undefined }

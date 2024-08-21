@@ -1,10 +1,13 @@
+import 'package:Placelook/pages/signin_page.dart';
+import 'package:Placelook/widgets/top_page_widget.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:gif/gif.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:placelook/pages/forgot_password_page.dart';
-import 'package:placelook/pages/home_page.dart';
-import 'package:placelook/pages/signin_page.dart';
+
+import 'package:Placelook/model/user.dart';
+import 'package:Placelook/widgets/profile_widget.dart';
+import 'package:Placelook/pages/forgot_password_page.dart';
+import 'package:Placelook/pages/home_page.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({super.key});
@@ -14,15 +17,19 @@ class AuthPage extends StatefulWidget {
 
 class _AuthPageState extends State<AuthPage> {
   bool pwVisible = false;
-  late final TapGestureRecognizer _tapGestureSignin = TapGestureRecognizer()..onTap = _onTapSignin;
-  late final TapGestureRecognizer _tapGestureForgotPassword = TapGestureRecognizer()..onTap = _onTapForgotPassword;
+  late final TapGestureRecognizer _tapGestureSignin = TapGestureRecognizer()
+    ..onTap = _onTapSignin;
+  late final TapGestureRecognizer _tapGestureForgotPassword =
+      TapGestureRecognizer()..onTap = _onTapForgotPassword;
   late final TextEditingController _loginController = TextEditingController();
-  late final TextEditingController _passwordController = TextEditingController();
+  late final TextEditingController _passwordController =
+      TextEditingController();
   @override
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    User? pr = ProfileWidget.of(context)?.profile.value;
+    _loginController.text = (pr != null) ? pr.email.email : "";
     return Scaffold(
       body: Center(
         child: Container(
@@ -33,36 +40,7 @@ class _AuthPageState extends State<AuthPage> {
               child: SingleChildScrollView(
             child: Column(
               children: [
-                Padding(
-                  padding: EdgeInsets.only(top: size.height * 0.02),
-                  child: Text(
-                    "Placelook",
-                    style: GoogleFonts.poppins(
-                      color: const Color(0xff1D1617),
-                      fontSize: size.height * 0.06,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: size.height * 0.02),
-                  child: Text(
-                    "Look at the world!",
-                    style: GoogleFonts.poppins(
-                      color: const Color(0xff1D1617),
-                      fontSize: size.height * 0.04,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: size.height * 0.02),
-                  child: Gif(
-                    autostart: Autostart.loop,
-                    placeholder: (context) =>
-                        const Center(child: CircularProgressIndicator()),
-                    image: const AssetImage('assets/rick.gif'),
-                    height: size.height * 0.2,
-                  ),
-                ),
+                TopPageWidget("Log in"),
                 Padding(
                   padding: EdgeInsets.only(
                       top: size.height * 0.02,
@@ -86,6 +64,9 @@ class _AuthPageState extends State<AuthPage> {
                       right: size.width * 0.08),
                   child: TextField(
                     controller: _passwordController,
+                    obscureText: true,
+                    enableSuggestions: false,
+                    autocorrect: false,
                     decoration: InputDecoration(
                       hintText: "Password",
                       border: OutlineInputBorder(
@@ -180,21 +161,25 @@ class _AuthPageState extends State<AuthPage> {
   }
 
   void _onLogin() {
-    Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
-        const HomePage()), (Route<dynamic> route) => false);
+    var user = ProfileWidget.of(context)?.profile;
+    Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (context) => HomePage()),
+        (Route<dynamic> route) => false);
   }
 
   void _onTapSignin() {
+    var user = ProfileWidget.of(context)?.profile;
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const SigninPage()),
+      MaterialPageRoute(builder: (context) => SigninPage()),
     );
   }
 
   void _onTapForgotPassword() {
+    var user = ProfileWidget.of(context)?.profile;
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const ForgotPasswordPage()),
+      MaterialPageRoute(builder: (context) => ForgotPasswordPage()),
     );
   }
 }

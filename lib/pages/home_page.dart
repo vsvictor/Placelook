@@ -1,7 +1,7 @@
+import 'package:Placelook/pages/profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
-import 'package:placelook/pages/map_page.dart';
-import 'package:placelook/pages/profile_page.dart';
+import 'package:Placelook/pages/map_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -16,21 +16,21 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     List<Widget> buildScreen() => [const MapPage(), const ProfilePage()];
     List<PersistentBottomNavBarItem> builItems() => [
-      PersistentBottomNavBarItem(
-        icon: const ImageIcon(AssetImage("assets/walk.png")),
-        title: "Walk",
-        activeColorPrimary: Colors.white,
-        activeColorSecondary: Colors.white,
-        inactiveColorPrimary: Colors.grey,
-      ),
-      PersistentBottomNavBarItem(
-        icon: const ImageIcon(AssetImage("assets/profile.png")),
-        title: "Profile",
-        activeColorPrimary: Colors.white,
-        activeColorSecondary: Colors.white,
-        inactiveColorPrimary: Colors.grey,
-      )
-    ];
+          PersistentBottomNavBarItem(
+            icon: const ImageIcon(AssetImage("assets/walk.png")),
+            title: "Walk",
+            activeColorPrimary: Colors.white,
+            activeColorSecondary: Colors.white,
+            inactiveColorPrimary: Colors.grey,
+          ),
+          PersistentBottomNavBarItem(
+            icon: const ImageIcon(AssetImage("assets/profile.png")),
+            title: "Profile",
+            activeColorPrimary: Colors.white,
+            activeColorSecondary: Colors.white,
+            inactiveColorPrimary: Colors.grey,
+          )
+        ];
     return PersistentTabView(
       context,
       controller: _controller,
