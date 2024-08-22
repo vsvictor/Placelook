@@ -1,6 +1,6 @@
-
 import 'package:flutter/material.dart';
 import 'package:Placelook/widgets/arcgic_auth_widget.dart';
+
 //https://basemaps.arcgis.com/arcgis/rest/services/World_Basemap_v2/VectorTileServer
 //CLIENT_ID = "QF29MwuUhP2rWnK4"
 //SECRET_ID = "1200189268ec437d869f94f121704cbb"
@@ -23,6 +23,4 @@ class _MapPageState extends State<MapPage> {
   Widget build(BuildContext context) {
     return const ArcGISAuthWidget();
   }
-
-
 }

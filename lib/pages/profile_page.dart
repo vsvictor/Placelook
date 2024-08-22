@@ -1,8 +1,14 @@
+import 'package:Placelook/model/contact.dart';
+import 'package:Placelook/model/languages.dart';
+import 'package:Placelook/model/role.dart';
+import 'package:Placelook/model/user.dart';
+import 'package:Placelook/widgets/profile_widget.dart';
+import 'package:Placelook/widgets/top_page_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:gif/gif.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:placelook/pages/auth_page.dart';
-import 'package:placelook/widgets/avatar.dart';
+import 'package:Placelook/viewmodel/user_view_model.dart';
+import 'package:Placelook/widgets/avatar_widget.dart';
+import 'package:Placelook/pages/auth_page.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -11,8 +17,9 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  //https://basemaps.arcgis.com/arcgis/rest/services/World_Basemap_v2/VectorTileServer
-  late Future _loadBasemapFuture;
+  TextEditingController _teFirstName = TextEditingController();
+  TextEditingController _teLastName = TextEditingController();
+  TextEditingController _teEmail = TextEditingController();
   @override
   void initState() {
     super.initState();
@@ -21,8 +28,13 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    String? selectedRole = "Tripper";
-    String? selectedLanguage = "English";
+    User? u = ProfileWidget.of(context)?.profile.value;
+    if (_teFirstName.text.trim().isEmpty)
+      _teFirstName.text = (u != null) ? u.firstName : "";
+    if (_teLastName.text.trim().isEmpty)
+      _teLastName.text = (u != null) ? u.lastName : "";
+    if (_teEmail.text.trim().isEmpty)
+      _teEmail.text = (u != null) ? u.email.email : "";
     return Scaffold(
       body: Center(
         child: Container(
@@ -33,39 +45,10 @@ class _ProfilePageState extends State<ProfilePage> {
             child: SingleChildScrollView(
                 child: Column(
               children: [
-                Padding(
-                  padding: EdgeInsets.only(top: size.height * 0.02),
-                  child: Text(
-                    "Placelook",
-                    style: GoogleFonts.poppins(
-                      color: const Color(0xff1D1617),
-                      fontSize: size.height * 0.03,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: size.height * 0.02),
-                  child: Gif(
-                    autostart: Autostart.loop,
-                    placeholder: (context) =>
-                        const Center(child: CircularProgressIndicator()),
-                    image: const AssetImage('assets/rick.gif'),
-                    height: size.height * 0.15,
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: size.height * 0.02),
-                  child: Text(
-                    "Profile",
-                    style: GoogleFonts.poppins(
-                      color: const Color(0xff1D1617),
-                      fontSize: size.height * 0.05,
-                    ),
-                  ),
-                ),
+                TopPageWidget("Profile"),
                 Padding(
                     padding: const EdgeInsets.only(top: 32),
-                    child: Avatar(
+                    child: AvatarWidger(
                       backgroundImage: Image.asset("assets/edit.png"),
                       radius: 128.0,
                       colorBask: Colors.grey,
@@ -74,8 +57,8 @@ class _ProfilePageState extends State<ProfilePage> {
                   padding: EdgeInsets.only(top: size.height * 0.02),
                   child: ElevatedButton(
                     style: ButtonStyle(
-                        backgroundColor: WidgetStateProperty.all<Color>(
-                            Colors.blue),
+                        backgroundColor:
+                            WidgetStateProperty.all<Color>(Colors.blue),
                         padding: WidgetStateProperty.all<EdgeInsetsGeometry>(
                             const EdgeInsets.only(
                                 top: 8, left: 64, right: 64, bottom: 8))),
@@ -93,6 +76,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       left: size.width * 0.08,
                       right: size.width * 0.08),
                   child: TextField(
+                    controller: _teFirstName,
                     decoration: InputDecoration(
                       labelText: "First name",
                       hintText: "First name",
@@ -109,6 +93,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       left: size.width * 0.08,
                       right: size.width * 0.08),
                   child: TextField(
+                    controller: _teLastName,
                     decoration: InputDecoration(
                       labelText: "Last name",
                       hintText: "Last name",
@@ -125,6 +110,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       left: size.width * 0.08,
                       right: size.width * 0.08),
                   child: TextField(
+                    controller: _teEmail,
                     decoration: InputDecoration(
                       labelText: "E-Mail",
                       hintText: "E-Mail",
@@ -152,12 +138,13 @@ class _ProfilePageState extends State<ProfilePage> {
                     dropdownColor: Colors.white,
                     hint: const Text("Select role"),
                     onChanged: (String? newSelect) {
-                      print(newSelect);
-                      setState(() {
-                          selectedRole = newSelect;
-                      });
+                      if (newSelect != null) {
+                        u?.role = Role.values.byName(newSelect);
+                      }
                     },
-                    items: ['Guid', 'Tripper']
+                    items: Role.values
+                        .map((e) => e.name)
+                        .toList()
                         .map<DropdownMenuItem<String>>((String value) {
                       return DropdownMenuItem<String>(
                         value: value,
@@ -169,6 +156,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                       );
                     }).toList(),
+                    value: u?.role.name,
                   ),
                 ),
                 Padding(
@@ -188,12 +176,13 @@ class _ProfilePageState extends State<ProfilePage> {
                     dropdownColor: Colors.white,
                     hint: const Text("Select language"),
                     onChanged: (String? newSelect) {
-                      print(newSelect);
-                      setState(() {
-                          selectedLanguage = newSelect;
-                      });
+                      if (newSelect != null) {
+                        u?.language = Languages.values.byName(newSelect);
+                      }
                     },
-                    items: ['English', 'Franch','German','Ukranian']
+                    items: Languages.values
+                        .map((e) => e.name)
+                        .toList()
                         .map<DropdownMenuItem<String>>((String value) {
                       return DropdownMenuItem<String>(
                         value: value,
@@ -205,27 +194,30 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                       );
                     }).toList(),
+                    value: u?.language.name,
                   ),
                 ),
                 Padding(
-                    padding: const EdgeInsets.only(bottom: 128),
-                    child: Padding(
-                      padding: EdgeInsets.only(top: size.height * 0.02),
-                      child: ElevatedButton(
-                        style: ButtonStyle(
-                            backgroundColor: WidgetStateProperty.all<Color>(
-                                const Color(0xff1D1617)),
-                            padding: WidgetStateProperty.all<EdgeInsetsGeometry>(
-                                const EdgeInsets.only(
-                                    top: 8, left: 64, right: 64, bottom: 8))),
-                        child: Text("Save",
-                            style: GoogleFonts.poppins(
-                              color: Colors.white,
-                              fontSize: size.height * 0.03,
-                            )),
-                        onPressed: () => {_saveProfile()},
+                  padding: const EdgeInsets.only(bottom: 128),
+                  child: Padding(
+                    padding: EdgeInsets.only(top: size.height * 0.02),
+                    child: ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor: WidgetStateProperty.all<Color>(
+                            const Color(0xff1D1617)),
+                        padding: WidgetStateProperty.all<EdgeInsetsGeometry>(
+                          const EdgeInsets.only(
+                              top: 8, left: 64, right: 64, bottom: 8),
+                        ),
                       ),
+                      child: Text("Save",
+                          style: GoogleFonts.poppins(
+                            color: Colors.white,
+                            fontSize: size.height * 0.03,
+                          )),
+                      onPressed: () => {_saveProfile(u!)},
                     ),
+                  ),
                 ),
               ],
             )),
@@ -234,11 +226,19 @@ class _ProfilePageState extends State<ProfilePage> {
       ),
     );
   }
-  void _saveProfile(){
 
+  void _saveProfile(User u) {
+    u.firstName = _teFirstName.text;
+    u.lastName = _teLastName.text;
+    u.email = EmailContact(_teEmail.text);
+    ProfileWidget.of(context)?.profile.value = u;
+    //UserViewModel(u).save();
+    ProfileWidget.of(context)?.profile.save();
   }
-  void _logout(){
-    Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
-        const AuthPage()), (Route<dynamic> route) => false);
+
+  void _logout() {
+    Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (context) => const AuthPage()),
+        (Route<dynamic> route) => false);
   }
 }
