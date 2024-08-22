@@ -29,9 +29,12 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     User? u = ProfileWidget.of(context)?.profile.value;
-    if(_teFirstName.text.trim().isEmpty) _teFirstName.text = (u != null) ? u.firstName : "";
-    if(_teLastName.text.trim().isEmpty) _teLastName.text = (u != null) ? u.lastName : "";
-    if(_teEmail.text.trim().isEmpty) _teEmail.text = (u != null) ? u.email.email : "";
+    if (_teFirstName.text.trim().isEmpty)
+      _teFirstName.text = (u != null) ? u.firstName : "";
+    if (_teLastName.text.trim().isEmpty)
+      _teLastName.text = (u != null) ? u.lastName : "";
+    if (_teEmail.text.trim().isEmpty)
+      _teEmail.text = (u != null) ? u.email.email : "";
     return Scaffold(
       body: Center(
         child: Container(
@@ -135,11 +138,13 @@ class _ProfilePageState extends State<ProfilePage> {
                     dropdownColor: Colors.white,
                     hint: const Text("Select role"),
                     onChanged: (String? newSelect) {
-                      if(newSelect != null) {
+                      if (newSelect != null) {
                         u?.role = Role.values.byName(newSelect);
                       }
                     },
-                    items: Role.values.map((e) => e.name).toList()
+                    items: Role.values
+                        .map((e) => e.name)
+                        .toList()
                         .map<DropdownMenuItem<String>>((String value) {
                       return DropdownMenuItem<String>(
                         value: value,
@@ -171,11 +176,13 @@ class _ProfilePageState extends State<ProfilePage> {
                     dropdownColor: Colors.white,
                     hint: const Text("Select language"),
                     onChanged: (String? newSelect) {
-                      if(newSelect != null) {
+                      if (newSelect != null) {
                         u?.language = Languages.values.byName(newSelect);
                       }
                     },
-                    items: Languages.values.map((e) => e.name).toList()
+                    items: Languages.values
+                        .map((e) => e.name)
+                        .toList()
                         .map<DropdownMenuItem<String>>((String value) {
                       return DropdownMenuItem<String>(
                         value: value,
@@ -196,11 +203,13 @@ class _ProfilePageState extends State<ProfilePage> {
                     padding: EdgeInsets.only(top: size.height * 0.02),
                     child: ElevatedButton(
                       style: ButtonStyle(
-                          backgroundColor: WidgetStateProperty.all<Color>(
-                              const Color(0xff1D1617)),
-                          padding: WidgetStateProperty.all<EdgeInsetsGeometry>(
-                              const EdgeInsets.only(
-                                  top: 8, left: 64, right: 64, bottom: 8))),
+                        backgroundColor: WidgetStateProperty.all<Color>(
+                            const Color(0xff1D1617)),
+                        padding: WidgetStateProperty.all<EdgeInsetsGeometry>(
+                          const EdgeInsets.only(
+                              top: 8, left: 64, right: 64, bottom: 8),
+                        ),
+                      ),
                       child: Text("Save",
                           style: GoogleFonts.poppins(
                             color: Colors.white,

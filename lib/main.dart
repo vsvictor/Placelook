@@ -18,7 +18,6 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
-  UserViewModel u = UserViewModel(User.empty());
   @override
   void initState() {
     FlutterNativeSplash.remove();
@@ -28,7 +27,6 @@ class _AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
     return ProfileWidget(
-        profile: u,
         child: MaterialApp(
             //debugShowMaterialGrid: true,
             debugShowCheckedModeBanner: false,

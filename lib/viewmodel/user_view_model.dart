@@ -29,19 +29,21 @@ class UserViewModel extends ValueNotifier<User> {
       u.lastName = await pref.getString("lastName") ?? "";
       u.email = EmailContact(await pref.getString("email") ?? "");
       pref.getString("role").then((String? s) => {
-            if (s != null && !s.isEmpty){
+            if (s != null && !s.isEmpty)
+              {
                 print(u.toString().trim()),
                 u.role = Role.values.byName(s),
-              print(u.role.name)
+                print(u.role.name)
               }
           });
-      pref.getString("language").then((String? s)=>{
-        if (s != null && !s.isEmpty){
-          print(u.toString().trim()),
-          u.language = Languages.values.byName(s),
-          print(u.language.name)
-        }
-      });
+      pref.getString("language").then((String? s) => {
+            if (s != null && !s.isEmpty)
+              {
+                print(u.toString().trim()),
+                u.language = Languages.values.byName(s),
+                print(u.language.name)
+              }
+          });
     }
     return Future<UserViewModel>(() => UserViewModel(u));
   }
