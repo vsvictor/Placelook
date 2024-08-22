@@ -6,14 +6,7 @@ class ProfileWidget extends InheritedWidget {
   UserViewModel profile = UserViewModel(User.empty());
   ProfileWidget({super.key, required super.child});
   @override
-  bool updateShouldNotify(covariant InheritedWidget oldWidget) {
-    var res = false;
-    oldWidget as ProfileWidget;
-    res = (oldWidget.profile.value.id!.isEmpty &&
-            this.profile.value.id!.isNotEmpty) ||
-        (oldWidget.profile.value.id != this.profile.value.id);
-    return res;
-  }
+  bool updateShouldNotify(covariant InheritedWidget oldWidget) => false;
 
   static ProfileWidget? of(BuildContext context) {
     return context.dependOnInheritedWidgetOfExactType<ProfileWidget>();

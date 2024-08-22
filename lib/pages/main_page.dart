@@ -3,7 +3,6 @@ import 'package:Placelook/widgets/profile_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:Placelook/viewmodel/user_view_model.dart';
 
-
 class MainPage extends StatefulWidget {
   const MainPage();
   @override
@@ -11,7 +10,6 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-
   @override
   void initState() {
     super.initState();
@@ -19,10 +17,12 @@ class _MainPageState extends State<MainPage> {
       loadUser(context);
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return AuthPage();
   }
+
   void loadUser(BuildContext context) {
     UserViewModel.fromStorage().then((UserViewModel? user) {
       if (user != null) {
@@ -32,6 +32,7 @@ class _MainPageState extends State<MainPage> {
       }
     });
   }
+
   Future showAlertDialog() {
     return showDialog(
       context: context,

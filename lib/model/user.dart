@@ -4,6 +4,7 @@ import 'package:Placelook/model/languages.dart';
 import 'package:Placelook/model/role.dart';
 import 'package:uuid/uuid.dart';
 import 'package:Placelook/model/contact.dart';
+
 class User {
   String? _id = null;
   String firstName = "";
@@ -13,7 +14,11 @@ class User {
   Languages language = Languages.Undefined;
   final _uuid = const Uuid();
 
-  User(this.email, {this.firstName = "", this.lastName = "", this.role = Role.Tripper, this.language = Languages.Undefined}) {
+  User(this.email,
+      {this.firstName = "",
+      this.lastName = "",
+      this.role = Role.Tripper,
+      this.language = Languages.Undefined}) {
     _id = _uuid.v4();
   }
   User.empty() {
@@ -48,8 +53,7 @@ class User {
   }
 
   @override
-  String toString(){
-    return name+" "+email.email+" "+role.name+" "+language.name;
+  String toString() {
+    return name + " " + email.email + " " + role.name + " " + language.name;
   }
-
 }
