@@ -232,7 +232,8 @@ class _ProfilePageState extends State<ProfilePage> {
     u.lastName = _teLastName.text;
     u.email = EmailContact(_teEmail.text);
     ProfileWidget.of(context)?.profile.value = u;
-    UserViewModel(u).save();
+    //UserViewModel(u).save();
+    ProfileWidget.of(context)?.profile.save();
   }
 
   void _logout() {
