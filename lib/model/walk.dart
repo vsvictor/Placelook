@@ -3,8 +3,12 @@ import 'package:Placelook/model/user.dart';
 
 import 'package:Placelook/model/languages.dart';
 import 'package:Placelook/model/location.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class Walk {
+part 'walk.freezed.dart';
+part 'walk.g.dart';
+
+/*class Walk {
   late String name;
   late String city;
   late Location? location;
@@ -33,6 +37,20 @@ class Walk {
     language = Languages.Undefined;
     typeWalk = TypeWalk.FREE;
   }
-}
+}*/
 
-typedef Walks = List<Walk>;
+@unfreezed
+class Walk with _$Walk{
+  Walk._();
+  factory Walk({
+  @Default("")String name,
+  @Default("")String city,
+  @Default(null)Location? location,
+  @Default(null)DateTime? time,
+  @Default(null)User? who,
+  @Default(null)int? duration,
+  @Default(Languages.Undefined)Languages language,
+  @Default(TypeWalk.Free)TypeWalk typeWalk}) = _Walk;
+
+  factory Walk.fromJson(Map<String, dynamic> json) => _$WalkFromJson(json);
+}

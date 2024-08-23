@@ -14,10 +14,17 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
+EmailContact _$EmailContactFromJson(Map<String, dynamic> json) {
+  return _EmailContact.fromJson(json);
+}
+
 /// @nodoc
 mixin _$EmailContact {
   String? get email => throw _privateConstructorUsedError;
   set email(String? value) => throw _privateConstructorUsedError;
+
+  /// Serializes this EmailContact to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
   /// Create a copy of EmailContact
   /// with the given fields replaced by the non-null parameter values.
@@ -97,9 +104,12 @@ class __$$EmailContactImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$EmailContactImpl extends _EmailContact {
   _$EmailContactImpl({this.email = null}) : super._();
+
+  factory _$EmailContactImpl.fromJson(Map<String, dynamic> json) =>
+      _$$EmailContactImplFromJson(json);
 
   @override
   @JsonKey()
@@ -117,11 +127,21 @@ class _$EmailContactImpl extends _EmailContact {
   @pragma('vm:prefer-inline')
   _$$EmailContactImplCopyWith<_$EmailContactImpl> get copyWith =>
       __$$EmailContactImplCopyWithImpl<_$EmailContactImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$EmailContactImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _EmailContact extends EmailContact {
   factory _EmailContact({String? email}) = _$EmailContactImpl;
   _EmailContact._() : super._();
+
+  factory _EmailContact.fromJson(Map<String, dynamic> json) =
+      _$EmailContactImpl.fromJson;
 
   @override
   String? get email;

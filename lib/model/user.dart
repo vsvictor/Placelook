@@ -62,9 +62,10 @@ import 'package:uuid/uuid.dart';
   }
 }*/
 part 'user.freezed.dart';
-//part 'user.g.dart';
+part 'user.g.dart';
 
 @unfreezed
+@Freezed(makeCollectionsUnmodifiable: false)
 class User with _$User{
   User._();
   factory User({
@@ -74,7 +75,7 @@ class User with _$User{
       required List<Contact> contacts,
       @Default(Role.Tripper) Role role,
       @Default(Languages.Undefined)Languages language}) = _User;
-  //factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 
   String? get email  {
     var res = "";

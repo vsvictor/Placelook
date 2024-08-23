@@ -14,6 +14,19 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
+Contact _$ContactFromJson(Map<String, dynamic> json) {
+  switch (json['runtimeType']) {
+    case 'email':
+      return EmailContact.fromJson(json);
+    case 'phone':
+      return PhoneContact.fromJson(json);
+
+    default:
+      throw CheckedFromJsonException(json, 'runtimeType', 'Contact',
+          'Invalid union type "${json['runtimeType']}"!');
+  }
+}
+
 /// @nodoc
 mixin _$Contact {
   @optionalTypeArgs
@@ -54,6 +67,9 @@ mixin _$Contact {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  /// Serializes this Contact to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -110,12 +126,20 @@ class __$$EmailContactImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$EmailContactImpl extends EmailContact {
-  _$EmailContactImpl(this.email) : super._();
+  _$EmailContactImpl(this.email, {final String? $type})
+      : $type = $type ?? 'email',
+        super._();
+
+  factory _$EmailContactImpl.fromJson(Map<String, dynamic> json) =>
+      _$$EmailContactImplFromJson(json);
 
   @override
   String? email;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
 
   @override
   String toString() {
@@ -191,11 +215,21 @@ class _$EmailContactImpl extends EmailContact {
     }
     return orElse();
   }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$EmailContactImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class EmailContact extends Contact {
   factory EmailContact(String? email) = _$EmailContactImpl;
   EmailContact._() : super._();
+
+  factory EmailContact.fromJson(Map<String, dynamic> json) =
+      _$EmailContactImpl.fromJson;
 
   String? get email;
   set email(String? value);
@@ -241,12 +275,20 @@ class __$$PhoneContactImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$PhoneContactImpl extends PhoneContact {
-  _$PhoneContactImpl(this.phone) : super._();
+  _$PhoneContactImpl(this.phone, {final String? $type})
+      : $type = $type ?? 'phone',
+        super._();
+
+  factory _$PhoneContactImpl.fromJson(Map<String, dynamic> json) =>
+      _$$PhoneContactImplFromJson(json);
 
   @override
   String? phone;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
 
   @override
   String toString() {
@@ -322,11 +364,21 @@ class _$PhoneContactImpl extends PhoneContact {
     }
     return orElse();
   }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$PhoneContactImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class PhoneContact extends Contact {
   factory PhoneContact(String? phone) = _$PhoneContactImpl;
   PhoneContact._() : super._();
+
+  factory PhoneContact.fromJson(Map<String, dynamic> json) =
+      _$PhoneContactImpl.fromJson;
 
   String? get phone;
   set phone(String? value);

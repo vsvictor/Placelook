@@ -37,5 +37,4 @@ var walksMock = [
           role: Role.Guid,
           language: Languages.English),
       duration: 90),
-
 ];

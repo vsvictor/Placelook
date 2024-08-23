@@ -14,6 +14,10 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
+User _$UserFromJson(Map<String, dynamic> json) {
+  return _User.fromJson(json);
+}
+
 /// @nodoc
 mixin _$User {
   String? get id => throw _privateConstructorUsedError;
@@ -28,6 +32,9 @@ mixin _$User {
   set role(Role value) => throw _privateConstructorUsedError;
   Languages get language => throw _privateConstructorUsedError;
   set language(Languages value) => throw _privateConstructorUsedError;
+
+  /// Serializes this User to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
   /// Create a copy of User
   /// with the given fields replaced by the non-null parameter values.
@@ -165,7 +172,7 @@ class __$$UserImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$UserImpl extends _User with DiagnosticableTreeMixin {
   _$UserImpl(
       {this.id = null,
@@ -175,6 +182,9 @@ class _$UserImpl extends _User with DiagnosticableTreeMixin {
       this.role = Role.Tripper,
       this.language = Languages.Undefined})
       : super._();
+
+  factory _$UserImpl.fromJson(Map<String, dynamic> json) =>
+      _$$UserImplFromJson(json);
 
   @override
   @JsonKey()
@@ -219,6 +229,13 @@ class _$UserImpl extends _User with DiagnosticableTreeMixin {
   @pragma('vm:prefer-inline')
   _$$UserImplCopyWith<_$UserImpl> get copyWith =>
       __$$UserImplCopyWithImpl<_$UserImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$UserImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _User extends User {
@@ -230,6 +247,8 @@ abstract class _User extends User {
       Role role,
       Languages language}) = _$UserImpl;
   _User._() : super._();
+
+  factory _User.fromJson(Map<String, dynamic> json) = _$UserImpl.fromJson;
 
   @override
   String? get id;

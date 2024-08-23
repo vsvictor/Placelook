@@ -1,1 +1,1 @@
-enum TypeWalk { PAID, FREE }
+enum TypeWalk { Paid, Free }
