@@ -3,7 +3,7 @@ import 'package:Placelook/model/walk.dart';
 import 'package:flutter/foundation.dart';
 
 class WalksViewModel extends ChangeNotifier {
-  Walks list = List.empty();
+  List<Walk> list = List.empty();
   void load() async{
     list.addAll(walksMock);
     notifyListeners();
