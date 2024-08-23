@@ -29,7 +29,7 @@ class _AuthPageState extends State<AuthPage> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     User? pr = ProfileWidget.of(context)?.profile.value;
-    _loginController.text = (pr != null) ? pr.email.email : "";
+    _loginController.text = (pr != null) ? pr.email??"":"";
     return Scaffold(
       body: Center(
         child: Container(

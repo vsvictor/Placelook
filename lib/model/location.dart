@@ -1,4 +1,5 @@
 class Location {
-  late double latitude;
-  late double longitude;
+  final double latitude;
+  final double longitude;
+  const Location(this.latitude, this.longitude);
 }

@@ -3,6 +3,8 @@ import 'package:Placelook/widgets/profile_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:Placelook/viewmodel/user_view_model.dart';
 
+import '../model/user.dart';
+
 class MainPage extends StatefulWidget {
   const MainPage();
   @override
