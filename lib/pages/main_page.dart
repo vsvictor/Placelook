@@ -1,9 +1,9 @@
 import 'package:Placelook/pages/auth_page.dart';
 import 'package:Placelook/widgets/profile_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:Placelook/viewmodel/user_view_model.dart';
 
 import '../model/user.dart';
+import '../viewmodel/user_model;.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage();
@@ -26,7 +26,7 @@ class _MainPageState extends State<MainPage> {
   }
 
   void loadUser(BuildContext context) async {
-    var u = await UserViewModel.fromStorage();
+    var u = await UserModel.fromStorage();
     if (u != null) {
       setState(() {
         ProfileWidget.of(context)?.profile = u;

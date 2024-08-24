@@ -6,7 +6,6 @@ import 'package:Placelook/widgets/profile_widget.dart';
 import 'package:Placelook/widgets/top_page_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:Placelook/viewmodel/user_view_model.dart';
 import 'package:Placelook/widgets/avatar_widget.dart';
 import 'package:Placelook/pages/auth_page.dart';
 

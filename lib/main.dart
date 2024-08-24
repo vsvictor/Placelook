@@ -1,13 +1,21 @@
-import 'package:Placelook/model/user.dart';
+
 import 'package:Placelook/pages/main_page.dart';
-import 'package:Placelook/viewmodel/user_view_model.dart';
 import 'package:Placelook/widgets/profile_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:get_it/get_it.dart';
+
+import 'api/RepositoryMockImpl.dart';
+
+
+void setup() {
+  GetIt.I.registerLazySingleton(()=>RepositoryMockImpl());
+}
 
 void main() {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  setup();
   runApp(const App());
 }
 

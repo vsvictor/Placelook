@@ -10,8 +10,8 @@ import 'package:Placelook/model/user.dart';
 
 import '../utils/convertor.dart';
 
-class UserViewModel extends ValueNotifier<User> {
-  UserViewModel(super.value);
+class UserModel extends ValueNotifier<User> {
+  UserModel(super.value);
 
   void save() async {
     var pref = await SecureSharedPref.getInstance();
@@ -19,13 +19,13 @@ class UserViewModel extends ValueNotifier<User> {
     print(value.toJson().toString());
   }
 
-  static Future<UserViewModel?> fromStorage() async {
+  static Future<UserModel?> fromStorage() async {
     var pref = await SecureSharedPref.getInstance();
     User u = User(contacts: List.empty());
     var f = await pref.getMap("profile");
     if (f != null) {
       u = User.fromJson(convertMap(f));
     }
-    return Future<UserViewModel>(() => UserViewModel(u));
+    return Future<UserModel>(() => UserModel(u));
   }
 }
