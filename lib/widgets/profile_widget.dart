@@ -4,7 +4,8 @@ import 'package:Placelook/viewmodel/user_view_model.dart';
 import 'package:Placelook/model/user.dart';
 
 class ProfileWidget extends InheritedWidget {
-  UserViewModel profile = UserViewModel(User(contacts: List.empty()));
+  UserViewModel profile =
+      UserViewModel(User(contacts: List.empty(growable: true)));
   ProfileWidget({super.key, required super.child});
   @override
   bool updateShouldNotify(covariant InheritedWidget oldWidget) => false;

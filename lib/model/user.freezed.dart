@@ -26,8 +26,8 @@ mixin _$User {
   set firstName(String value) => throw _privateConstructorUsedError;
   String get lastName => throw _privateConstructorUsedError;
   set lastName(String value) => throw _privateConstructorUsedError;
-  List<Contact> get contacts => throw _privateConstructorUsedError;
-  set contacts(List<Contact> value) => throw _privateConstructorUsedError;
+  List<Contact>? get contacts => throw _privateConstructorUsedError;
+  set contacts(List<Contact>? value) => throw _privateConstructorUsedError;
   Role get role => throw _privateConstructorUsedError;
   set role(Role value) => throw _privateConstructorUsedError;
   Languages get language => throw _privateConstructorUsedError;
@@ -51,7 +51,7 @@ abstract class $UserCopyWith<$Res> {
       {String? id,
       String firstName,
       String lastName,
-      List<Contact> contacts,
+      List<Contact>? contacts,
       Role role,
       Languages language});
 }
@@ -74,7 +74,7 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
     Object? id = freezed,
     Object? firstName = null,
     Object? lastName = null,
-    Object? contacts = null,
+    Object? contacts = freezed,
     Object? role = null,
     Object? language = null,
   }) {
@@ -91,10 +91,10 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
           ? _value.lastName
           : lastName // ignore: cast_nullable_to_non_nullable
               as String,
-      contacts: null == contacts
+      contacts: freezed == contacts
           ? _value.contacts
           : contacts // ignore: cast_nullable_to_non_nullable
-              as List<Contact>,
+              as List<Contact>?,
       role: null == role
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
@@ -118,7 +118,7 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
       {String? id,
       String firstName,
       String lastName,
-      List<Contact> contacts,
+      List<Contact>? contacts,
       Role role,
       Languages language});
 }
@@ -138,7 +138,7 @@ class __$$UserImplCopyWithImpl<$Res>
     Object? id = freezed,
     Object? firstName = null,
     Object? lastName = null,
-    Object? contacts = null,
+    Object? contacts = freezed,
     Object? role = null,
     Object? language = null,
   }) {
@@ -155,10 +155,10 @@ class __$$UserImplCopyWithImpl<$Res>
           ? _value.lastName
           : lastName // ignore: cast_nullable_to_non_nullable
               as String,
-      contacts: null == contacts
+      contacts: freezed == contacts
           ? _value.contacts
           : contacts // ignore: cast_nullable_to_non_nullable
-              as List<Contact>,
+              as List<Contact>?,
       role: null == role
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
@@ -196,7 +196,7 @@ class _$UserImpl extends _User with DiagnosticableTreeMixin {
   @JsonKey()
   String lastName;
   @override
-  List<Contact> contacts;
+  List<Contact>? contacts;
   @override
   @JsonKey()
   Role role;
@@ -243,7 +243,7 @@ abstract class _User extends User {
       {String? id,
       String firstName,
       String lastName,
-      required List<Contact> contacts,
+      required List<Contact>? contacts,
       Role role,
       Languages language}) = _$UserImpl;
   _User._() : super._();
@@ -260,8 +260,8 @@ abstract class _User extends User {
   String get lastName;
   set lastName(String value);
   @override
-  List<Contact> get contacts;
-  set contacts(List<Contact> value);
+  List<Contact>? get contacts;
+  set contacts(List<Contact>? value);
   @override
   Role get role;
   set role(Role value);

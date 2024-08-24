@@ -10,8 +10,8 @@ _$UserImpl _$$UserImplFromJson(Map<String, dynamic> json) => _$UserImpl(
       id: json['id'] as String? ?? null,
       firstName: json['firstName'] as String? ?? "",
       lastName: json['lastName'] as String? ?? "",
-      contacts: (json['contacts'] as List<dynamic>)
-          .map((e) => Contact.fromJson(e as Map<String, dynamic>))
+      contacts: (json['contacts'] as List<dynamic>?)
+          ?.map((e) => Contact.fromJson(e as Map<String, dynamic>))
           .toList(),
       role: $enumDecodeNullable(_$RoleEnumMap, json['role']) ?? Role.Tripper,
       language: $enumDecodeNullable(_$LanguagesEnumMap, json['language']) ??

@@ -11,7 +11,7 @@ var walksMock = [
       location: Location(50.0, 30.0),
       time: DateTime(2024, 8, 22, 16, 30, 0),
       who: User(
-          contacts:[EmailContact("dvictor74@gmail.com")],
+          contacts: [EmailContact("dvictor74@gmail.com")],
           firstName: "Віктор",
           lastName: "Джурляе",
           role: Role.Guid,
@@ -21,7 +21,7 @@ var walksMock = [
       location: Location(52.0, 34.0),
       time: DateTime(2024, 8, 22, 16, 30, 0),
       who: User(
-          contacts:[EmailContact("doksana7974@gmail.com")],
+          contacts: [EmailContact("doksana7974@gmail.com")],
           firstName: "Оксана",
           lastName: "Джурляе",
           role: Role.Guid,

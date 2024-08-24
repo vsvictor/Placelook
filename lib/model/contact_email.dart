@@ -7,5 +7,6 @@ part 'contact_email.g.dart';
 class EmailContact extends Contact with _$EmailContact {
   EmailContact._();
   factory EmailContact({@Default(null) String? email}) = _EmailContact;
-  factory EmailContact.fromJson(Map<String, dynamic> json) => _$EmailContactFromJson(json);
+  factory EmailContact.fromJson(Map<String, dynamic> json) =>
+      _$EmailContactFromJson(json);
 }

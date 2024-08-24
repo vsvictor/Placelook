@@ -34,7 +34,7 @@ class _ProfilePageState extends State<ProfilePage> {
     if (_teLastName.text.trim().isEmpty)
       _teLastName.text = (u != null) ? u.lastName : "";
     if (_teEmail.text.trim().isEmpty)
-      _teEmail.text = (u != null) ? u.email??"" : "";
+      _teEmail.text = (u != null) ? u.email ?? "" : "";
     return Scaffold(
       body: Center(
         child: Container(
@@ -228,10 +228,10 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   void _saveProfile(User u) {
-    if(u.id == null) u.generateID();
+    if (u.id == null) u.generateID();
     u.firstName = _teFirstName.text;
     u.lastName = _teLastName.text;
-    u.contacts = [Contact.email(_teEmail.text)];
+    u.contacts = ([Contact.email(_teEmail.text)]).toList();
     ProfileWidget.of(context)?.profile.value = u;
     //UserViewModel(u).save();
     ProfileWidget.of(context)?.profile.save();

@@ -25,14 +25,13 @@ class _MainPageState extends State<MainPage> {
     return AuthPage();
   }
 
-  void loadUser(BuildContext context) {
-    UserViewModel.fromStorage().then((UserViewModel? user) {
-      if (user != null) {
-        setState(() {
-          ProfileWidget.of(context)?.profile.value = user.value;
-        });
-      }
-    });
+  void loadUser(BuildContext context) async {
+    var u = await UserViewModel.fromStorage();
+    if (u != null) {
+      setState(() {
+        ProfileWidget.of(context)?.profile = u;
+      });
+    }
   }
 
   Future showAlertDialog() {

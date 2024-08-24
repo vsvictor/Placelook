@@ -11,11 +11,9 @@ class Location {
 */
 
 @unfreezed
-class Location with _$Location{
+class Location with _$Location {
   Location._();
-  factory Location(
-      double latitude,
-      double longitude
-      ) = _Location;
-  factory Location.fromJson(Map<String, dynamic> json) => _$LocationFromJson(json);
+  factory Location(double latitude, double longitude) = _Location;
+  factory Location.fromJson(Map<String, dynamic> json) =>
+      _$LocationFromJson(json);
 }

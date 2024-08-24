@@ -40,17 +40,17 @@ part 'walk.g.dart';
 }*/
 
 @unfreezed
-class Walk with _$Walk{
+class Walk with _$Walk {
   Walk._();
-  factory Walk({
-  @Default("")String name,
-  @Default("")String city,
-  @Default(null)Location? location,
-  @Default(null)DateTime? time,
-  @Default(null)User? who,
-  @Default(null)int? duration,
-  @Default(Languages.Undefined)Languages language,
-  @Default(TypeWalk.Free)TypeWalk typeWalk}) = _Walk;
+  factory Walk(
+      {@Default("") String name,
+      @Default("") String city,
+      @Default(null) Location? location,
+      @Default(null) DateTime? time,
+      @Default(null) User? who,
+      @Default(null) int? duration,
+      @Default(Languages.Undefined) Languages language,
+      @Default(TypeWalk.Free) TypeWalk typeWalk}) = _Walk;
 
   factory Walk.fromJson(Map<String, dynamic> json) => _$WalkFromJson(json);
 }

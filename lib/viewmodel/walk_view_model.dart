@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 
 class WalksViewModel extends ChangeNotifier {
   List<Walk> list = List.empty();
-  void load() async{
+  void load() async {
     list.addAll(walksMock);
     notifyListeners();
   }

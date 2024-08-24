@@ -8,5 +8,6 @@ abstract class Contact with _$Contact {
   Contact();
   factory Contact.email(String? email) = EmailContact;
   factory Contact.phone(String? phone) = PhoneContact;
-  factory Contact.fromJson(Map<String, dynamic> json) => _$ContactFromJson(json);
+  factory Contact.fromJson(Map<String, dynamic> json) =>
+      _$ContactFromJson(json);
 }

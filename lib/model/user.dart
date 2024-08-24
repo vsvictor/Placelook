@@ -66,29 +66,30 @@ part 'user.g.dart';
 
 @unfreezed
 @Freezed(makeCollectionsUnmodifiable: false)
-class User with _$User{
+class User with _$User {
   User._();
-  factory User({
-      @Default(null)String? id,
-      @Default("")String firstName,
-      @Default("")String lastName,
-      required List<Contact> contacts,
+  factory User(
+      {@Default(null) String? id,
+      @Default("") String firstName,
+      @Default("") String lastName,
+      required List<Contact>? contacts,
       @Default(Role.Tripper) Role role,
-      @Default(Languages.Undefined)Languages language}) = _User;
+      @Default(Languages.Undefined) Languages language}) = _User;
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 
-  String? get email  {
+  String? get email {
     var res = "";
-    var e = contacts.where((el)=> el is EmailContact);
-    if(e.length>0){
-      var ee = (e.first as EmailContact).email;
-      if(ee != null) res = ee;
+    if (contacts != null) {
+      var e = contacts?.where((el) => el is EmailContact);
+      if (e != null && e.length > 0) {
+        var ee = (e.first as EmailContact).email;
+        if (ee != null) res = ee;
+      }
     }
     return res;
   }
 
-
-  void generateID(){
+  void generateID() {
     id = Uuid().v4();
   }
 }
