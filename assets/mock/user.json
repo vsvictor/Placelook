@@ -1,0 +1,7 @@
+{
+  firstName: Віктор ,
+  lastName: Джурляк ,
+  contacts: [{email: dvictor74@gmail.com, runtimeType: email}],
+  role: Guid,
+  language: Ukranian
+}

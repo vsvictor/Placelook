@@ -1,9 +1,5 @@
 import 'package:Placelook/pages/auth_page.dart';
-import 'package:Placelook/widgets/profile_widget.dart';
 import 'package:flutter/material.dart';
-
-import '../model/user.dart';
-import '../viewmodel/user_model;.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage();
@@ -13,25 +9,8 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      loadUser(context);
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
     return AuthPage();
-  }
-
-  void loadUser(BuildContext context) async {
-    var u = await UserModel.fromStorage();
-    if (u != null) {
-      setState(() {
-        ProfileWidget.of(context)?.profile = u;
-      });
-    }
   }
 
   Future showAlertDialog() {

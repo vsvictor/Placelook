@@ -1,13 +1,12 @@
 import 'package:Placelook/pages/signin_page.dart';
+import 'package:Placelook/viewmodel/user_view_model.dart';
 import 'package:Placelook/widgets/top_page_widget.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import 'package:Placelook/model/user.dart';
-import 'package:Placelook/widgets/profile_widget.dart';
 import 'package:Placelook/pages/forgot_password_page.dart';
 import 'package:Placelook/pages/home_page.dart';
+import 'package:provider/provider.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({super.key});
@@ -16,7 +15,7 @@ class AuthPage extends StatefulWidget {
 }
 
 class _AuthPageState extends State<AuthPage> {
-  bool pwVisible = false;
+  late UserViewModel vm;
   late final TapGestureRecognizer _tapGestureSignin = TapGestureRecognizer()
     ..onTap = _onTapSignin;
   late final TapGestureRecognizer _tapGestureForgotPassword =
@@ -25,12 +24,21 @@ class _AuthPageState extends State<AuthPage> {
   late final TextEditingController _passwordController =
       TextEditingController();
   @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_)=>{
+      if(vm.user == null){
+        vm.fromStorage()
+      }
+
+    });
+  }
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    User? pr = ProfileWidget.of(context)?.profile.value;
-    _loginController.text = (pr != null) ? pr.email ?? "" : "";
-    return Scaffold(
+    vm = Provider.of<UserViewModel>(context);
+    if (_loginController.text.trim().isEmpty)
+      _loginController.text = (vm.user != null) ? vm.user!.email??"" : "";    return Scaffold(
       body: Center(
         child: Container(
           width: size.width,
@@ -161,14 +169,12 @@ class _AuthPageState extends State<AuthPage> {
   }
 
   void _onLogin() {
-    var user = ProfileWidget.of(context)?.profile;
     Navigator.of(context).pushAndRemoveUntil(
         MaterialPageRoute(builder: (context) => HomePage()),
         (Route<dynamic> route) => false);
   }
 
   void _onTapSignin() {
-    var user = ProfileWidget.of(context)?.profile;
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => SigninPage()),
@@ -176,7 +182,6 @@ class _AuthPageState extends State<AuthPage> {
   }
 
   void _onTapForgotPassword() {
-    var user = ProfileWidget.of(context)?.profile;
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => ForgotPasswordPage()),
