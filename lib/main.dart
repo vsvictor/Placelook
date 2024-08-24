@@ -1,15 +1,23 @@
 
+import 'package:Placelook/api/auth_repositori_mock_impl.dart';
+import 'package:Placelook/api/remote_repository.dart';
+import 'package:Placelook/domain/usecase/load_user_usecase.dart';
+import 'package:Placelook/domain/usecase/login_usecase.dart';
 import 'package:Placelook/pages/main_page.dart';
 import 'package:Placelook/widgets/profile_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get_it/get_it.dart';
 
-import 'api/RepositoryMockImpl.dart';
+import 'api/local_repository_impl.dart';
+import 'api/repository.dart';
+
 
 
 void setup() {
-  GetIt.I.registerLazySingleton(()=>RepositoryMockImpl());
+  GetIt.instance.registerLazySingleton(()=>Repository(RemoteRepository(AuthRepositoryMockImpl()), LocalRepositoryImpl()));
+  GetIt.instance.registerLazySingleton(()=>LoginUseCase());
+  GetIt.instance.registerLazySingleton(()=>LoadUserUseCase());
 }
 
 void main() {

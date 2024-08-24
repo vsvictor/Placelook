@@ -20,12 +20,5 @@ class UserModel extends ValueNotifier<User> {
   }
 
   static Future<UserModel?> fromStorage() async {
-    var pref = await SecureSharedPref.getInstance();
-    User u = User(contacts: List.empty());
-    var f = await pref.getMap("profile");
-    if (f != null) {
-      u = User.fromJson(convertMap(f));
-    }
-    return Future<UserModel>(() => UserModel(u));
   }
 }

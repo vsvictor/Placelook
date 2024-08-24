@@ -1,4 +1,5 @@
-import 'package:Placelook/model/user.dart';
+
+import '../model/user.dart';
 
 abstract class LocalRepository{
   Future<User> userFromStogare();
