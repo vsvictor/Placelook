@@ -2,12 +2,13 @@ import 'package:Placelook/model/contact.dart';
 import 'package:Placelook/model/languages.dart';
 import 'package:Placelook/model/role.dart';
 import 'package:Placelook/model/user.dart';
-import 'package:Placelook/widgets/profile_widget.dart';
+import 'package:Placelook/viewmodel/user_view_model.dart';
 import 'package:Placelook/widgets/top_page_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:Placelook/widgets/avatar_widget.dart';
 import 'package:Placelook/pages/auth_page.dart';
+import 'package:provider/provider.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -16,24 +17,32 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  late UserViewModel vm;
   TextEditingController _teFirstName = TextEditingController();
   TextEditingController _teLastName = TextEditingController();
   TextEditingController _teEmail = TextEditingController();
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_)=>{
+        if(vm.user == null){
+          vm.fromStorage()
+        }
+
+    });
   }
 
   @override
   Widget build(BuildContext context) {
+    vm = Provider.of<UserViewModel>(context);
     Size size = MediaQuery.of(context).size;
-    User? u = ProfileWidget.of(context)?.profile.value;
+    //User? u = ProfileWidget.of(context)?.profile.value;
     if (_teFirstName.text.trim().isEmpty)
-      _teFirstName.text = (u != null) ? u.firstName : "";
+      _teFirstName.text = (vm.user != null) ? vm.user!.firstName : "";
     if (_teLastName.text.trim().isEmpty)
-      _teLastName.text = (u != null) ? u.lastName : "";
+      _teLastName.text = (vm.user != null) ? vm.user!.lastName : "";
     if (_teEmail.text.trim().isEmpty)
-      _teEmail.text = (u != null) ? u.email ?? "" : "";
+      _teEmail.text = (vm.user != null) ? vm.user!.email ?? "" : "";
     return Scaffold(
       body: Center(
         child: Container(
@@ -138,7 +147,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     hint: const Text("Select role"),
                     onChanged: (String? newSelect) {
                       if (newSelect != null) {
-                        u?.role = Role.values.byName(newSelect);
+                        vm.user?.role = Role.values.byName(newSelect);
                       }
                     },
                     items: Role.values
@@ -155,7 +164,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                       );
                     }).toList(),
-                    value: u?.role.name,
+                    value: vm.user?.role.name,
                   ),
                 ),
                 Padding(
@@ -176,7 +185,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     hint: const Text("Select language"),
                     onChanged: (String? newSelect) {
                       if (newSelect != null) {
-                        u?.language = Languages.values.byName(newSelect);
+                        vm.user?.language = Languages.values.byName(newSelect);
                       }
                     },
                     items: Languages.values
@@ -193,7 +202,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                       );
                     }).toList(),
-                    value: u?.language.name,
+                    value: vm.user?.language.name,
                   ),
                 ),
                 Padding(
@@ -214,7 +223,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             color: Colors.white,
                             fontSize: size.height * 0.03,
                           )),
-                      onPressed: () => {_saveProfile(u!)},
+                      onPressed: () => {_saveProfile()},
                     ),
                   ),
                 ),
@@ -226,7 +235,8 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 
-  void _saveProfile(User u) {
+  void _saveProfile() {
+/*
     if (u.id == null) u.generateID();
     u.firstName = _teFirstName.text;
     u.lastName = _teLastName.text;
@@ -234,6 +244,11 @@ class _ProfilePageState extends State<ProfilePage> {
     ProfileWidget.of(context)?.profile.value = u;
     //UserViewModel(u).save();
     ProfileWidget.of(context)?.profile.save();
+*/
+    vm.user?.firstName = _teFirstName.text;
+    vm.user?.lastName = _teLastName.text;
+    vm.user?.contacts = ([Contact.email(_teEmail.text)]).toList();
+    vm.save();
   }
 
   void _logout() {
