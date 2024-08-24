@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:Placelook/api/repository.dart';
 import 'package:Placelook/model/contact.dart';
 import 'package:Placelook/model/user.dart';
+import 'auth_repository.dart';
 
-class RepositoryMockImpl extends Repository{
+class AuthRepositoryMockImpl extends AuthRepository{
   @override
   Future<User> login(String login, String password) async{
     await Future.delayed(const Duration(milliseconds: 1800));
