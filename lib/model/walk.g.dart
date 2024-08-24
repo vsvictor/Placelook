@@ -24,17 +24,26 @@ _$WalkImpl _$$WalkImplFromJson(Map<String, dynamic> json) => _$WalkImpl(
           TypeWalk.Free,
     );
 
-Map<String, dynamic> _$$WalkImplToJson(_$WalkImpl instance) =>
-    <String, dynamic>{
-      'name': instance.name,
-      'city': instance.city,
-      'location': instance.location,
-      'time': instance.time?.toIso8601String(),
-      'who': instance.who,
-      'duration': instance.duration,
-      'language': _$LanguagesEnumMap[instance.language]!,
-      'typeWalk': _$TypeWalkEnumMap[instance.typeWalk]!,
-    };
+Map<String, dynamic> _$$WalkImplToJson(_$WalkImpl instance) {
+  final val = <String, dynamic>{
+    'name': instance.name,
+    'city': instance.city,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('location', instance.location?.toJson());
+  writeNotNull('time', instance.time?.toIso8601String());
+  writeNotNull('who', instance.who?.toJson());
+  writeNotNull('duration', instance.duration);
+  val['language'] = _$LanguagesEnumMap[instance.language]!;
+  val['typeWalk'] = _$TypeWalkEnumMap[instance.typeWalk]!;
+  return val;
+}
 
 const _$LanguagesEnumMap = {
   Languages.English: 'English',

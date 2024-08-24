@@ -11,7 +11,15 @@ _$PhoneContactImpl _$$PhoneContactImplFromJson(Map<String, dynamic> json) =>
       phone: json['phone'] as String? ?? "",
     );
 
-Map<String, dynamic> _$$PhoneContactImplToJson(_$PhoneContactImpl instance) =>
-    <String, dynamic>{
-      'phone': instance.phone,
-    };
+Map<String, dynamic> _$$PhoneContactImplToJson(_$PhoneContactImpl instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('phone', instance.phone);
+  return val;
+}

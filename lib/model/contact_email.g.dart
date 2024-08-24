@@ -11,7 +11,15 @@ _$EmailContactImpl _$$EmailContactImplFromJson(Map<String, dynamic> json) =>
       email: json['email'] as String? ?? null,
     );
 
-Map<String, dynamic> _$$EmailContactImplToJson(_$EmailContactImpl instance) =>
-    <String, dynamic>{
-      'email': instance.email,
-    };
+Map<String, dynamic> _$$EmailContactImplToJson(_$EmailContactImpl instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('email', instance.email);
+  return val;
+}

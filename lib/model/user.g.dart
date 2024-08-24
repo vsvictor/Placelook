@@ -18,15 +18,23 @@ _$UserImpl _$$UserImplFromJson(Map<String, dynamic> json) => _$UserImpl(
           Languages.Undefined,
     );
 
-Map<String, dynamic> _$$UserImplToJson(_$UserImpl instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'firstName': instance.firstName,
-      'lastName': instance.lastName,
-      'contacts': instance.contacts,
-      'role': _$RoleEnumMap[instance.role]!,
-      'language': _$LanguagesEnumMap[instance.language]!,
-    };
+Map<String, dynamic> _$$UserImplToJson(_$UserImpl instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('id', instance.id);
+  val['firstName'] = instance.firstName;
+  val['lastName'] = instance.lastName;
+  writeNotNull('contacts', instance.contacts?.map((e) => e.toJson()).toList());
+  val['role'] = _$RoleEnumMap[instance.role]!;
+  val['language'] = _$LanguagesEnumMap[instance.language]!;
+  return val;
+}
 
 const _$RoleEnumMap = {
   Role.Guid: 'Guid',
