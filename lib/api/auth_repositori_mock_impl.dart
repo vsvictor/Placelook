@@ -18,10 +18,13 @@ class AuthRepositoryMockImpl extends AuthRepository {
     print('Generated token: $token');
     return token;
 */
-    await Future.delayed(const Duration(milliseconds: 1800));
-    final resp = await rootBundle.loadString("assets/mock/token.txt");
-    print("Token from file:"+resp);
-    return resp;
+    String? res;
+    if(password == "qwerty"){
+      await Future.delayed(const Duration(milliseconds: 1800));
+      res = await rootBundle.loadString("assets/mock/token.txt");
+    }
+    print("Token from file:"+(res??"NONE"));
+    return res;
   }
 
   @override
@@ -30,6 +33,7 @@ class AuthRepositoryMockImpl extends AuthRepository {
     final resp = await rootBundle.loadString("assets/mock/user.json");
     print("User rrom file:"+resp);
     var map = jsonDecode(resp);
-    return User.fromJson(map);
+    var u = User.fromJson(map);
+    return u;
   }
 }

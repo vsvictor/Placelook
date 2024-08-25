@@ -30,7 +30,9 @@ class _AuthPageState extends State<AuthPage> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_)=>{
       if(vm.user == null){
-        vm.fromStorage()
+        vm.fromStorage(),
+        _loginController.text = vm?.user?.email??"" ,
+        vm?.login = _loginController.text
       }
 
     });
@@ -39,8 +41,11 @@ class _AuthPageState extends State<AuthPage> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     vm = Provider.of<UserViewModel>(context);
-    if (_loginController.text.trim().isEmpty)
-      _loginController.text = (vm.user != null) ? vm.user!.email??"" : "";    return Scaffold(
+    if (_loginController.text.trim().isEmpty){
+            _loginController.text = (vm.user != null) ? vm.user!.email??"" : "";
+            vm.login = _loginController.text;
+          }
+    return Scaffold(
       body: Center(
         child: Container(
           width: size.width,
@@ -65,6 +70,11 @@ class _AuthPageState extends State<AuthPage> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
+                    onChanged: (String l)=>{
+                      if(l.isNotEmpty){
+                        vm.login = l
+                      }
+                    },
                   ),
                 ),
                 Padding(
@@ -84,6 +94,7 @@ class _AuthPageState extends State<AuthPage> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
+                    onChanged: (String p)=>{vm.password = p},
                   ),
                 ),
                 Padding(
@@ -171,17 +182,11 @@ class _AuthPageState extends State<AuthPage> {
   }
 
   void _onLogin() async {
-    vm.login = _loginController.text;
-    vm.password =_passwordController.text;
-    vm.token = await vm.loginAsync()??"";
-    //print("Complete:"+u!.toString());
-    if(vm.token.isNotEmpty){
-      await vm.getUser();
+    await vm.startApp();
+    if(vm.user != null){
       Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(builder: (context) => HomePage()),
               (Route<dynamic> route) => false);
-    }else{
-      print("Login error");
     }
   }
 

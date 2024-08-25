@@ -24,27 +24,37 @@ class UserViewModel extends ChangeNotifier {
   String get token => _token??"";
   set login(String value) => _login = value;
   set password(String value) => _password = value;
-  set token(String value) => _token = value;
+  set token(String? value) => _token = value;
 
   UserViewModel();
 
-  Future<String?> loginAsync() async {
+  Future _loginAsync() async {
+    user = null;
     if (_login != null &&
         _password != null &&
         _login!.isNotEmpty &&
         _password!.isNotEmpty) {
-      var res = _loginUseCase.load(ParamLogin(_login!, _password!));
-      return res;
+      var t = await _loginUseCase.load(ParamLogin(_login!, _password!));
+      token = t;
     } else {
-      return null;
+      token = null;
     }
   }
-  Future<User?> getUser() async {
+  Future _getUserAsync() async {
     if (_token != null && _token!.isNotEmpty) {
-      var res = _getUserUseCase.load();
-      return res;
+      user = await _getUserUseCase.load();
+      print(user.toString());
     } else {
-      return null;
+      user = null;
+    }
+  }
+
+  Future startApp()async{
+    await _loginAsync();
+    if(token.isNotEmpty){
+      await _getUserAsync();
+    }else{
+      print("Login error");
     }
   }
 
