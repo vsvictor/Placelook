@@ -1,10 +1,6 @@
-import 'dart:async';
+
 import 'dart:convert';
-import 'dart:io';
-import 'package:Placelook/model/contact.dart';
 import 'package:Placelook/model/user.dart';
-import 'package:auth_token_generator/auth_token_generator.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'auth_repository.dart';
 
@@ -20,7 +16,6 @@ class AuthRepositoryMockImpl extends AuthRepository {
 */
     String? res;
     if(password == "qwerty"){
-      await Future.delayed(const Duration(milliseconds: 1800));
       res = await rootBundle.loadString("assets/mock/token.txt");
     }
     print("Token from file:"+(res??"NONE"));
@@ -29,7 +24,6 @@ class AuthRepositoryMockImpl extends AuthRepository {
 
   @override
   Future<User?> getUser() async {
-    await Future.delayed(const Duration(milliseconds: 1800));
     final resp = await rootBundle.loadString("assets/mock/user.json");
     print("User rrom file:"+resp);
     var map = jsonDecode(resp);

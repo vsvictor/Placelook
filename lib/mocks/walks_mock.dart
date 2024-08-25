@@ -8,6 +8,8 @@ import '../model/role.dart';
 
 var walksMock = [
   Walk(
+      name: "Прогулянка Хрещатиком",
+      city: "Київ",
       location: Location(50.0, 30.0),
       time: DateTime(2024, 8, 22, 16, 30, 0),
       who: User(
@@ -18,6 +20,8 @@ var walksMock = [
           language: Languages.Ukranian),
       duration: 90),
   Walk(
+      name: "Прогулянка лівим берегом",
+      city: "Київ",
       location: Location(52.0, 34.0),
       time: DateTime(2024, 8, 22, 16, 30, 0),
       who: User(
@@ -28,6 +32,8 @@ var walksMock = [
           language: Languages.Ukranian),
       duration: 90),
   Walk(
+      name: "Прогулянка по клубах",
+      city: "Київ",
       location: Location(49.0, 28.0),
       time: DateTime(2024, 8, 22, 16, 30, 0),
       who: User(

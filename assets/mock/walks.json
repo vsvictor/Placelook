@@ -1,0 +1,5 @@
+[
+  {"name": "Прогулянка Хрещатиком", "city": "Київ", "location": {"latitude": 50.0, "longitude": 30.0}, "time": "2024-08-22T16:30:00.000", "who": {"firstName": "Віктор", "lastName": "Джурляк", "contacts": [{"email": "dvictor74@gmail.com", "runtimeType": "email"}], "role": "Guid", "language": "Ukranian"}, "duration": 90, "language": "Ukranian", "typeWalk": "Free"},
+  {"name": "Прогулянка лівим берегом", "city": "Київ", "location": {"latitude": 52.0, "longitude": 34.0}, "time": "2024-08-22T16:30:00.000", "who": {"firstName": "Оксана", "lastName": "Джурляк", "contacts": [{"email": "doksana7974@gmail.com", "runtimeType": "email"}], "role": "Guid", "language": "Ukranian"}, "duration": 180, "language": "Ukranian", "typeWalk": "Free"},
+  {"name": "Забіг по клубах", "city": "Київ", "location": {"latitude": 49.0, "longitude": 28.0}, "time": "2024-08-22T16:30:00.000", "who": {"firstName": "Дмитро", "lastName": "Джурляк", "contacts": [{"email": "dd@gmail.com", "runtimeType": "email"}], "role": "Guid", "language": "Ukranian"}, "duration": 90, "language": "English", "typeWalk": "Paid"}
+]

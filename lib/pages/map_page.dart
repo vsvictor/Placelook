@@ -1,6 +1,10 @@
+
 import 'package:flutter/material.dart';
 import 'package:Placelook/widgets/arcgic_auth_widget.dart';
+import 'package:Placelook/mocks/walks_mock.dart';
+import 'package:provider/provider.dart';
 
+import '../viewmodel/walk_view_model.dart';
 //https://basemaps.arcgis.com/arcgis/rest/services/World_Basemap_v2/VectorTileServer
 //CLIENT_ID = "QF29MwuUhP2rWnK4"
 //SECRET_ID = "1200189268ec437d869f94f121704cbb"
@@ -14,13 +18,22 @@ class MapPage extends StatefulWidget {
 }
 
 class _MapPageState extends State<MapPage> {
+  WalksViewModel? vm;
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_)=>{
+      vm?.getAllWalks()?.whenComplete(()=>{
+        vm?.list?.forEach((w)=>{
+          print("From page:"+w.toString())
+        })
+      })
+    });
   }
 
   @override
   Widget build(BuildContext context) {
+    vm = Provider.of<WalksViewModel>(context);
     return const ArcGISAuthWidget();
   }
 }

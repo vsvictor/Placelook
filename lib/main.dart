@@ -1,16 +1,19 @@
 
-import 'package:Placelook/api/auth_repositori_mock_impl.dart';
 import 'package:Placelook/api/remote_repository.dart';
+import 'package:Placelook/api/walt_repository_mock_impl.dart';
+import 'package:Placelook/domain/usecase/get_all_walks_usecase.dart';
 import 'package:Placelook/domain/usecase/get_user_usecase.dart';
 import 'package:Placelook/domain/usecase/load_user_usecase.dart';
 import 'package:Placelook/domain/usecase/login_usecase.dart';
 import 'package:Placelook/pages/main_page.dart';
 import 'package:Placelook/viewmodel/user_view_model.dart';
+import 'package:Placelook/viewmodel/walk_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 
+import 'api/auth_repository_mock_impl.dart';
 import 'api/local_repository_impl.dart';
 import 'api/repository.dart';
 import 'domain/usecase/save_user_usecase.dart';
@@ -18,11 +21,12 @@ import 'domain/usecase/save_user_usecase.dart';
 
 
 void setup() {
-  GetIt.instance.registerLazySingleton(()=>Repository(RemoteRepository(AuthRepositoryMockImpl()), LocalRepositoryImpl()));
+  GetIt.instance.registerLazySingleton(()=>Repository(RemoteRepository(AuthRepositoryMockImpl(), WalkRepositoryMockImpl()), LocalRepositoryImpl()));
   GetIt.instance.registerLazySingleton(()=>LoginUseCase());
   GetIt.instance.registerLazySingleton(()=>GetUserUseCase());
   GetIt.instance.registerLazySingleton(()=>LoadUserUseCase());
   GetIt.instance.registerLazySingleton(()=>SaveUserUsecase());
+  GetIt.instance.registerLazySingleton(()=>GetAllWalksUseCase());
 }
 
 void main() {
@@ -49,7 +53,8 @@ class _AppState extends State<App> {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_)=>UserViewModel())
+        ChangeNotifierProvider(create: (_)=>UserViewModel()),
+        ChangeNotifierProvider(create: (_)=>WalksViewModel())
       ],
         child: MaterialApp(
             //debugShowMaterialGrid: true,

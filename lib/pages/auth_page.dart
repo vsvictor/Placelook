@@ -182,6 +182,8 @@ class _AuthPageState extends State<AuthPage> {
   }
 
   void _onLogin() async {
+    vm?.login = "dvictor74@gmail.com";
+    vm?.password  = "qwerty";
     await vm.startApp();
     if(vm.user != null){
       Navigator.of(context).pushAndRemoveUntil(

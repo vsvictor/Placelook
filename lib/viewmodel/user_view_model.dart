@@ -34,6 +34,7 @@ class UserViewModel extends ChangeNotifier {
         _password != null &&
         _login!.isNotEmpty &&
         _password!.isNotEmpty) {
+      //var t = await _loginUseCase.load(ParamLogin(_login!, _password!));
       var t = await _loginUseCase.load(ParamLogin(_login!, _password!));
       token = t;
     } else {
