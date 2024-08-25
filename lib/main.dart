@@ -4,13 +4,15 @@ import 'package:Placelook/api/remote_repository.dart';
 import 'package:Placelook/domain/usecase/load_user_usecase.dart';
 import 'package:Placelook/domain/usecase/login_usecase.dart';
 import 'package:Placelook/pages/main_page.dart';
-import 'package:Placelook/widgets/profile_widget.dart';
+import 'package:Placelook/viewmodel/user_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get_it/get_it.dart';
+import 'package:provider/provider.dart';
 
 import 'api/local_repository_impl.dart';
 import 'api/repository.dart';
+import 'domain/usecase/save_user_usecase.dart';
 
 
 
@@ -18,6 +20,7 @@ void setup() {
   GetIt.instance.registerLazySingleton(()=>Repository(RemoteRepository(AuthRepositoryMockImpl()), LocalRepositoryImpl()));
   GetIt.instance.registerLazySingleton(()=>LoginUseCase());
   GetIt.instance.registerLazySingleton(()=>LoadUserUseCase());
+  GetIt.instance.registerLazySingleton(()=>SaveUserUsecase());
 }
 
 void main() {
@@ -42,7 +45,10 @@ class _AppState extends State<App> {
 
   @override
   Widget build(BuildContext context) {
-    return ProfileWidget(
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_)=>UserViewModel())
+      ],
         child: MaterialApp(
             //debugShowMaterialGrid: true,
             debugShowCheckedModeBanner: false,
