@@ -6,8 +6,9 @@ class Repository {
   RemoteRepository _remote;
   LocalRepository _local;
   Repository(this._remote, this._local);
-  Future<User?> login(String login, String password) =>
-      _remote.login(login, password);
+  Future<String?> login(String login, String password) => _remote.login(login, password);
+  Future<User?> getUser() =>
+      _remote.getUser();
   Future<User> userFromStogare() => _local.userFromStogare();
   void saveUser(User u) => _local.saveUser(u);
 }

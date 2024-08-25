@@ -173,9 +173,10 @@ class _AuthPageState extends State<AuthPage> {
   void _onLogin() async {
     vm.login = _loginController.text;
     vm.password =_passwordController.text;
-    User? u = await vm.loginAsync();
+    vm.token = await vm.loginAsync()??"";
     //print("Complete:"+u!.toString());
-    if(u != null){
+    if(vm.token.isNotEmpty){
+      await vm.getUser();
       Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(builder: (context) => HomePage()),
               (Route<dynamic> route) => false);

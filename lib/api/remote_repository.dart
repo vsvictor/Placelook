@@ -4,7 +4,7 @@ import 'auth_repository.dart';
 class RemoteRepository {
   AuthRepository _authRepository;
   RemoteRepository(this._authRepository);
-
-  Future<User?> login(String login, String password) =>
-      _authRepository.login(login, password);
+  Future<String?> login(String login, String password) => _authRepository.login(login, password);
+  Future<User?> getUser() =>
+      _authRepository.getUser();
 }

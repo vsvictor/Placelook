@@ -61,6 +61,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.11.0"
+  auth_token_generator:
+    dependency: "direct main"
+    description:
+      name: auth_token_generator
+      sha256: "7f750cb77e46521556f0d93c04489c456da828dbb93ae6c4c2b8808918843be9"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   boolean_selector:
     dependency: transitive
     description:
