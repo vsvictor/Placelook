@@ -8,6 +8,8 @@ import 'package:Placelook/pages/forgot_password_page.dart';
 import 'package:Placelook/pages/home_page.dart';
 import 'package:provider/provider.dart';
 
+import '../model/user.dart';
+
 class AuthPage extends StatefulWidget {
   const AuthPage({super.key});
   @override
@@ -168,10 +170,18 @@ class _AuthPageState extends State<AuthPage> {
     );
   }
 
-  void _onLogin() {
-    Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (context) => HomePage()),
-        (Route<dynamic> route) => false);
+  void _onLogin() async {
+    vm.login = _loginController.text;
+    vm.password =_passwordController.text;
+    User? u = await vm.loginAsync();
+    //print("Complete:"+u!.toString());
+    if(u != null){
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => HomePage()),
+              (Route<dynamic> route) => false);
+    }else{
+      print("Login error");
+    }
   }
 
   void _onTapSignin() {

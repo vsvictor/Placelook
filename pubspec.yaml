@@ -37,6 +37,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
+    - assets/mock/
 analyzer:
   errors:
     invalid_annotation_target: ignore
