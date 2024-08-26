@@ -24,11 +24,9 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_)=>{
-      if(vm?.user == null){
-        vm?.fromStorage()
-      }
-    });
+    WidgetsBinding.instance.addPostFrameCallback((_) => {
+          if (vm?.user == null) {vm?.fromStorage()}
+        });
   }
 
   @override
@@ -36,11 +34,11 @@ class _ProfilePageState extends State<ProfilePage> {
     vm = Provider.of<UserViewModel>(context);
     Size size = MediaQuery.of(context).size;
     if (_teFirstName.text.trim().isEmpty)
-      _teFirstName.text = (vm?.user != null) ? vm?.user?.firstName??"" : "";
+      _teFirstName.text = (vm?.user != null) ? vm?.user?.firstName ?? "" : "";
     if (_teLastName.text.trim().isEmpty)
-      _teLastName.text = (vm?.user != null) ? vm?.user?.lastName??"" : "";
+      _teLastName.text = (vm?.user != null) ? vm?.user?.lastName ?? "" : "";
     if (_teEmail.text.trim().isEmpty)
-      _teEmail.text = (vm?.user != null) ? vm?.user?.email??"" ?? "" : "";
+      _teEmail.text = (vm?.user != null) ? vm?.user?.email ?? "" ?? "" : "";
     return Scaffold(
       body: Center(
         child: Container(
