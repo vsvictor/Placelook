@@ -7,6 +7,7 @@ part of 'walk.dart';
 // **************************************************************************
 
 _$WalkImpl _$$WalkImplFromJson(Map<String, dynamic> json) => _$WalkImpl(
+      id: json['id'] as String? ?? "",
       name: json['name'] as String? ?? "",
       city: json['city'] as String? ?? "",
       location: json['location'] == null
@@ -26,6 +27,7 @@ _$WalkImpl _$$WalkImplFromJson(Map<String, dynamic> json) => _$WalkImpl(
 
 Map<String, dynamic> _$$WalkImplToJson(_$WalkImpl instance) {
   final val = <String, dynamic>{
+    'id': instance.id,
     'name': instance.name,
     'city': instance.city,
   };

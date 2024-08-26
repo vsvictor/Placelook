@@ -4,6 +4,7 @@ import 'package:Placelook/model/user.dart';
 import 'package:Placelook/model/languages.dart';
 import 'package:Placelook/model/location.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:uuid/uuid.dart';
 
 part 'walk.freezed.dart';
 part 'walk.g.dart';
@@ -43,7 +44,8 @@ part 'walk.g.dart';
 class Walk with _$Walk {
   Walk._();
   factory Walk(
-      {@Default("") String name,
+      {@Default("") String id,
+      @Default("") String name,
       @Default("") String city,
       @Default(null) Location? location,
       @Default(null) DateTime? time,
@@ -53,4 +55,7 @@ class Walk with _$Walk {
       @Default(TypeWalk.Free) TypeWalk typeWalk}) = _Walk;
 
   factory Walk.fromJson(Map<String, dynamic> json) => _$WalkFromJson(json);
+  void generateID() {
+    id = Uuid().v4();
+  }
 }

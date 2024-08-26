@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 import 'package:Placelook/model/user.dart';
 import 'package:flutter/services.dart';
@@ -15,17 +14,17 @@ class AuthRepositoryMockImpl extends AuthRepository {
     return token;
 */
     String? res;
-    if(password == "qwerty"){
+    if (password == "qwerty") {
       res = await rootBundle.loadString("assets/mock/token.txt");
     }
-    print("Token from file:"+(res??"NONE"));
+    print("Token from file:" + (res ?? "NONE"));
     return res;
   }
 
   @override
   Future<User?> getUser() async {
     final resp = await rootBundle.loadString("assets/mock/user.json");
-    print("User rrom file:"+resp);
+    print("User rrom file:" + resp);
     var map = jsonDecode(resp);
     var u = User.fromJson(map);
     return u;

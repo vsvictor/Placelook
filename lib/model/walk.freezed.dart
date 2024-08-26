@@ -20,6 +20,8 @@ Walk _$WalkFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Walk {
+  String get id => throw _privateConstructorUsedError;
+  set id(String value) => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   set name(String value) => throw _privateConstructorUsedError;
   String get city => throw _privateConstructorUsedError;
@@ -52,7 +54,8 @@ abstract class $WalkCopyWith<$Res> {
       _$WalkCopyWithImpl<$Res, Walk>;
   @useResult
   $Res call(
-      {String name,
+      {String id,
+      String name,
       String city,
       Location? location,
       DateTime? time,
@@ -80,6 +83,7 @@ class _$WalkCopyWithImpl<$Res, $Val extends Walk>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? name = null,
     Object? city = null,
     Object? location = freezed,
@@ -90,6 +94,10 @@ class _$WalkCopyWithImpl<$Res, $Val extends Walk>
     Object? typeWalk = null,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -162,7 +170,8 @@ abstract class _$$WalkImplCopyWith<$Res> implements $WalkCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String name,
+      {String id,
+      String name,
       String city,
       Location? location,
       DateTime? time,
@@ -189,6 +198,7 @@ class __$$WalkImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? name = null,
     Object? city = null,
     Object? location = freezed,
@@ -199,6 +209,10 @@ class __$$WalkImplCopyWithImpl<$Res>
     Object? typeWalk = null,
   }) {
     return _then(_$WalkImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -239,7 +253,8 @@ class __$$WalkImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$WalkImpl extends _Walk {
   _$WalkImpl(
-      {this.name = "",
+      {this.id = "",
+      this.name = "",
       this.city = "",
       this.location = null,
       this.time = null,
@@ -252,6 +267,9 @@ class _$WalkImpl extends _Walk {
   factory _$WalkImpl.fromJson(Map<String, dynamic> json) =>
       _$$WalkImplFromJson(json);
 
+  @override
+  @JsonKey()
+  String id;
   @override
   @JsonKey()
   String name;
@@ -279,7 +297,7 @@ class _$WalkImpl extends _Walk {
 
   @override
   String toString() {
-    return 'Walk(name: $name, city: $city, location: $location, time: $time, who: $who, duration: $duration, language: $language, typeWalk: $typeWalk)';
+    return 'Walk(id: $id, name: $name, city: $city, location: $location, time: $time, who: $who, duration: $duration, language: $language, typeWalk: $typeWalk)';
   }
 
   /// Create a copy of Walk
@@ -300,7 +318,8 @@ class _$WalkImpl extends _Walk {
 
 abstract class _Walk extends Walk {
   factory _Walk(
-      {String name,
+      {String id,
+      String name,
       String city,
       Location? location,
       DateTime? time,
@@ -312,6 +331,9 @@ abstract class _Walk extends Walk {
 
   factory _Walk.fromJson(Map<String, dynamic> json) = _$WalkImpl.fromJson;
 
+  @override
+  String get id;
+  set id(String value);
   @override
   String get name;
   set name(String value);
