@@ -22,10 +22,7 @@ class _MapPageState extends State<MapPage> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance
-        .addPostFrameCallback((_) => {
-
-    });
+    WidgetsBinding.instance.addPostFrameCallback((_) => {});
   }
 
   @override
@@ -35,9 +32,9 @@ class _MapPageState extends State<MapPage> {
         child: ArcGISAuthWidget());
   }
 
-  MapViewModel _run(){
+  MapViewModel _run() {
     var res = MapViewModel();
     res.getAllWalks();
-    return  res;
+    return res;
   }
 }

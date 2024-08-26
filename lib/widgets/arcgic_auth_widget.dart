@@ -29,8 +29,10 @@ class _ArcGISAuthWidgetState extends State<ArcGISAuthWidget>
   @override
   void initState() {
     super.initState();
-    ArcGISEnvironment.authenticationManager.arcGISAuthenticationChallengeHandler = this;
+    ArcGISEnvironment
+        .authenticationManager.arcGISAuthenticationChallengeHandler = this;
   }
+
   @override
   void dispose() {
     ArcGISEnvironment
@@ -41,12 +43,11 @@ class _ArcGISAuthWidgetState extends State<ArcGISAuthWidget>
     _autoPanModeSubscription?.cancel();
     super.dispose();
   }
+
   @override
   void didUpdateWidget(covariant ArcGISAuthWidget oldWidget) {
     super.didUpdateWidget(oldWidget);
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -104,8 +105,6 @@ class _ArcGISAuthWidgetState extends State<ArcGISAuthWidget>
 
     // Set the ready state variable to true to enable the UI.
     setState(() => _ready = true);
-
-
   }
 
   @override
@@ -127,7 +126,11 @@ class _ArcGISAuthWidgetState extends State<ArcGISAuthWidget>
           Field.text(name: "name", alias: "Walk name", length: 128),
           Field.text(name: "city", alias: "City name", length: 64),
           Field.date(name: "time", alias: "Walk time"),
-          Field.text(name: "guidID", alias: "Guid ID", length: 32, ),
+          Field.text(
+            name: "guidID",
+            alias: "Guid ID",
+            length: 32,
+          ),
           Field.shortInt(name: "duration", alias: "Duration in minutes"),
           Field.text(name: "language", alias: "Language of walk", length: 24),
           Field.text(name: "type", alias: "Type walk", length: 8)
@@ -164,20 +167,18 @@ class _ArcGISAuthWidgetState extends State<ArcGISAuthWidget>
         });
   }
 
-  void _updateData(){
+  void _updateData() {
     walls.forEach((e) => {print("From widget:" + e.toString())});
     final tab = _createWalksTable();
     _addWalks(tab, this.walls);
-    final featureCollection = FeatureCollection()
-      ..tables.addAll([tab]);
+    final featureCollection = FeatureCollection()..tables.addAll([tab]);
     var walksLayer = _map?.operationalLayers.firstOrNull;
-    if(walksLayer != null){
+    if (walksLayer != null) {
       _map?.operationalLayers.remove(walksLayer);
     }
     final featureCollectionLayer =
-    FeatureCollectionLayer.withFeatureCollection(featureCollection);
+        FeatureCollectionLayer.withFeatureCollection(featureCollection);
     featureCollectionLayer.name = "Walks";
     _map?.operationalLayers.add(featureCollectionLayer);
   }
-
 }
