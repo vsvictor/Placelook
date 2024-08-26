@@ -31,6 +31,10 @@ class _ArcGISAuthWidgetState extends State<ArcGISAuthWidget>
     super.initState();
     ArcGISEnvironment
         .authenticationManager.arcGISAuthenticationChallengeHandler = this;
+    WidgetsBinding.instance.addPostFrameCallback((_)=>{
+      Provider.of<MapViewModel>(context, listen: false).getAllWalks()
+    });
+
   }
 
   @override

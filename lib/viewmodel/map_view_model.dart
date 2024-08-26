@@ -13,7 +13,6 @@ class MapViewModel extends ChangeNotifier {
 
   List<Walk>? get list => _list;
   MapViewModel() {
-    getAllWalks();
   }
 
   Future getAllWalks() async {

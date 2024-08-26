@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:Placelook/widgets/arcgic_auth_widget.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
 import '../viewmodel/map_view_model.dart';
 
@@ -16,7 +17,6 @@ class MapPage extends StatefulWidget {
 }
 
 class _MapPageState extends State<MapPage> {
-
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
