@@ -12,7 +12,9 @@ class MapViewModel extends ChangeNotifier {
   }
 
   List<Walk>? get list => _list;
-  MapViewModel() {}
+  MapViewModel() {
+    getAllWalks();
+  }
 
   Future getAllWalks() async {
     _allWalks.load().then((List<Walk>? l) => {list = l});

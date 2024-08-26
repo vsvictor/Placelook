@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:Placelook/widgets/arcgic_auth_widget.dart';
-import 'package:Placelook/mocks/walks_mock.dart';
 import 'package:provider/provider.dart';
-
-import '../model/walk.dart';
 import '../viewmodel/map_view_model.dart';
 
 //https://basemaps.arcgis.com/arcgis/rest/services/World_Basemap_v2/VectorTileServer
@@ -19,22 +16,11 @@ class MapPage extends StatefulWidget {
 }
 
 class _MapPageState extends State<MapPage> {
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) => {});
-  }
 
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-        providers: [ChangeNotifierProvider(create: (_) => _run())],
+        providers: [ChangeNotifierProvider(create: (_) => MapViewModel())],
         child: ArcGISAuthWidget());
-  }
-
-  MapViewModel _run() {
-    var res = MapViewModel();
-    res.getAllWalks();
-    return res;
   }
 }
