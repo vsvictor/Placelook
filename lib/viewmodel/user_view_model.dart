@@ -19,12 +19,16 @@ class UserViewModel extends ChangeNotifier {
 
   User? get user => _user;
   set user(User? value) => _user = value;
-  String get login => _login??"";
-  String get password => _password??"";
-  String get token => _token??"";
+  String get login => _login ?? "";
+  String get password => _password ?? "";
+  String get token => _token ?? "";
   set login(String value) => _login = value;
   set password(String value) => _password = value;
   set token(String? value) => _token = value;
+
+  String get firstName => (user != null) ? user?.firstName ?? "" : "";
+  String get lastName => (user != null) ? user?.lastName ?? "" : "";
+  String get email => (user != null) ? user?.email ?? "" ?? "" : "";
 
   UserViewModel();
 
@@ -41,6 +45,7 @@ class UserViewModel extends ChangeNotifier {
       token = null;
     }
   }
+
   Future _getUserAsync() async {
     if (_token != null && _token!.isNotEmpty) {
       user = await _getUserUseCase.load();
@@ -50,11 +55,11 @@ class UserViewModel extends ChangeNotifier {
     }
   }
 
-  Future startApp()async{
+  Future startApp() async {
     await _loginAsync();
-    if(token.isNotEmpty){
+    if (token.isNotEmpty) {
       await _getUserAsync();
-    }else{
+    } else {
       print("Login error");
     }
   }
