@@ -26,6 +26,10 @@ class UserViewModel extends ChangeNotifier {
   set password(String value) => _password = value;
   set token(String? value) => _token = value;
 
+  String get firstName => (user != null) ? user?.firstName ?? "" : "";
+  String get lastName => (user != null) ? user?.lastName ?? "" : "";
+  String get email => (user != null) ? user?.email ?? "" ?? "" : "";
+
   UserViewModel();
 
   Future _loginAsync() async {

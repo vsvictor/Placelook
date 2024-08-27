@@ -31,14 +31,12 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-    vm = Provider.of<UserViewModel>(context);
+    //vm = Provider.of<UserViewModel>(context);
+    vm = context.read<UserViewModel>();
     Size size = MediaQuery.of(context).size;
-    if (_teFirstName.text.trim().isEmpty)
-      _teFirstName.text = (vm?.user != null) ? vm?.user?.firstName ?? "" : "";
-    if (_teLastName.text.trim().isEmpty)
-      _teLastName.text = (vm?.user != null) ? vm?.user?.lastName ?? "" : "";
-    if (_teEmail.text.trim().isEmpty)
-      _teEmail.text = (vm?.user != null) ? vm?.user?.email ?? "" ?? "" : "";
+    if (_teFirstName.text.trim().isEmpty) _teFirstName.text = vm!.firstName;
+    if (_teLastName.text.trim().isEmpty)  _teLastName.text = vm!.lastName;
+    if (_teEmail.text.trim().isEmpty)  _teEmail.text = vm!.email;
     return Scaffold(
       body: Center(
         child: Container(
