@@ -1,12 +1,14 @@
+import 'package:Placelook/main.dart';
 import 'package:Placelook/widgets/top_page_widget.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SigninPage extends StatefulWidget {
   const SigninPage({super.key});
   @override
-  _SigninPageState createState() => _SigninPageState();
+  State<SigninPage> createState() => _SigninPageState();
 }
 
 class _SigninPageState extends State<SigninPage> {
@@ -30,7 +32,7 @@ class _SigninPageState extends State<SigninPage> {
               child: SingleChildScrollView(
             child: Column(
               children: [
-                TopPageWidget("Sign in"),
+                const TopPageWidget("Sign in"),
                 Padding(
                   padding: EdgeInsets.only(
                       top: size.height * 0.02,
@@ -126,6 +128,6 @@ class _SigninPageState extends State<SigninPage> {
   }
 
   void _onTabLogin() {
-    Navigator.pop(context);
+    context.pop();
   }
 }

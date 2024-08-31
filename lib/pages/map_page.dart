@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:Placelook/widgets/arcgic_auth_widget.dart';
+
 import 'package:provider/provider.dart';
 import '../viewmodel/map_view_model.dart';
+import '../widgets/arcgic_walk_widget.dart';
 
 //https://basemaps.arcgis.com/arcgis/rest/services/World_Basemap_v2/VectorTileServer
 //CLIENT_ID = "QF29MwuUhP2rWnK4"
@@ -20,6 +21,6 @@ class _MapPageState extends State<MapPage> {
   Widget build(BuildContext context) {
     return MultiProvider(
         providers: [ChangeNotifierProvider(create: (_) => MapViewModel())],
-        child: const ArcGISAuthWidget());
+        child: const ArcGISWalkWidget());
   }
 }

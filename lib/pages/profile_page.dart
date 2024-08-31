@@ -1,42 +1,40 @@
 import 'package:Placelook/model/contact.dart';
 import 'package:Placelook/model/languages.dart';
 import 'package:Placelook/model/role.dart';
-import 'package:Placelook/model/user.dart';
 import 'package:Placelook/viewmodel/user_view_model.dart';
 import 'package:Placelook/widgets/top_page_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:Placelook/widgets/avatar_widget.dart';
-import 'package:Placelook/pages/auth_page.dart';
 import 'package:provider/provider.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
   @override
-  _ProfilePageState createState() => _ProfilePageState();
+  State<ProfilePage> createState() => _ProfilePageState();
 }
 
 class _ProfilePageState extends State<ProfilePage> {
   UserViewModel? vm;
-  TextEditingController _teFirstName = TextEditingController();
-  TextEditingController _teLastName = TextEditingController();
-  TextEditingController _teEmail = TextEditingController();
+  final TextEditingController _teFirstName = TextEditingController();
+  final TextEditingController _teLastName = TextEditingController();
+  final TextEditingController _teEmail = TextEditingController();
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) => {
+/*    WidgetsBinding.instance.addPostFrameCallback((_) => {
           if (vm?.user == null) {vm?.fromStorage()}
-        });
+        });*/
   }
 
   @override
   Widget build(BuildContext context) {
-    //vm = Provider.of<UserViewModel>(context);
     vm = context.read<UserViewModel>();
     Size size = MediaQuery.of(context).size;
     if (_teFirstName.text.trim().isEmpty) _teFirstName.text = vm!.firstName;
-    if (_teLastName.text.trim().isEmpty)  _teLastName.text = vm!.lastName;
-    if (_teEmail.text.trim().isEmpty)  _teEmail.text = vm!.email;
+    if (_teLastName.text.trim().isEmpty) _teLastName.text = vm!.lastName;
+    if (_teEmail.text.trim().isEmpty) _teEmail.text = vm!.email;
     return Scaffold(
       body: Center(
         child: Container(
@@ -47,7 +45,7 @@ class _ProfilePageState extends State<ProfilePage> {
             child: SingleChildScrollView(
                 child: Column(
               children: [
-                TopPageWidget("Profile"),
+                const TopPageWidget("Profile"),
                 Padding(
                     padding: const EdgeInsets.only(top: 32),
                     child: AvatarWidger(
@@ -141,11 +139,11 @@ class _ProfilePageState extends State<ProfilePage> {
                     hint: const Text("Select role"),
                     onChanged: (String? newSelect) {
                       if (newSelect != null) {
-                        vm?.user?.role = Role.values.byName(newSelect);
+                        vm?.user?.role = Role.values.byName(newSelect.toUpperCase());
                       }
                     },
                     items: Role.values
-                        .map((e) => e.name)
+                        .map((e) => e.title)
                         .toList()
                         .map<DropdownMenuItem<String>>((String value) {
                       return DropdownMenuItem<String>(
@@ -158,7 +156,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                       );
                     }).toList(),
-                    value: vm?.user?.role.name,
+                    value: vm?.user?.role.title,
                   ),
                 ),
                 Padding(
@@ -179,11 +177,11 @@ class _ProfilePageState extends State<ProfilePage> {
                     hint: const Text("Select language"),
                     onChanged: (String? newSelect) {
                       if (newSelect != null) {
-                        vm?.user?.language = Languages.values.byName(newSelect);
+                        vm?.user?.language = Languages.values.byName(newSelect.toUpperCase());
                       }
                     },
                     items: Languages.values
-                        .map((e) => e.name)
+                        .map((e) => e.title)
                         .toList()
                         .map<DropdownMenuItem<String>>((String value) {
                       return DropdownMenuItem<String>(
@@ -196,7 +194,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                       );
                     }).toList(),
-                    value: vm?.user?.language.name,
+                    value: vm?.user?.language.title,
                   ),
                 ),
                 Padding(
@@ -232,14 +230,12 @@ class _ProfilePageState extends State<ProfilePage> {
   void _saveProfile() {
     if (vm?.user?.id == null) vm?.user?.generateID();
     vm?.user?.firstName = _teFirstName.text;
-    vm?.user?..lastName = _teLastName.text;
+    vm?.user?.lastName = _teLastName.text;
     vm?.user?.contacts = ([Contact.email(_teEmail.text)]).toList();
     vm?.save();
   }
 
   void _logout() {
-    Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (context) => const AuthPage()),
-        (Route<dynamic> route) => false);
+    context.go("/auth", extra: "Page not found");
   }
 }
