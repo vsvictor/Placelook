@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../widgets/top_page_error_widget.dart';
 import '../widgets/top_page_widget.dart';
 
 class ErrorPage extends StatefulWidget {
@@ -31,7 +32,7 @@ class _ErrorPageState extends State<ErrorPage> {
               child: SingleChildScrollView(
             child: Column(
               children: [
-                const TopPageWidget("Error"),
+                const TopPageErrorWidget(),
                 Padding(
                   padding: EdgeInsets.only(
                       top: size.height * 0.02,
@@ -59,7 +60,9 @@ class _ErrorPageState extends State<ErrorPage> {
                           color: Colors.white,
                           fontSize: size.height * 0.03,
                         )),
-                    onPressed: () => {},
+                    onPressed: () => {
+                      _onBack()
+                    },
                   ),
                 ),
               ],
@@ -71,6 +74,6 @@ class _ErrorPageState extends State<ErrorPage> {
   }
 
   void _onBack() {
-    context.pop();
+    context.go("/auth");
   }
 }
