@@ -187,10 +187,10 @@ class _AuthPageState extends State<AuthPage> {
   }
 
   void _onTapSignin() {
-    context.push("/auth/signin");
+    context.pushNamed("signin");
   }
 
   void _onTapForgotPassword() {
-    context.push("/auth/forgot");
+    context.pushNamed("forgot");
   }
 }

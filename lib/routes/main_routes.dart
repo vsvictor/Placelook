@@ -10,18 +10,31 @@ import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
+enum PLRoutes {
+  ROOT('root', '/'),
+  AUTH("auth", "auth"),
+  SIGNIN("signin", "signin"),
+  FORGOT("forgot", "forgot"),
+  MAP('map', 'map'),
+  PROFILE('profile', 'profile');
+
+  final String name;
+  final String path;
+
+  const PLRoutes(this.name, this.path);
+}
 final router = GoRouter(routes: <RouteBase>[
   GoRoute(
-    path: "/",
-    name: "root",
+    path: PLRoutes.ROOT.path,
+    name: PLRoutes.ROOT.name,
     builder: (context, staye) => HomePage(),
     redirect: (context, state){
       if(context.read<UserViewModel>().user == null) return "/auth";
     },
     routes: <RouteBase>[
       GoRoute(
-          path: "auth",
-          name: "auth",
+          path: PLRoutes.AUTH.path,
+          name: PLRoutes.AUTH.name,
         builder: (context, staye) => AuthPage(),
         routes: <RouteBase>[
           GoRoute(
@@ -30,20 +43,20 @@ final router = GoRouter(routes: <RouteBase>[
             builder: (context, staye) => SigninPage(),
           ),
           GoRoute(
-            path: "forgot",
-            name: "forgot",
+            path: PLRoutes.FORGOT.path,
+            name: PLRoutes.FORGOT.name,
             builder: (context, staye) => ForgotPasswordPage(),
           ),
         ],
       ),
       GoRoute(
-        path: "map",
-        name: "map",
+        path: PLRoutes.MAP.path,
+        name: PLRoutes.MAP.name,
         builder: (context, staye) => MapPage(),
       ),
       GoRoute(
-          path: "profile",
-          name: "profile",
+          path: PLRoutes.PROFILE.path,
+          name: PLRoutes.PROFILE.name,
         builder: (context, staye) => ProfilePage(),
       ),
     ],

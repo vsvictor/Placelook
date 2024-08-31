@@ -7,22 +7,22 @@ import 'package:provider/provider.dart';
 import '../model/walk.dart';
 import '../viewmodel/map_view_model.dart';
 
-class ArcGISAuthWidget extends StatefulWidget {
-  ArcGISAuthWidget();
+class ArcGISWalkWidget extends StatefulWidget {
+  const ArcGISWalkWidget({super.key});
   @override
   _ArcGISAuthWidgetState createState() => _ArcGISAuthWidgetState();
 }
 
-class _ArcGISAuthWidgetState extends State<ArcGISAuthWidget>
+class _ArcGISAuthWidgetState extends State<ArcGISWalkWidget>
     implements ArcGISAuthenticationChallengeHandler {
   final List<Walk> walls = [];
   final _mapController = ArcGISMapView.createController();
   final _settingsVisible = false;
   final _locationDataSource = SystemLocationDataSource();
   StreamSubscription? _statusSubscription;
-  var _status = LocationDataSourceStatus.stopped;
+  final _status = LocationDataSourceStatus.stopped;
   StreamSubscription? _autoPanModeSubscription;
-  var _autoPanMode = LocationDisplayAutoPanMode.recenter;
+  final _autoPanMode = LocationDisplayAutoPanMode.recenter;
   var _ready = false;
   ArcGISMap? _map;
 
@@ -31,10 +31,10 @@ class _ArcGISAuthWidgetState extends State<ArcGISAuthWidget>
     super.initState();
     ArcGISEnvironment
         .authenticationManager.arcGISAuthenticationChallengeHandler = this;
-    WidgetsBinding.instance.addPostFrameCallback((_) => {
-          //Provider.of<MapViewModel>(context, listen: false).getAllWalks()
-          context.read<MapViewModel>().getAllWalks()
-        });
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      //Provider.of<MapViewModel>(context, listen: false).getAllWalks()
+      context.read<MapViewModel>().getAllWalks();
+    });
   }
 
   @override
@@ -49,18 +49,13 @@ class _ArcGISAuthWidgetState extends State<ArcGISAuthWidget>
   }
 
   @override
-  void didUpdateWidget(covariant ArcGISAuthWidget oldWidget) {
-    super.didUpdateWidget(oldWidget);
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Consumer<MapViewModel>(
       builder: (context, model, child) {
         if (model.list != null) {
           walls.clear();
           walls.addAll(model.list!);
-          _updateData();
+          _createData();
         }
         return Scaffold(
           resizeToAvoidBottomInset: false,
@@ -77,13 +72,14 @@ class _ArcGISAuthWidgetState extends State<ArcGISAuthWidget>
     _map = ArcGISMap.withItem(PortalItem.withPortalAndItemId(
         portal: Portal.arcGISOnline(connection: PortalConnection.authenticated),
         itemId: '5f68957c846942f19d2ac5cb191842c8'));
+/*
     // Set the initial system location data source and auto-pan mode.
     _mapController.locationDisplay.dataSource = _locationDataSource;
     _mapController.locationDisplay.autoPanMode =
-        LocationDisplayAutoPanMode.recenter;
+        LocationDisplayAutoPanMode.recenter;*/
 
     _mapController.arcGISMap = _map;
-
+/*
     // Subscribe to status changes and changes to the auto-pan mode.
     _statusSubscription = _locationDataSource.onStatusChanged.listen((status) {
       setState(() => _status = status);
@@ -95,7 +91,9 @@ class _ArcGISAuthWidgetState extends State<ArcGISAuthWidget>
     });
     setState(() => _autoPanMode = _mapController.locationDisplay.autoPanMode);
 
+*/
     // Attempt to start the location data source (this will prompt the user for permission).
+/*
     try {
       await _locationDataSource.start();
     } on ArcGISException catch (e) {
@@ -106,6 +104,7 @@ class _ArcGISAuthWidgetState extends State<ArcGISAuthWidget>
         );
       }
     }
+*/
 
     // Set the ready state variable to true to enable the UI.
     setState(() => _ready = true);
@@ -142,39 +141,36 @@ class _ArcGISAuthWidgetState extends State<ArcGISAuthWidget>
         geometryType: GeometryType.point,
         spatialReference: SpatialReference.wgs84);
 
-    table.renderer = SimpleRenderer(
-      symbol: SimpleMarkerSymbol(
-        style: SimpleMarkerSymbolStyle.triangle,
-        color: Colors.red,
-        size: 10,
-      ),
-    );
+    ArcGISImage.fromAsset("assets/marker.png").then((image){
+      table.renderer = SimpleRenderer(
+        symbol: PictureMarkerSymbol.withImage(image),
+      );
+    });
     return table;
   }
 
   void _addWalks(FeatureCollectionTable table, List<Walk> data) {
-    data.forEach((Walk e) => {
-          if (e.id == null) e.generateID(),
-          table.addFeature(table.createFeature(
-              attributes: {
-                "id": e.id,
-                "name": e.name,
-                "city": e.city,
-                "time": e.time,
-/*                "guidID": e.who?.id?,*/
-                "duratiom": e.duration,
-                "language": e.language,
-                "type": e.typeWalk
-              },
-              geometry: ArcGISPoint(
-                  x: e.location!.longitude, y: e.location!.latitude)))
-        });
+    for (var e in data) {
+      table.addFeature(table.createFeature(
+          attributes: {
+            "id": e.id,
+            "name": e.name,
+            "city": e.city,
+            "time": e.time,
+            "guidID": e.who?.id??"",
+            "duratiom": e.duration,
+            "language": e.language,
+            "type": e.typeWalk
+          },
+          geometry:
+              ArcGISPoint(x: e.location!.longitude, y: e.location!.latitude)));
+    }
   }
 
-  void _updateData() {
-    walls.forEach((e) => {print("From widget:" + e.toString())});
+  void _createData() {
+    //for (var e in walls) {print("From widget:$e");}
     final tab = _createWalksTable();
-    _addWalks(tab, this.walls);
+    _addWalks(tab, walls);
     final featureCollection = FeatureCollection()..tables.addAll([tab]);
     var walksLayer = _map?.operationalLayers.firstOrNull;
     if (walksLayer != null) {

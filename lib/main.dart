@@ -27,7 +27,7 @@ void setup() {
   GetIt.instance.registerLazySingleton(() => GetAllWalksUseCase());
 }
 
-void main() async {
+void main(){
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   setup();
