@@ -1,6 +1,3 @@
-import 'dart:async';
-import 'dart:ffi';
-
 import 'package:Placelook/model/languages.dart';
 import 'package:Placelook/model/role.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -73,16 +70,16 @@ class User with _$User {
       @Default("") String firstName,
       @Default("") String lastName,
       required List<Contact>? contacts,
-      @Default(Role.Tripper) Role role,
-      @Default(Languages.Undefined) Languages language}) = _User;
+      @Default(Role.TRIPPER) Role role,
+      @Default(Languages.UNDEFINED) Languages language}) = _User;
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 
   String? get email {
     var res = "";
     if (contacts != null) {
-      var e = contacts?.where((el) => el is EmailContact);
-      if (e != null && e.length > 0) {
-        var ee = (e.first as EmailContact).email;
+      var e = contacts?.whereType<EmailContact>();
+      if (e != null && e.isNotEmpty) {
+        var ee = (e.first).email;
         if (ee != null) res = ee;
       }
     }
@@ -90,6 +87,6 @@ class User with _$User {
   }
 
   void generateID() {
-    id = Uuid().v4();
+    id = const Uuid().v4();
   }
 }

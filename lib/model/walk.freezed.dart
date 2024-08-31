@@ -260,8 +260,8 @@ class _$WalkImpl extends _Walk {
       this.time = null,
       this.who = null,
       this.duration = null,
-      this.language = Languages.Undefined,
-      this.typeWalk = TypeWalk.Free})
+      this.language = Languages.UNDEFINED,
+      this.typeWalk = TypeWalk.FREE})
       : super._();
 
   factory _$WalkImpl.fromJson(Map<String, dynamic> json) =>

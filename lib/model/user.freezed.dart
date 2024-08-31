@@ -179,8 +179,8 @@ class _$UserImpl extends _User with DiagnosticableTreeMixin {
       this.firstName = "",
       this.lastName = "",
       required this.contacts,
-      this.role = Role.Tripper,
-      this.language = Languages.Undefined})
+      this.role = Role.TRIPPER,
+      this.language = Languages.UNDEFINED})
       : super._();
 
   factory _$UserImpl.fromJson(Map<String, dynamic> json) =>

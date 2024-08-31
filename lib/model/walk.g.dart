@@ -18,11 +18,11 @@ _$WalkImpl _$$WalkImplFromJson(Map<String, dynamic> json) => _$WalkImpl(
       who: json['who'] == null
           ? null
           : User.fromJson(json['who'] as Map<String, dynamic>),
-      duration: (json['duration'] as num?)?.toInt() ?? null,
+      duration: (json['duration'] as num?)?.toInt(),
       language: $enumDecodeNullable(_$LanguagesEnumMap, json['language']) ??
-          Languages.Undefined,
+          Languages.UNDEFINED,
       typeWalk: $enumDecodeNullable(_$TypeWalkEnumMap, json['typeWalk']) ??
-          TypeWalk.Free,
+          TypeWalk.FREE,
     );
 
 Map<String, dynamic> _$$WalkImplToJson(_$WalkImpl instance) {
@@ -48,14 +48,14 @@ Map<String, dynamic> _$$WalkImplToJson(_$WalkImpl instance) {
 }
 
 const _$LanguagesEnumMap = {
-  Languages.English: 'English',
-  Languages.Franch: 'Franch',
-  Languages.German: 'German',
-  Languages.Ukranian: 'Ukranian',
-  Languages.Undefined: 'Undefined',
+  Languages.ENGLISG: 'English',
+  Languages.FRANCH: 'Franch',
+  Languages.GERMAN: 'German',
+  Languages.UKRANIAN: 'Ukranian',
+  Languages.UNDEFINED: 'Undefined',
 };
 
 const _$TypeWalkEnumMap = {
-  TypeWalk.Paid: 'Paid',
-  TypeWalk.Free: 'Free',
+  TypeWalk.PAID: 'Paid',
+  TypeWalk.FREE: 'Free',
 };

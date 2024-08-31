@@ -17,14 +17,14 @@ class AuthRepositoryMockImpl extends AuthRepository {
     if (password == "qwerty") {
       res = await rootBundle.loadString("assets/mock/token.txt");
     }
-    print("Token from file:" + (res ?? "NONE"));
+    print("Token from file:${res ?? "NONE"}");
     return res;
   }
 
   @override
   Future<User?> getUser() async {
     final resp = await rootBundle.loadString("assets/mock/user.json");
-    print("User rrom file:" + resp);
+    print("User from file:$resp");
     var map = jsonDecode(resp);
     var u = User.fromJson(map);
     return u;

@@ -51,11 +51,11 @@ class Walk with _$Walk {
       @Default(null) DateTime? time,
       @Default(null) User? who,
       @Default(null) int? duration,
-      @Default(Languages.Undefined) Languages language,
-      @Default(TypeWalk.Free) TypeWalk typeWalk}) = _Walk;
+      @Default(Languages.UNDEFINED) Languages language,
+      @Default(TypeWalk.FREE) TypeWalk typeWalk}) = _Walk;
 
   factory Walk.fromJson(Map<String, dynamic> json) => _$WalkFromJson(json);
   void generateID() {
-    id = Uuid().v4();
+    id = const Uuid().v4();
   }
 }

@@ -2,20 +2,24 @@ import 'package:Placelook/domain/usecase/get_user_usecase.dart';
 import 'package:Placelook/domain/usecase/load_user_usecase.dart';
 import 'package:Placelook/domain/usecase/login_usecase.dart';
 import 'package:Placelook/domain/usecase/save_user_usecase.dart';
+import 'package:Placelook/model/auth_state.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get_it/get_it.dart';
 
 import '../model/user.dart';
 
 class UserViewModel extends ChangeNotifier {
-  late User? _user = null;
+  User? _user;
+  AuthState state = AuthState.NONE;
   String? _login;
   String? _password;
   String? _token;
-  late LoginUseCase _loginUseCase = GetIt.instance<LoginUseCase>();
-  late GetUserUseCase _getUserUseCase = GetIt.instance<GetUserUseCase>();
-  late LoadUserUseCase _loadUserUseCase = GetIt.instance<LoadUserUseCase>();
-  late SaveUserUsecase _saveUserUsecase = GetIt.instance<SaveUserUsecase>();
+  late final LoginUseCase _loginUseCase = GetIt.instance<LoginUseCase>();
+  late final GetUserUseCase _getUserUseCase = GetIt.instance<GetUserUseCase>();
+  late final LoadUserUseCase _loadUserUseCase =
+      GetIt.instance<LoadUserUseCase>();
+  late final SaveUserUsecase _saveUserUsecase =
+      GetIt.instance<SaveUserUsecase>();
 
   User? get user => _user;
   set user(User? value) => _user = value;

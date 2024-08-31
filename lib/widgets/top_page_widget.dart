@@ -1,11 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gif/gif.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class TopPageWidget extends StatelessWidget {
   final String header;
-  const TopPageWidget(this.header);
+  const TopPageWidget(this.header, {super.key});
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
