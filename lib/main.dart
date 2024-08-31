@@ -4,18 +4,17 @@ import 'package:Placelook/domain/usecase/get_all_walks_usecase.dart';
 import 'package:Placelook/domain/usecase/get_user_usecase.dart';
 import 'package:Placelook/domain/usecase/load_user_usecase.dart';
 import 'package:Placelook/domain/usecase/login_usecase.dart';
-import 'package:Placelook/pages/main_page.dart';
-import 'package:Placelook/viewmodel/map_view_model.dart';
+import 'package:Placelook/routes/main_routes.dart';
 import 'package:Placelook/viewmodel/user_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get_it/get_it.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-
-import 'api/auth_repository_mock_impl.dart';
-import 'api/local_repository_impl.dart';
-import 'api/repository.dart';
-import 'domain/usecase/save_user_usecase.dart';
+import 'package:Placelook/api/auth_repository_mock_impl.dart';
+import 'package:Placelook/api/local_repository_impl.dart';
+import 'package:Placelook/api/repository.dart';
+import 'package:Placelook/domain/usecase/save_user_usecase.dart';
 
 void setup() {
   GetIt.instance.registerLazySingleton(() => Repository(
@@ -28,7 +27,7 @@ void setup() {
   GetIt.instance.registerLazySingleton(() => GetAllWalksUseCase());
 }
 
-void main() {
+void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   setup();
@@ -51,13 +50,12 @@ class _AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-        providers: [
-          ChangeNotifierProvider(create: (_) => UserViewModel()),
-        ],
-        child: MaterialApp(
-            //debugShowMaterialGrid: true,
-            debugShowCheckedModeBanner: false,
-            title: "Placelook",
-            home: MainPage()));
+      providers: [
+        ChangeNotifierProvider(create: (_) => UserViewModel()),
+      ],
+      child: MaterialApp.router(
+        routerConfig: router,
+      ),
+    );
   }
 }

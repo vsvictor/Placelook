@@ -3,17 +3,15 @@ import 'package:Placelook/viewmodel/user_view_model.dart';
 import 'package:Placelook/widgets/top_page_widget.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:Placelook/pages/forgot_password_page.dart';
-import 'package:Placelook/pages/home_page.dart';
 import 'package:provider/provider.dart';
-
-import '../model/user.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({super.key});
   @override
-  _AuthPageState createState() => _AuthPageState();
+  State<AuthPage> createState() => _AuthPageState();
 }
 
 class _AuthPageState extends State<AuthPage> {
@@ -28,14 +26,13 @@ class _AuthPageState extends State<AuthPage> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) => {
-          if (vm.user == null)
-            {
-              vm.fromStorage(),
-              _loginController.text = vm?.user?.email ?? "",
-              vm?.login = _loginController.text
-            }
-        });
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (vm.user == null) {
+        vm.fromStorage();
+        _loginController.text = vm.user?.email ?? "";
+        vm.login = _loginController.text;
+      }
+    });
   }
 
   @override
@@ -56,7 +53,7 @@ class _AuthPageState extends State<AuthPage> {
               child: SingleChildScrollView(
             child: Column(
               children: [
-                TopPageWidget("Log in"),
+                const TopPageWidget("Log in"),
                 Padding(
                   padding: EdgeInsets.only(
                       top: size.height * 0.02,
@@ -181,27 +178,19 @@ class _AuthPageState extends State<AuthPage> {
   }
 
   void _onLogin() async {
-    vm?.login = "dvictor74@gmail.com";
-    vm?.password = "qwerty";
+    vm.login = "dvictor74@gmail.com";
+    vm.password = "qwerty";
     await vm.startApp();
     if (vm.user != null) {
-      Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => HomePage()),
-          (Route<dynamic> route) => false);
+      context.pushReplacement("/");
     }
   }
 
   void _onTapSignin() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => SigninPage()),
-    );
+    context.push("/auth/signin");
   }
 
   void _onTapForgotPassword() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => ForgotPasswordPage()),
-    );
+    context.push("/auth/forgot");
   }
 }

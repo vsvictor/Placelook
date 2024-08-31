@@ -1,12 +1,13 @@
 import 'package:Placelook/widgets/top_page_widget.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ForgotPasswordPage extends StatefulWidget {
   const ForgotPasswordPage({super.key});
   @override
-  _ForgotPasswordPageState createState() => _ForgotPasswordPageState();
+  State<ForgotPasswordPage> createState() => _ForgotPasswordPageState();
 }
 
 class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
@@ -26,7 +27,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
               child: SingleChildScrollView(
             child: Column(
               children: [
-                TopPageWidget("Forgot password"),
+                const TopPageWidget("Forgot password"),
                 Padding(
                   padding: EdgeInsets.only(
                       top: size.height * 0.02,
@@ -92,6 +93,6 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   }
 
   void _onTabLogin() {
-    Navigator.pop(context);
+    context.pop();
   }
 }
