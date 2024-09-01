@@ -60,9 +60,7 @@ class _ErrorPageState extends State<ErrorPage> {
                           color: Colors.white,
                           fontSize: size.height * 0.03,
                         )),
-                    onPressed: () => {
-                      _onBack()
-                    },
+                    onPressed: () => {_onBack()},
                   ),
                 ),
               ],

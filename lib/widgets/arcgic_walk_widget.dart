@@ -15,7 +15,7 @@ class ArcGISWalkWidget extends StatefulWidget {
 
 class _ArcGISAuthWidgetState extends State<ArcGISWalkWidget>
     implements ArcGISAuthenticationChallengeHandler {
-  final List<Walk> walls = [];
+  //final List<Walk> walls = [];
   final _mapController = ArcGISMapView.createController();
   final _settingsVisible = false;
   final _locationDataSource = SystemLocationDataSource();
@@ -53,9 +53,7 @@ class _ArcGISAuthWidgetState extends State<ArcGISWalkWidget>
     return Consumer<MapViewModel>(
       builder: (context, model, child) {
         if (model.list != null) {
-          walls.clear();
-          walls.addAll(model.list!);
-          _createData();
+          _createData(model);
         }
         return Scaffold(
           resizeToAvoidBottomInset: false,
@@ -121,64 +119,38 @@ class _ArcGISAuthWidgetState extends State<ArcGISWalkWidget>
         username: "viktor.dzhurliak", password: "Stran74ger");
     challenge.continueWithCredential(cred);
   }
-
-  FeatureCollectionTable _createWalksTable() {
-    final table = FeatureCollectionTable(
-        fields: [
-          Field.text(name: "id", alias: "Walk ID", length: 32),
-          Field.text(name: "name", alias: "Walk name", length: 128),
-          Field.text(name: "city", alias: "City name", length: 64),
-          Field.date(name: "time", alias: "Walk time"),
-          Field.text(
-            name: "guidID",
-            alias: "Guid ID",
-            length: 32,
-          ),
-          Field.shortInt(name: "duration", alias: "Duration in minutes"),
-          Field.text(name: "language", alias: "Language of walk", length: 24),
-          Field.text(name: "type", alias: "Type walk", length: 8)
-        ],
-        geometryType: GeometryType.point,
-        spatialReference: SpatialReference.wgs84);
-
-    ArcGISImage.fromAsset("assets/marker.png").then((image){
-      table.renderer = SimpleRenderer(
-        symbol: PictureMarkerSymbol.withImage(image),
-      );
+  void _createData(MapViewModel model){
+    var tab = FeatureCollectionTable(fields: [
+      Field.text(name: "id", alias: "ID", length: 64),
+      Field.text(name: "name_walk", alias: "Walk", length: 256),
+      Field.text(name: "city_walk", alias: "City", length: 128),
+      Field.date(name: "date_walk", alias: "Date"),
+      Field.text(name: "guidid_walk", alias: "Guid", length: 64),
+      Field.shortInt(name: "duration_walk", alias: "Duration"),
+      Field.text(name: "language_walk", alias: "Language", length: 64),
+      Field.text(name: "typw_walk", alias: "Type", length: 8)
+    ], geometryType: GeometryType.point, spatialReference: SpatialReference.wgs84);
+    model.list?.forEach((Walk w){
+      if(w.id == null) w.generateID();
+      var fea = tab.createFeature(attributes: {
+        "id": w.id,
+        "name_walk": w.name,
+        "city_walk": w.city,
+        "date_walk":w.time,
+        "guidid_walk": w.who?.id,
+        "duration_walk":w.duration,
+        "language_walk":w.language.title,
+        "typw_walk":w.typeWalk.title
+      }, geometry:
+      ArcGISPoint(x: w.location!.longitude, y: w.location!.latitude, spatialReference: SpatialReference.wgs84));
     });
-    return table;
-  }
+    tab.renderer = PictureFillSymbol.withImage(ArcGISImage.fromAsset("assets/marker96.png") as ArcGISImage) as Renderer?;
+    _map?.operationalLayers.forEach((Layer layer){
+      if(layer.name == "Walks") _map?.operationalLayers.remove(layer);
+    });
+    model.walkLayer = FeatureCollectionLayer.withFeatureCollection(FeatureCollection.withTables([tab]));
+    model.walkLayer?.name = "Walks";
+    _map?.operationalLayers.add(model.walkLayer!);
 
-  void _addWalks(FeatureCollectionTable table, List<Walk> data) {
-    for (var e in data) {
-      table.addFeature(table.createFeature(
-          attributes: {
-            "id": e.id,
-            "name": e.name,
-            "city": e.city,
-            "time": e.time,
-            "guidID": e.who?.id??"",
-            "duratiom": e.duration,
-            "language": e.language,
-            "type": e.typeWalk
-          },
-          geometry:
-              ArcGISPoint(x: e.location!.longitude, y: e.location!.latitude)));
-    }
-  }
-
-  void _createData() {
-    //for (var e in walls) {print("From widget:$e");}
-    final tab = _createWalksTable();
-    _addWalks(tab, walls);
-    final featureCollection = FeatureCollection()..tables.addAll([tab]);
-    var walksLayer = _map?.operationalLayers.firstOrNull;
-    if (walksLayer != null) {
-      _map?.operationalLayers.remove(walksLayer);
-    }
-    final featureCollectionLayer =
-        FeatureCollectionLayer.withFeatureCollection(featureCollection);
-    featureCollectionLayer.name = "Walks";
-    _map?.operationalLayers.add(featureCollectionLayer);
   }
 }

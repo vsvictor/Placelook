@@ -23,48 +23,49 @@ enum PLRoutes {
 
   const PLRoutes(this.name, this.path);
 }
-final router = GoRouter(routes: <RouteBase>[
-  GoRoute(
-    path: PLRoutes.ROOT.path,
-    name: PLRoutes.ROOT.name,
-    builder: (context, staye) => HomePage(),
-    redirect: (context, state){
-      if(context.read<UserViewModel>().user == null) return "/auth";
-    },
+
+final router = GoRouter(
     routes: <RouteBase>[
       GoRoute(
-          path: PLRoutes.AUTH.path,
-          name: PLRoutes.AUTH.name,
-        builder: (context, staye) => AuthPage(),
+        path: PLRoutes.ROOT.path,
+        name: PLRoutes.ROOT.name,
+        builder: (context, staye) => HomePage(),
+        redirect: (context, state) {
+          if (context.read<UserViewModel>().user == null) return "/auth";
+        },
         routes: <RouteBase>[
           GoRoute(
-            path: "signin",
-            name: "signin",
-            builder: (context, staye) => SigninPage(),
+            path: PLRoutes.AUTH.path,
+            name: PLRoutes.AUTH.name,
+            builder: (context, staye) => AuthPage(),
+            routes: <RouteBase>[
+              GoRoute(
+                path: "signin",
+                name: "signin",
+                builder: (context, staye) => SigninPage(),
+              ),
+              GoRoute(
+                path: PLRoutes.FORGOT.path,
+                name: PLRoutes.FORGOT.name,
+                builder: (context, staye) => ForgotPasswordPage(),
+              ),
+            ],
           ),
           GoRoute(
-            path: PLRoutes.FORGOT.path,
-            name: PLRoutes.FORGOT.name,
-            builder: (context, staye) => ForgotPasswordPage(),
+            path: PLRoutes.MAP.path,
+            name: PLRoutes.MAP.name,
+            builder: (context, staye) => MapPage(),
+          ),
+          GoRoute(
+            path: PLRoutes.PROFILE.path,
+            name: PLRoutes.PROFILE.name,
+            builder: (context, staye) => ProfilePage(),
           ),
         ],
       ),
-      GoRoute(
-        path: PLRoutes.MAP.path,
-        name: PLRoutes.MAP.name,
-        builder: (context, staye) => MapPage(),
-      ),
-      GoRoute(
-          path: PLRoutes.PROFILE.path,
-          name: PLRoutes.PROFILE.name,
-        builder: (context, staye) => ProfilePage(),
-      ),
     ],
-  ),
-],
-  debugLogDiagnostics: true,
-  errorBuilder: (context, state){
-    var str = state.extra as String?;
-    return ErrorPage(message: str);
-  }
-);
+    debugLogDiagnostics: true,
+    errorBuilder: (context, state) {
+      var str = state.extra as String?;
+      return ErrorPage(message: str);
+    });

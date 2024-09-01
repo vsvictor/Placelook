@@ -139,7 +139,8 @@ class _ProfilePageState extends State<ProfilePage> {
                     hint: const Text("Select role"),
                     onChanged: (String? newSelect) {
                       if (newSelect != null) {
-                        vm?.user?.role = Role.values.byName(newSelect.toUpperCase());
+                        vm?.user?.role =
+                            Role.values.byName(newSelect.toUpperCase());
                       }
                     },
                     items: Role.values
@@ -177,7 +178,8 @@ class _ProfilePageState extends State<ProfilePage> {
                     hint: const Text("Select language"),
                     onChanged: (String? newSelect) {
                       if (newSelect != null) {
-                        vm?.user?.language = Languages.values.byName(newSelect.toUpperCase());
+                        vm?.user?.language =
+                            Languages.values.byName(newSelect.toUpperCase());
                       }
                     },
                     items: Languages.values
