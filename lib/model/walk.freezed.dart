@@ -26,6 +26,8 @@ mixin _$Walk {
   set name(String value) => throw _privateConstructorUsedError;
   String get city => throw _privateConstructorUsedError;
   set city(String value) => throw _privateConstructorUsedError;
+  String get about => throw _privateConstructorUsedError;
+  set about(String value) => throw _privateConstructorUsedError;
   Location? get location => throw _privateConstructorUsedError;
   set location(Location? value) => throw _privateConstructorUsedError;
   DateTime? get time => throw _privateConstructorUsedError;
@@ -34,6 +36,10 @@ mixin _$Walk {
   set who(User? value) => throw _privateConstructorUsedError;
   int? get duration => throw _privateConstructorUsedError;
   set duration(int? value) => throw _privateConstructorUsedError;
+  int? get count => throw _privateConstructorUsedError;
+  set count(int? value) => throw _privateConstructorUsedError;
+  List<String>? get places => throw _privateConstructorUsedError;
+  set places(List<String>? value) => throw _privateConstructorUsedError;
   Languages get language => throw _privateConstructorUsedError;
   set language(Languages value) => throw _privateConstructorUsedError;
   TypeWalk get typeWalk => throw _privateConstructorUsedError;
@@ -57,10 +63,13 @@ abstract class $WalkCopyWith<$Res> {
       {String id,
       String name,
       String city,
+      String about,
       Location? location,
       DateTime? time,
       User? who,
       int? duration,
+      int? count,
+      List<String>? places,
       Languages language,
       TypeWalk typeWalk});
 
@@ -86,10 +95,13 @@ class _$WalkCopyWithImpl<$Res, $Val extends Walk>
     Object? id = null,
     Object? name = null,
     Object? city = null,
+    Object? about = null,
     Object? location = freezed,
     Object? time = freezed,
     Object? who = freezed,
     Object? duration = freezed,
+    Object? count = freezed,
+    Object? places = freezed,
     Object? language = null,
     Object? typeWalk = null,
   }) {
@@ -105,6 +117,10 @@ class _$WalkCopyWithImpl<$Res, $Val extends Walk>
       city: null == city
           ? _value.city
           : city // ignore: cast_nullable_to_non_nullable
+              as String,
+      about: null == about
+          ? _value.about
+          : about // ignore: cast_nullable_to_non_nullable
               as String,
       location: freezed == location
           ? _value.location
@@ -122,6 +138,14 @@ class _$WalkCopyWithImpl<$Res, $Val extends Walk>
           ? _value.duration
           : duration // ignore: cast_nullable_to_non_nullable
               as int?,
+      count: freezed == count
+          ? _value.count
+          : count // ignore: cast_nullable_to_non_nullable
+              as int?,
+      places: freezed == places
+          ? _value.places
+          : places // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
       language: null == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
@@ -173,10 +197,13 @@ abstract class _$$WalkImplCopyWith<$Res> implements $WalkCopyWith<$Res> {
       {String id,
       String name,
       String city,
+      String about,
       Location? location,
       DateTime? time,
       User? who,
       int? duration,
+      int? count,
+      List<String>? places,
       Languages language,
       TypeWalk typeWalk});
 
@@ -201,10 +228,13 @@ class __$$WalkImplCopyWithImpl<$Res>
     Object? id = null,
     Object? name = null,
     Object? city = null,
+    Object? about = null,
     Object? location = freezed,
     Object? time = freezed,
     Object? who = freezed,
     Object? duration = freezed,
+    Object? count = freezed,
+    Object? places = freezed,
     Object? language = null,
     Object? typeWalk = null,
   }) {
@@ -220,6 +250,10 @@ class __$$WalkImplCopyWithImpl<$Res>
       city: null == city
           ? _value.city
           : city // ignore: cast_nullable_to_non_nullable
+              as String,
+      about: null == about
+          ? _value.about
+          : about // ignore: cast_nullable_to_non_nullable
               as String,
       location: freezed == location
           ? _value.location
@@ -237,6 +271,14 @@ class __$$WalkImplCopyWithImpl<$Res>
           ? _value.duration
           : duration // ignore: cast_nullable_to_non_nullable
               as int?,
+      count: freezed == count
+          ? _value.count
+          : count // ignore: cast_nullable_to_non_nullable
+              as int?,
+      places: freezed == places
+          ? _value.places
+          : places // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
       language: null == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
@@ -256,10 +298,13 @@ class _$WalkImpl extends _Walk {
       {this.id = "",
       this.name = "",
       this.city = "",
+      this.about = "",
       this.location = null,
       this.time = null,
       this.who = null,
       this.duration = null,
+      this.count = null,
+      this.places = null,
       this.language = Languages.UNDEFINED,
       this.typeWalk = TypeWalk.FREE})
       : super._();
@@ -278,6 +323,9 @@ class _$WalkImpl extends _Walk {
   String city;
   @override
   @JsonKey()
+  String about;
+  @override
+  @JsonKey()
   Location? location;
   @override
   @JsonKey()
@@ -290,6 +338,12 @@ class _$WalkImpl extends _Walk {
   int? duration;
   @override
   @JsonKey()
+  int? count;
+  @override
+  @JsonKey()
+  List<String>? places;
+  @override
+  @JsonKey()
   Languages language;
   @override
   @JsonKey()
@@ -297,7 +351,7 @@ class _$WalkImpl extends _Walk {
 
   @override
   String toString() {
-    return 'Walk(id: $id, name: $name, city: $city, location: $location, time: $time, who: $who, duration: $duration, language: $language, typeWalk: $typeWalk)';
+    return 'Walk(id: $id, name: $name, city: $city, about: $about, location: $location, time: $time, who: $who, duration: $duration, count: $count, places: $places, language: $language, typeWalk: $typeWalk)';
   }
 
   /// Create a copy of Walk
@@ -321,10 +375,13 @@ abstract class _Walk extends Walk {
       {String id,
       String name,
       String city,
+      String about,
       Location? location,
       DateTime? time,
       User? who,
       int? duration,
+      int? count,
+      List<String>? places,
       Languages language,
       TypeWalk typeWalk}) = _$WalkImpl;
   _Walk._() : super._();
@@ -341,6 +398,9 @@ abstract class _Walk extends Walk {
   String get city;
   set city(String value);
   @override
+  String get about;
+  set about(String value);
+  @override
   Location? get location;
   set location(Location? value);
   @override
@@ -352,6 +412,12 @@ abstract class _Walk extends Walk {
   @override
   int? get duration;
   set duration(int? value);
+  @override
+  int? get count;
+  set count(int? value);
+  @override
+  List<String>? get places;
+  set places(List<String>? value);
   @override
   Languages get language;
   set language(Languages value);

@@ -20,13 +20,6 @@ class _ProfilePageState extends State<ProfilePage> {
   final TextEditingController _teFirstName = TextEditingController();
   final TextEditingController _teLastName = TextEditingController();
   final TextEditingController _teEmail = TextEditingController();
-  @override
-  void initState() {
-    super.initState();
-/*    WidgetsBinding.instance.addPostFrameCallback((_) => {
-          if (vm?.user == null) {vm?.fromStorage()}
-        });*/
-  }
 
   @override
   Widget build(BuildContext context) {

@@ -30,6 +30,8 @@ mixin _$User {
   set contacts(List<Contact>? value) => throw _privateConstructorUsedError;
   Role get role => throw _privateConstructorUsedError;
   set role(Role value) => throw _privateConstructorUsedError;
+  int get rate => throw _privateConstructorUsedError;
+  set rate(int value) => throw _privateConstructorUsedError;
   Languages get language => throw _privateConstructorUsedError;
   set language(Languages value) => throw _privateConstructorUsedError;
 
@@ -53,6 +55,7 @@ abstract class $UserCopyWith<$Res> {
       String lastName,
       List<Contact>? contacts,
       Role role,
+      int rate,
       Languages language});
 }
 
@@ -76,6 +79,7 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
     Object? lastName = null,
     Object? contacts = freezed,
     Object? role = null,
+    Object? rate = null,
     Object? language = null,
   }) {
     return _then(_value.copyWith(
@@ -99,6 +103,10 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
               as Role,
+      rate: null == rate
+          ? _value.rate
+          : rate // ignore: cast_nullable_to_non_nullable
+              as int,
       language: null == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
@@ -120,6 +128,7 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
       String lastName,
       List<Contact>? contacts,
       Role role,
+      int rate,
       Languages language});
 }
 
@@ -140,6 +149,7 @@ class __$$UserImplCopyWithImpl<$Res>
     Object? lastName = null,
     Object? contacts = freezed,
     Object? role = null,
+    Object? rate = null,
     Object? language = null,
   }) {
     return _then(_$UserImpl(
@@ -163,6 +173,10 @@ class __$$UserImplCopyWithImpl<$Res>
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
               as Role,
+      rate: null == rate
+          ? _value.rate
+          : rate // ignore: cast_nullable_to_non_nullable
+              as int,
       language: null == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
@@ -180,6 +194,7 @@ class _$UserImpl extends _User with DiagnosticableTreeMixin {
       this.lastName = "",
       required this.contacts,
       this.role = Role.TRIPPER,
+      this.rate = 0,
       this.language = Languages.UNDEFINED})
       : super._();
 
@@ -202,11 +217,14 @@ class _$UserImpl extends _User with DiagnosticableTreeMixin {
   Role role;
   @override
   @JsonKey()
+  int rate;
+  @override
+  @JsonKey()
   Languages language;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'User(id: $id, firstName: $firstName, lastName: $lastName, contacts: $contacts, role: $role, language: $language)';
+    return 'User(id: $id, firstName: $firstName, lastName: $lastName, contacts: $contacts, role: $role, rate: $rate, language: $language)';
   }
 
   @override
@@ -219,6 +237,7 @@ class _$UserImpl extends _User with DiagnosticableTreeMixin {
       ..add(DiagnosticsProperty('lastName', lastName))
       ..add(DiagnosticsProperty('contacts', contacts))
       ..add(DiagnosticsProperty('role', role))
+      ..add(DiagnosticsProperty('rate', rate))
       ..add(DiagnosticsProperty('language', language));
   }
 
@@ -245,6 +264,7 @@ abstract class _User extends User {
       String lastName,
       required List<Contact>? contacts,
       Role role,
+      int rate,
       Languages language}) = _$UserImpl;
   _User._() : super._();
 
@@ -265,6 +285,9 @@ abstract class _User extends User {
   @override
   Role get role;
   set role(Role value);
+  @override
+  int get rate;
+  set rate(int value);
   @override
   Languages get language;
   set language(Languages value);

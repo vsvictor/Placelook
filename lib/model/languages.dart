@@ -1,5 +1,5 @@
 enum Languages {
-  ENGLISG("English"),
+  ENGLISH("English"),
   FRANCH("Franch"),
   GERMAN("German"),
   UKRANIAN("Ukranian"),

@@ -7,44 +7,38 @@ part of 'user.dart';
 // **************************************************************************
 
 _$UserImpl _$$UserImplFromJson(Map<String, dynamic> json) => _$UserImpl(
-      id: json['id'] as String?,
+      id: json['id'] as String? ?? null,
       firstName: json['firstName'] as String? ?? "",
       lastName: json['lastName'] as String? ?? "",
       contacts: (json['contacts'] as List<dynamic>?)
           ?.map((e) => Contact.fromJson(e as Map<String, dynamic>))
           .toList(),
       role: $enumDecodeNullable(_$RoleEnumMap, json['role']) ?? Role.TRIPPER,
+      rate: (json['rate'] as num?)?.toInt() ?? 0,
       language: $enumDecodeNullable(_$LanguagesEnumMap, json['language']) ??
           Languages.UNDEFINED,
     );
 
-Map<String, dynamic> _$$UserImplToJson(_$UserImpl instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('id', instance.id);
-  val['firstName'] = instance.firstName;
-  val['lastName'] = instance.lastName;
-  writeNotNull('contacts', instance.contacts?.map((e) => e.toJson()).toList());
-  val['role'] = _$RoleEnumMap[instance.role]!;
-  val['language'] = _$LanguagesEnumMap[instance.language]!;
-  return val;
-}
+Map<String, dynamic> _$$UserImplToJson(_$UserImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'firstName': instance.firstName,
+      'lastName': instance.lastName,
+      'contacts': instance.contacts,
+      'role': _$RoleEnumMap[instance.role]!,
+      'rate': instance.rate,
+      'language': _$LanguagesEnumMap[instance.language]!,
+    };
 
 const _$RoleEnumMap = {
-  Role.GUID: 'Guid',
-  Role.TRIPPER: 'Tripper',
+  Role.GUID: 'GUID',
+  Role.TRIPPER: 'TRIPPER',
 };
 
 const _$LanguagesEnumMap = {
-  Languages.ENGLISG: 'English',
-  Languages.FRANCH: 'Franch',
-  Languages.GERMAN: 'German',
-  Languages.UKRANIAN: 'Ukranian',
-  Languages.UNDEFINED: 'Undefined',
+  Languages.ENGLISH: 'ENGLISH',
+  Languages.FRANCH: 'FRANCH',
+  Languages.GERMAN: 'GERMAN',
+  Languages.UKRANIAN: 'UKRANIAN',
+  Languages.UNDEFINED: 'UNDEFINED',
 };

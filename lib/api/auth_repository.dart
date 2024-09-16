@@ -2,5 +2,5 @@ import '../model/user.dart';
 
 abstract class AuthRepository {
   Future<String?> login(String login, String password);
-  Future<User?> getUser();
+  Future<List<User?>> getUsers();
 }

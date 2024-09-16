@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get_it/get_it.dart';
 
 class MapViewModel extends ChangeNotifier {
-  FeatureCollectionLayer? walkLayer = null;
+  FeatureLayer? walkLayer = null;
   List<Walk>? _list = List.empty();
   late final GetAllWalksUseCase _allWalks =
       GetIt.instance<GetAllWalksUseCase>();

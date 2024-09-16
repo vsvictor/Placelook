@@ -71,6 +71,7 @@ class User with _$User {
       @Default("") String lastName,
       required List<Contact>? contacts,
       @Default(Role.TRIPPER) Role role,
+      @Default(0) int rate,
       @Default(Languages.UNDEFINED) Languages language}) = _User;
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 

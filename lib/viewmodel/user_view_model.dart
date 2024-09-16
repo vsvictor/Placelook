@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:Placelook/domain/usecase/get_user_usecase.dart';
 import 'package:Placelook/domain/usecase/load_user_usecase.dart';
 import 'package:Placelook/domain/usecase/login_usecase.dart';
@@ -50,9 +52,16 @@ class UserViewModel extends ChangeNotifier {
     }
   }
 
-  Future _getUserAsync() async {
+  Future _getUserByTokenAsync() async {
     if (_token != null && _token!.isNotEmpty) {
-      user = await _getUserUseCase.load();
+      List<User?> users = await _getUserUseCase.load();
+      print("All users");
+      for (var value in users) {
+        if (value?.id == null) value?.generateID();
+        print(value?.toString());
+      }
+      var rand = Random().nextInt(users.length - 1);
+      user = users[rand];
       print(user.toString());
     } else {
       user = null;
@@ -62,7 +71,7 @@ class UserViewModel extends ChangeNotifier {
   Future startApp() async {
     await _loginAsync();
     if (token.isNotEmpty) {
-      await _getUserAsync();
+      await _getUserByTokenAsync();
     } else {
       print("Login error");
     }
@@ -78,5 +87,11 @@ class UserViewModel extends ChangeNotifier {
     if (user != null) {
       _saveUserUsecase.load(user!);
     }
+  }
+
+  Future<User?> getUserByID(String id) async {
+    List<User?> list = await _getUserUseCase.load();
+    var u = list.where((food) => food?.id == id).first;
+    return u;
   }
 }

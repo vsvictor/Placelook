@@ -6,6 +6,7 @@ import 'package:Placelook/domain/usecase/load_user_usecase.dart';
 import 'package:Placelook/domain/usecase/login_usecase.dart';
 import 'package:Placelook/routes/main_routes.dart';
 import 'package:Placelook/viewmodel/user_view_model.dart';
+import 'package:Placelook/viewmodel/walk_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get_it/get_it.dart';
@@ -52,6 +53,7 @@ class _AppState extends State<App> {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => UserViewModel()),
+        ChangeNotifierProvider(create: (_) => WalkViewModel())
       ],
       child: MaterialApp.router(
         routerConfig: router,

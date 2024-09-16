@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'package:Placelook/model/user.dart';
 import 'package:flutter/services.dart';
@@ -22,11 +23,9 @@ class AuthRepositoryMockImpl extends AuthRepository {
   }
 
   @override
-  Future<User?> getUser() async {
+  Future<List<User?>> getUsers() async {
     final resp = await rootBundle.loadString("assets/mock/user.json");
-    print("User from file:$resp");
     var map = jsonDecode(resp);
-    var u = User.fromJson(map);
-    return u;
+    return List.from(map.map((e) => User.fromJson(e)));
   }
 }

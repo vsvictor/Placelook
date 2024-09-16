@@ -1,5 +1,37 @@
 [
-  {"name": "Прогулянка Хрещатиком", "city": "Київ", "location": {"latitude": 50.0, "longitude": 30.0}, "time": "2024-08-22T16:30:00.000", "who": {"firstName": "Віктор", "lastName": "Джурляк", "contacts": [{"email": "dvictor74@gmail.com", "runtimeType": "email"}], "role": "Guid", "language": "Ukranian"}, "duration": 90, "language": "Ukranian", "typeWalk": "Free"},
-  {"name": "Прогулянка лівим берегом", "city": "Київ", "location": {"latitude": 52.0, "longitude": 34.0}, "time": "2024-08-22T16:30:00.000", "who": {"firstName": "Оксана", "lastName": "Джурляк", "contacts": [{"email": "doksana7974@gmail.com", "runtimeType": "email"}], "role": "Guid", "language": "Ukranian"}, "duration": 180, "language": "Ukranian", "typeWalk": "Free"},
-  {"name": "Забіг по клубах", "city": "Київ", "location": {"latitude": 49.0, "longitude": 28.0}, "time": "2024-08-22T16:30:00.000", "who": {"firstName": "Дмитро", "lastName": "Джурляк", "contacts": [{"email": "dd@gmail.com", "runtimeType": "email"}], "role": "Guid", "language": "Ukranian"}, "duration": 90, "language": "English", "typeWalk": "Paid"}
+  { "id": "5321c5e9-17b2-4c8a-9bfc-f9b3898ee5f0",
+    "name": "Прогулянка Хрещатиком", "city": "Київ", "about":"Можна побачити чудову архітектуру Хрещатика, плбувати на Майдані Незалежності - в самому серці України","location": {"latitude": 50.0, "longitude": 30.0}, "time": "2024-08-22T16:30:00.000", "who": {"id": "5321c5e9-17b2-4c8a-9bfc-f9b3898ee5f0","firstName": "Віктор", "lastName": "Джурляк", "contacts": [{"email": "dvictor74@gmail.com", "runtimeType": "email"}], "role": "GUID", "language": "UKRANIAN", "rate": 5}, "duration": 90, "language": "UKRANIAN", "typeWalk": "FREE", "count": 120,
+    "places":
+    ["https://dovkola.media/wp-content/uploads/2020/04/2-1.jpg",
+      "https://teren.in.ua/uploads/media/c4/dc/c4dc77c0b6686f151dd95676bda3ea34_orig.jpg",
+      "https://vikna.tv/wp-content/uploads/2022/08/20/synevyr.jpg",
+      "https://visitukraine.today/media/blog/previews/HAxp7BNZ4I5A6G992H1IrssnXm4uOCPGl8KEz4Fc.png",
+      "https://armyinform.com.ua/wp-content/uploads/2021/08/eaaag%C2%BF.jpg",
+      "https://travellexicon.com/wp-content/uploads/2023/09/maidan-nezalezhnosti-.jpeg"
+    ]
+  },
+  {
+    "id": "cbd39aab-2873-404f-9d89-99ea5a93ed0b",
+    "name": "Прогулянка лівим берегом", "city": "Київ", "about":"Тихі спальні райони Києва... Дарниця з її фармокалогією, Березняки з його фонтанами - все, що є цікавого у відносно нових районах Києва. (У рлзширеному форматі даної прогулянки можлива екскурсія на формакологічну фабрику - найвідомішу фабрику в Україні)","location": {"latitude": 52.0, "longitude": 34.0}, "time": "2024-08-22T16:30:00.000", "who": {"id": "bc704f47-ff64-4262-8901-de2c741bad5e","firstName": "Оксана", "lastName": "Джурляк", "contacts": [{"email": "doksana7974@gmail.com", "runtimeType": "email"}, {"phone": "+38(098) 321 09 04", "runtimeType": "phone"}], "role": "GUID", "language": "UKRANIAN", "rate": 8}, "duration": 180, "language": "UKRANIAN", "typeWalk": "FREE", "count": 90,
+    "places":
+    ["https://armyinform.com.ua/wp-content/uploads/2021/08/ea%C2%BF%C2%BC.jpg",
+      "https://vikna.tv/wp-content/uploads/2022/08/20/dnister.jpg",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTje1hJ0D12DpeRnxDe2wFPj6K5iM7ULXn-Ig&s",
+      "https://www.ukraine-is.com/wp-content/uploads/2017/05/fortress-2458087_1280.jpg",
+      "https://dovkola.media/wp-content/uploads/2020/04/Flying_above_the_Pink_planet-1.jpg",
+      "https://s.032.ua/section/promonewsintext/upload/images/promo/intext/000/053/367/1_6086c1042c42a.jpg"
+    ]
+  },
+  {
+    "id": "bc704f47-ff64-4262-8901-de2c741bad5e",
+    "name": "Забіг по клубах", "city": "Київ", "about":"Весела прогулянка по популяхних місцях моложі Києва...Музика, танці, гулянки! Що ще треба для веселого вечора?","location": {"latitude": 49.0, "longitude": 28.0}, "time": "2024-08-22T16:30:00.000", "who": {"id": "cbd39aab-2873-404f-9d89-99ea5a93ed0b","firstName": "Дмитро", "lastName": "Джурляк", "contacts": [{"email": "dd@gmail.com", "runtimeType": "email"}], "role": "GUID", "language": "UKRANIAN", "rate": 10}, "duration": 90, "language": "ENGLISH", "typeWalk": "PAID", "count": 150,
+    "places":
+    ["https://ukrainianplaces.wordpress.com/wp-content/uploads/2013/10/d0b1d0bbd0bed0b35.jpg",
+      "https://travellexicon.com/wp-content/uploads/2023/09/andriivska-tserkva-scaled-1.jpeg",
+      "https://hotel-edem.lviv.ua/wp-content/uploads/2019/12/golovna-onovleno.jpg",
+      "https://anga.ua/ifiles/files/slideNeveroyatnayaUAUkr-5.png",
+      "https://eventukraine.com/ev/wp-content/uploads/2019/09/Depositphotos_1389958_s-2019.jpg",
+      "https://www.uyut.in.ua/wp-content/uploads/2019/06/divovizhni-miscya-ukra%D1%97ni.jpg"
+    ]
+  }
 ]

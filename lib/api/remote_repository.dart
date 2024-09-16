@@ -9,6 +9,6 @@ class RemoteRepository {
   RemoteRepository(this._authRepository, this._walkRepository);
   Future<String?> login(String login, String password) =>
       _authRepository.login(login, password);
-  Future<User?> getUser() => _authRepository.getUser();
+  Future<List<User?>> getUsers() => _authRepository.getUsers();
   Future<List<Walk>?> getAllWalks() => _walkRepository.getAllWalks();
 }

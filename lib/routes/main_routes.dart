@@ -5,7 +5,9 @@ import 'package:Placelook/pages/home_page.dart';
 import 'package:Placelook/pages/map_page.dart';
 import 'package:Placelook/pages/profile_page.dart';
 import 'package:Placelook/pages/signin_page.dart';
+import 'package:Placelook/pages/walk_page.dart';
 import 'package:Placelook/viewmodel/user_view_model.dart';
+import 'package:Placelook/widgets/dialog_opacity.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -16,7 +18,9 @@ enum PLRoutes {
   SIGNIN("signin", "signin"),
   FORGOT("forgot", "forgot"),
   MAP('map', 'map'),
-  PROFILE('profile', 'profile');
+  PROFILE('profile', 'profile'),
+  WALK("walk", "walk"),
+  PHOTOS("photos", "photos");
 
   final String name;
   final String path;
@@ -47,15 +51,28 @@ final router = GoRouter(
               GoRoute(
                 path: PLRoutes.FORGOT.path,
                 name: PLRoutes.FORGOT.name,
-                builder: (context, staye) => ForgotPasswordPage(),
+                builder: (context, state) => ForgotPasswordPage(),
               ),
             ],
           ),
           GoRoute(
-            path: PLRoutes.MAP.path,
-            name: PLRoutes.MAP.name,
-            builder: (context, staye) => MapPage(),
-          ),
+              path: PLRoutes.MAP.path,
+              name: PLRoutes.MAP.name,
+              builder: (context, staye) => MapPage(),
+              routes: <RouteBase>[
+                GoRoute(
+                    path: PLRoutes.WALK.path,
+                    name: PLRoutes.WALK.name,
+                    builder: (contex, state) => WalkPage(),
+                  routes: <RouteBase>[
+                    GoRoute(
+                        path: PLRoutes.PHOTOS.path,
+                      name: PLRoutes.PHOTOS.name,
+                      builder:  (context, state) => DialogOpacity()
+                    )
+                  ]
+                ),
+              ]),
           GoRoute(
             path: PLRoutes.PROFILE.path,
             name: PLRoutes.PROFILE.name,

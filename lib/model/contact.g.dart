@@ -12,19 +12,11 @@ _$EmailContactImpl _$$EmailContactImplFromJson(Map<String, dynamic> json) =>
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$EmailContactImplToJson(_$EmailContactImpl instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('email', instance.email);
-  val['runtimeType'] = instance.$type;
-  return val;
-}
+Map<String, dynamic> _$$EmailContactImplToJson(_$EmailContactImpl instance) =>
+    <String, dynamic>{
+      'email': instance.email,
+      'runtimeType': instance.$type,
+    };
 
 _$PhoneContactImpl _$$PhoneContactImplFromJson(Map<String, dynamic> json) =>
     _$PhoneContactImpl(
@@ -32,16 +24,8 @@ _$PhoneContactImpl _$$PhoneContactImplFromJson(Map<String, dynamic> json) =>
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$PhoneContactImplToJson(_$PhoneContactImpl instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('phone', instance.phone);
-  val['runtimeType'] = instance.$type;
-  return val;
-}
+Map<String, dynamic> _$$PhoneContactImplToJson(_$PhoneContactImpl instance) =>
+    <String, dynamic>{
+      'phone': instance.phone,
+      'runtimeType': instance.$type,
+    };

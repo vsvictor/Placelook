@@ -9,8 +9,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.6
-  uuid: ^4.0.0
+  cupertino_icons: ^1.0.8
+  uuid: ^4.5.0
   google_fonts: ^6.2.1
   gif: ^2.3.0
   persistent_bottom_nav_bar: ^6.2.1
@@ -21,11 +21,13 @@ dependencies:
   flutter_native_splash: ^2.4.1
   freezed_annotation: ^2.4.4
   json_annotation: ^4.9.0
-  provider: ^6.0.3
+  provider: ^6.1.2
   get_it: ^7.7.0
   auth_token_generator: ^1.0.0
   go_router: ^14.2.7
   shared_preferences: ^2.3.2
+  intl: ^0.19.0
+  carousel_slider: ^5.0.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -45,6 +47,55 @@ analyzer:
 linter:
   rules:
     non_constant_identifier_names: false
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: fonts/Poppins-Thin.ttf
+          weight: 100
+        - assets: fonts/Poppins-ThinItalic.ttf
+          weight: 100
+          style: italic
+        - asset: fonts/Poppins-ExtraLight.ttf
+          weight: 200
+        - asset: fonts/Poppins-ExtraLightItalic.ttf
+          weight: 200
+          style: italic
+        - asset: fonts/Poppins-Light.ttf
+          weight: 300
+        - asset: fonts/Poppins-LightItalic.ttf
+          weight: 300
+          style: italic
+        - asset: fonts/Poppins-Regular.ttf
+          weight: 400
+        - asset: fonts/Poppins-RegularItalic.ttf
+          weight: 400
+          style: italic
+        - asset: fonts/Poppins-Medium.ttf
+          weight: 500
+        - asset: fonts/Poppins-MediumItalic.ttf
+          weight: 500
+          style: italic
+        - asset: fonts/Poppins-SemiBold.ttf
+          weight: 600
+        - asset: fonts/Poppins-SemiBoldItalic.ttf
+          weight: 600
+          style: italic
+        - asset: fonts/Poppins-Bold.ttf
+          weight: 700
+        - asset: fonts/Poppins-BoldItalic.ttf
+          weight: 700
+          style: italic
+        - asset: fonts/Poppins-ExtraBold.ttf
+          weight: 800
+        - asset: fonts/Poppins-ExtraBoldItalic.ttf
+          weight: 800
+          style: italic
+        - asset: fonts/Poppins-Black.ttf
+          weight: 900
+        - asset: fonts/Poppins-BlackItalic.ttf
+          weight: 900
+          style: italic
+
 
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
@@ -62,27 +113,6 @@ linter:
   #       - asset: fonts/TrajanPro.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
-  #
+
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
-flutter_launcher_icons:
-  #  image_path: "assets/images/icon-128x128.png"
-  image_path_android: "assets/output.png"
-  image_path_ios: "assets/output.png"
-  android: true # can specify file name here e.g. "ic_launcher"
-  ios: true # can specify file name here e.g. "My-Launcher-Icon"
-  min_sdk_android: 21 # android min sdk min:16, default 21
-  remove_alpha_ios: true
-  background_color_ios: "#ffffff"
-  web:
-    generate: true
-    image_path: "assets/output.png"
-    background_color: "#ffffff"
-    theme_color: "#ffffff"
-  windows:
-    generate: true
-    image_path: "assets/output.png"
-    icon_size: 48 # min:48, max:256, default: 48
-  macos:
-    generate: true
-    image_path: "assets/output.png"

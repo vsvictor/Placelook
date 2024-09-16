@@ -9,7 +9,7 @@ class Repository {
   Repository(this._remote, this._local);
   Future<String?> login(String login, String password) =>
       _remote.login(login, password);
-  Future<User?> getUser() => _remote.getUser();
+  Future<List<User?>> getUsers() => _remote.getUsers();
   Future<User> userFromStogare() => _local.userFromStogare();
   void saveUser(User u) => _local.saveUser(u);
   Future<List<Walk>?> getAllWalks() => _remote.getAllWalks();

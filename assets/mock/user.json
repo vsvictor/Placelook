@@ -1,7 +1,29 @@
+[
 {
+  "id": "5321c5e9-17b2-4c8a-9bfc-f9b3898ee5f0",
   "firstName": "Віктор",
   "lastName": "Джурляк",
   "contacts": [{"email": "dvictor74@gmail.com", "runtimeType": "email"}],
-  "role": "Guid",
-  "language": "Ukranian"
-}
+  "role": "GUID",
+  "rate": 8,
+  "language": "UKRANIAN"
+},
+{
+  "id": "bc704f47-ff64-4262-8901-de2c741bad5e",
+  "firstName": "Оксана",
+  "lastName": "Джурляк",
+  "contacts": [{"email": "doksana7974@gmail.com", "runtimeType": "email"}],
+  "role": "GUID",
+  "rate": 8,
+  "language": "UKRANIAN"
+},
+  {
+    "id": "cbd39aab-2873-404f-9d89-99ea5a93ed0b",
+    "firstName": "Дмитро",
+    "lastName": "Джурляк",
+    "contacts": [{"email": "dd@gmail.com", "runtimeType": "email"}],
+    "role": "GUID",
+    "rate": 10,
+    "language": "UKRANIAN"
+  }
+]

@@ -5,7 +5,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:Placelook/pages/forgot_password_page.dart';
 import 'package:provider/provider.dart';
 
 class AuthPage extends StatefulWidget {
