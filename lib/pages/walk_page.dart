@@ -1,17 +1,13 @@
-import 'package:Placelook/main.dart';
-import 'package:Placelook/pages/signin_page.dart';
 import 'package:Placelook/viewmodel/walk_view_model.dart';
 import 'package:Placelook/widgets/contacts_widget.dart';
 import 'package:Placelook/widgets/top_page_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:gif/gif.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../routes/main_routes.dart';
-import '../utils/text_style.dart';
 
 class WalkPage extends StatefulWidget {
   const WalkPage({super.key});
@@ -29,7 +25,6 @@ class _WalkPageState extends State<WalkPage> {
         child: Container(
           width: size.width,
           height: size.height,
-          decoration: const BoxDecoration(color: Colors.white),
           child: Padding(
             padding: EdgeInsets.only(
                 top: size.height * 0.01,
@@ -39,13 +34,11 @@ class _WalkPageState extends State<WalkPage> {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    TopPageWidget(walk.name, style: PLBigTextStyle()),
+                    TopPageWidget(walk.name),
                     Padding(
                       padding: EdgeInsets.only(top: size.height * 0.02),
                       child: ElevatedButton(
                         style: ButtonStyle(
-                            backgroundColor: WidgetStateProperty.all<Color>(
-                                const Color(0xff32dcac)),
                             padding:
                                 WidgetStateProperty.all<EdgeInsetsGeometry>(
                                     const EdgeInsets.only(
@@ -53,8 +46,8 @@ class _WalkPageState extends State<WalkPage> {
                                         left: 64,
                                         right: 64,
                                         bottom: 8))),
-                        child: Text("Sign up!",
-                            style: PLTitleTextStyle(color: Colors.white)),
+                        child: Text(AppLocalizations.of(context)!.sign_up,
+                            style: Theme.of(context).textTheme.displayMedium),
                         onPressed: () => {_onSignUp()},
                       ),
                     ),
@@ -65,12 +58,12 @@ class _WalkPageState extends State<WalkPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          "Number of participants: ",
-                          style: PLTitleTextStyle(color: Colors.blue),
+                          AppLocalizations.of(context)!.count,
+                          style: Theme.of(context).textTheme.titleMedium,
                         ),
                         Text(
-                          walk.count.toString(),
-                          style: PLTitleTextStyle(),
+                          " "+walk.count.toString(),
+                          style: Theme.of(context).textTheme.bodyMedium,
                         ),
                       ],
                     ),
@@ -78,8 +71,8 @@ class _WalkPageState extends State<WalkPage> {
                       height: 20,
                     ),
                     Text(
-                      "About walk:",
-                      style: PLBigTextStyle(color: Colors.blue),
+                      AppLocalizations.of(context)!.about_walk,
+                      style: Theme.of(context).textTheme.titleLarge,
                     ),
                     SizedBox(
                       height: 20,
@@ -90,7 +83,7 @@ class _WalkPageState extends State<WalkPage> {
                         Flexible(
                           child: Text(
                             walk.about,
-                            style: PLNormalTextStyle(),
+                            style: Theme.of(context).textTheme.bodySmall,
                           ),
                         ),
                       ],
@@ -106,12 +99,12 @@ class _WalkPageState extends State<WalkPage> {
                           child: Row(
                             children: [
                               Text(
-                                "City: ",
-                                style: PLNormalTextStyle(color: Colors.blue),
+                                AppLocalizations.of(context)!.city,
+                                style: Theme.of(context).textTheme.titleSmall,
                               ),
                               Text(
-                                walk.city,
-                                style: PLNormalTextStyle(),
+                                "  "+walk.city,
+                                style: Theme.of(context).textTheme.bodySmall,
                               ),
                             ],
                           ),
@@ -122,12 +115,12 @@ class _WalkPageState extends State<WalkPage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                "Language: ",
-                                style: PLNormalTextStyle(color: Colors.blue),
+                                AppLocalizations.of(context)!.language,
+                                style: Theme.of(context).textTheme.titleSmall,
                               ),
                               Text(
-                                walk.language.title,
-                                style: PLNormalTextStyle(),
+                                "  "+walk.language.title,
+                                style: Theme.of(context).textTheme.bodySmall,
                               ),
                             ],
                           ),
@@ -145,13 +138,13 @@ class _WalkPageState extends State<WalkPage> {
                           child: Row(
                             children: [
                               Text(
-                                "Time: ",
-                                style: PLNormalTextStyle(color: Colors.blue),
+                                AppLocalizations.of(context)!.time,
+                                style: Theme.of(context).textTheme.titleSmall,
                               ),
                               Text(
-                                DateFormat('dd.MM.yyyy, kk:mm')
+                                "  "+DateFormat('dd.MM.yyyy, kk:mm')
                                     .format(walk.time ?? DateTime.now()),
-                                style: PLNormalBoldTextStyle(),
+                                style: Theme.of(context).textTheme.bodySmall,
                                 textAlign: TextAlign.justify,
                               ),
                             ],
@@ -162,12 +155,12 @@ class _WalkPageState extends State<WalkPage> {
                             child: Row(
                               children: [
                                 Text(
-                                  "Duration: ",
-                                  style: PLNormalTextStyle(color: Colors.blue),
+                                  AppLocalizations.of(context)!.duration,
+                                  style: Theme.of(context).textTheme.titleSmall,
                                 ),
                                 Text(
-                                  (walk.duration ?? 120).toString() + " min",
-                                  style: PLNormalBoldTextStyle(),
+                                  "  "+(walk.duration ?? 120).toString() + " "+AppLocalizations.of(context)!.minuts,
+                                  style: Theme.of(context).textTheme.bodySmall,
                                   textAlign: TextAlign.justify,
                                 ),
                               ],
@@ -175,7 +168,7 @@ class _WalkPageState extends State<WalkPage> {
                       ],
                     ),
                     SizedBox(height: 20,),
-                    Text("Places", style: PLNormalTextStyle(color: Colors.blue),),
+                    Text(AppLocalizations.of(context)!.places, style: Theme.of(context).textTheme.titleSmall,),
                     SizedBox(height: 100,
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
@@ -198,8 +191,8 @@ class _WalkPageState extends State<WalkPage> {
                       height: 40,
                     ),
                     Text(
-                      "About guid:",
-                      style: PLBigTextStyle(color: Colors.blue),
+                      AppLocalizations.of(context)!.about_guid,
+                      style: Theme.of(context).textTheme.titleLarge,
                     ),
                     SizedBox(
                       height: 20,
@@ -212,28 +205,28 @@ class _WalkPageState extends State<WalkPage> {
                           child: Row(
                             children: [
                               Text(
-                                "Name: ",
-                                style: PLNormalTextStyle(color: Colors.blue),
+                                AppLocalizations.of(context)!.name,
+                                style: Theme.of(context).textTheme.titleSmall,
                               ),
                               Text(
-                                fullName,
-                                style: PLNormalBoldTextStyle(),
+                                "  "+fullName,
+                                style: Theme.of(context).textTheme.bodySmall,
                                 textAlign: TextAlign.center,
                               ),
                             ],
                           ),
                         ),
                         Flexible(
-                          flex: 2,
+                          flex: 3,
                           child: Row(
                             children: [
                               Text(
-                                "Rate: ",
-                                style: PLNormalTextStyle(color: Colors.blue),
+                                AppLocalizations.of(context)!.rate,
+                                style: Theme.of(context).textTheme.titleSmall,
                               ),
                               Text(
-                                walk.who!.rate.toString()+" of 10",
-                                style: PLNormalBoldTextStyle(),
+                                "  "+walk.who!.rate.toString()+" "+AppLocalizations.of(context)!.of_+" 10",
+                                style: Theme.of(context).textTheme.bodySmall,
                                 textAlign: TextAlign.center,
                               ),
                             ],
@@ -247,12 +240,12 @@ class _WalkPageState extends State<WalkPage> {
                     Row(
                       children: [
                         Text(
-                          "Native language:",
-                          style: PLNormalTextStyle(color: Colors.blue),
+                          AppLocalizations.of(context)!.native_language,
+                          style: Theme.of(context).textTheme.titleSmall,
                         ),
                         Text(
-                          walk.who!.language.title,
-                          style: PLNormalBoldTextStyle(),
+                          "  "+walk.who!.language.title,
+                          style: Theme.of(context).textTheme.bodySmall,
                           textAlign: TextAlign.justify,
                         ),
                       ],
@@ -264,7 +257,7 @@ class _WalkPageState extends State<WalkPage> {
                       children: [
                         Text(
                           "Contacts:",
-                          style: PLNormalTextStyle(color: Colors.blue),
+                          style: Theme.of(context).textTheme.titleSmall,
                         ),
                         ContactsWidget(),
                         SizedBox(height: 50,)
