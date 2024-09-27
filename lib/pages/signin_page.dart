@@ -3,7 +3,7 @@ import 'package:Placelook/widgets/top_page_widget.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SigninPage extends StatefulWidget {
   const SigninPage({super.key});
@@ -27,12 +27,11 @@ class _SigninPageState extends State<SigninPage> {
         child: Container(
           width: size.width,
           height: size.height,
-          decoration: const BoxDecoration(color: Colors.white),
           child: SafeArea(
               child: SingleChildScrollView(
             child: Column(
               children: [
-                const TopPageWidget("Sign in"),
+                TopPageWidget(AppLocalizations.of(context)!.sign_in_title),
                 Padding(
                   padding: EdgeInsets.only(
                       top: size.height * 0.02,
@@ -40,7 +39,8 @@ class _SigninPageState extends State<SigninPage> {
                       right: size.width * 0.08),
                   child: TextField(
                     decoration: InputDecoration(
-                      hintText: "Login",
+                      hintText: AppLocalizations.of(context)!.login_hint,
+                      hintStyle: Theme.of(context).textTheme.labelMedium,
                       border: OutlineInputBorder(
                         borderSide: const BorderSide(color: Color(0xff1D1617)),
                         borderRadius: BorderRadius.circular(10),
@@ -55,7 +55,8 @@ class _SigninPageState extends State<SigninPage> {
                       right: size.width * 0.08),
                   child: TextField(
                     decoration: InputDecoration(
-                      hintText: "Password",
+                      hintText: AppLocalizations.of(context)!.password_hint,
+                      hintStyle: Theme.of(context).textTheme.labelMedium,
                       border: OutlineInputBorder(
                         borderSide: const BorderSide(color: Color(0xff1D1617)),
                         borderRadius: BorderRadius.circular(10),
@@ -70,7 +71,8 @@ class _SigninPageState extends State<SigninPage> {
                       right: size.width * 0.08),
                   child: TextField(
                     decoration: InputDecoration(
-                      hintText: "Confirm password",
+                      hintText: AppLocalizations.of(context)!.confirm_password,
+                      hintStyle: Theme.of(context).textTheme.labelMedium,
                       border: OutlineInputBorder(
                         borderSide: const BorderSide(color: Color(0xff1D1617)),
                         borderRadius: BorderRadius.circular(10),
@@ -82,16 +84,11 @@ class _SigninPageState extends State<SigninPage> {
                   padding: EdgeInsets.only(top: size.height * 0.04),
                   child: ElevatedButton(
                     style: ButtonStyle(
-                        backgroundColor: WidgetStateProperty.all<Color>(
-                            const Color(0xff1D1617)),
                         padding: WidgetStateProperty.all<EdgeInsetsGeometry>(
                             const EdgeInsets.only(
                                 top: 8, left: 64, right: 64, bottom: 8))),
-                    child: Text("Sign in",
-                        style: GoogleFonts.poppins(
-                          color: Colors.white,
-                          fontSize: size.height * 0.03,
-                        )),
+                    child: Text(AppLocalizations.of(context)!.sign_in,
+                        style: Theme.of(context).textTheme.displayMedium,),
                     onPressed: () => {},
                   ),
                 ),
@@ -102,18 +99,12 @@ class _SigninPageState extends State<SigninPage> {
                     alignment: Alignment.bottomLeft,
                     child: RichText(
                       text: TextSpan(
-                          text: "Back to",
-                          style: GoogleFonts.poppins(
-                            color: const Color(0xff1D1617),
-                            fontSize: size.height * 0.02,
-                          ),
+                          text: AppLocalizations.of(context)!.back_to,
+                          style: Theme.of(context).textTheme.bodyMedium,
                           children: [
                             TextSpan(
-                                text: "  login!",
-                                style: GoogleFonts.poppins(
-                                  color: Colors.blue,
-                                  fontSize: size.height * 0.02,
-                                ),
+                                text: "  "+AppLocalizations.of(context)!.log_in,
+                                style: Theme.of(context).textTheme.titleMedium,
                                 recognizer: _tapGestureLogin)
                           ]),
                     ),

@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:Placelook/model/languages.dart';
 import 'package:Placelook/model/type_walk.dart';
+import 'package:Placelook/themes/map_extension.dart';
 import 'package:Placelook/utils/text_style.dart';
 import 'package:Placelook/viewmodel/user_view_model.dart';
 import 'package:arcgis_maps/arcgis_maps.dart';
@@ -75,11 +76,24 @@ class _ArcGISAuthWidgetState extends State<ArcGISWalkWidget>
       },
     );
   }
-
+// World Navigation map - 72be31d1fa6a42fc895d9a3c0fd8aeef
+//https://aspace.maps.arcgis.com/home/item.html?id=bc19c34549de4000bcd91cef929420dc
+// World Navigation map dark - 69ce8ad08a4a430fa8b2f4bd2c016f10 -
+// https://aspace.maps.arcgis.com/home/item.html?id=153708fd407d4f88a1be3b8fbd65b6cb
+  //World Street map dark - f3a55a52222341a7aafc793174351bb8
+  //https://aspace.maps.arcgis.com/home/item.html?id=ce493841056a4d1fa497fc5315d54bdc
+  //World Street map - 7549fb39378a485ca0c9d18a2d968c15
+  //https://aspace.maps.arcgis.com/home/item.html?id=ce493841056a4d1fa497fc5315d54bdc
+  //https://aspace.maps.arcgis.com/home/item.html?id=e87b7cc002384d948416120d0fb0824f
+  //Light Gray Canvas Reference (Local Language) - 3ffec1551cd14606a286622c634b0bb4
+  //https://aspace.maps.arcgis.com/home/item.html?id=ee8678f599f64ec0a8ffbfd5c429c896
+  //Dark Gray Canvas Reference (Local Language) - 7465191cfa1f425fbe41e4d44450d559
+  //https://aspace.maps.arcgis.com/home/item.html?id=59548997ef4649aabe3b320a113d4097
   void onMapViewReady() async {
+    // old - '5f68957c846942f19d2ac5cb191842c8'
     _map = ArcGISMap.withItem(PortalItem.withPortalAndItemId(
         portal: Portal.arcGISOnline(connection: PortalConnection.authenticated),
-        itemId: '5f68957c846942f19d2ac5cb191842c8'));
+        itemId: Theme.of(context).extension<MapExtension>()!.mapID!));
     _mapController.arcGISMap = _map;
     setState(() => _ready = true);
   }
@@ -196,7 +210,7 @@ class _ArcGISAuthWidgetState extends State<ArcGISWalkWidget>
               count: int.parse(selected.attributes["peoples"]));*/
           var walk = await context.read<WalkViewModel>().getWaltByID(selected.attributes["id"]);
           if(walk != null) {
-            context.read<WalkViewModel>().setWalk(walk);
+            context.read<WalkViewModel>().walk = walk;
             context.pushNamed("walk");
           }
         }

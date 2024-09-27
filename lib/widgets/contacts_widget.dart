@@ -12,7 +12,7 @@ class ContactsWidget extends StatefulWidget{
 class _ContactsWidgetState extends State<ContactsWidget>{
   @override
   Widget build(BuildContext context) {
-    var contacts = context.read<WalkViewModel>().getWalk()?.who?.contacts;
+    final contacts = context.read<WalkViewModel>().walk?.who?.contacts;
     var size = MediaQuery.sizeOf(context);
     return Container(
       height: 40,

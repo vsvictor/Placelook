@@ -27,7 +27,6 @@ class _ErrorPageState extends State<ErrorPage> {
         child: Container(
           width: size.width,
           height: size.height,
-          decoration: const BoxDecoration(color: Colors.white),
           child: SafeArea(
               child: SingleChildScrollView(
             child: Column(

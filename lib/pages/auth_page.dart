@@ -4,7 +4,7 @@ import 'package:Placelook/widgets/top_page_widget.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
 class AuthPage extends StatefulWidget {
@@ -47,12 +47,11 @@ class _AuthPageState extends State<AuthPage> {
         child: Container(
           width: size.width,
           height: size.height,
-          decoration: const BoxDecoration(color: Colors.white),
           child: SafeArea(
               child: SingleChildScrollView(
             child: Column(
               children: [
-                const TopPageWidget("Log in"),
+                TopPageWidget(AppLocalizations.of(context)!.log_in),
                 Padding(
                   padding: EdgeInsets.only(
                       top: size.height * 0.02,
@@ -61,7 +60,8 @@ class _AuthPageState extends State<AuthPage> {
                   child: TextField(
                     controller: _loginController,
                     decoration: InputDecoration(
-                      hintText: "Login",
+                      hintText: AppLocalizations.of(context)!.login_hint,
+                      hintStyle: Theme.of(context).textTheme.labelMedium,
                       border: OutlineInputBorder(
                         borderSide: const BorderSide(color: Color(0xff1D1617)),
                         borderRadius: BorderRadius.circular(10),
@@ -83,7 +83,8 @@ class _AuthPageState extends State<AuthPage> {
                     enableSuggestions: false,
                     autocorrect: false,
                     decoration: InputDecoration(
-                      hintText: "Password",
+                      hintText: AppLocalizations.of(context)!.password_hint,
+                      hintStyle: Theme.of(context).textTheme.labelMedium,
                       border: OutlineInputBorder(
                         borderSide: const BorderSide(color: Color(0xff1D1617)),
                         borderRadius: BorderRadius.circular(10),
@@ -96,16 +97,12 @@ class _AuthPageState extends State<AuthPage> {
                   padding: EdgeInsets.only(top: size.height * 0.02),
                   child: ElevatedButton(
                     style: ButtonStyle(
-                        backgroundColor: WidgetStateProperty.all<Color>(
-                            const Color(0xff1D1617)),
                         padding: WidgetStateProperty.all<EdgeInsetsGeometry>(
                             const EdgeInsets.only(
                                 top: 8, left: 64, right: 64, bottom: 8))),
                     child: Text("Login",
-                        style: GoogleFonts.poppins(
-                          color: Colors.white,
-                          fontSize: size.height * 0.03,
-                        )),
+                        style: Theme.of(context).textTheme.displayMedium,
+                    ),
                     onPressed: () => {_onLogin()},
                   ),
                 ),
@@ -116,18 +113,12 @@ class _AuthPageState extends State<AuthPage> {
                     alignment: Alignment.centerRight,
                     child: RichText(
                       text: TextSpan(
-                          text: "Forgot password?",
-                          style: GoogleFonts.poppins(
-                            color: const Color(0xff1D1617),
-                            fontSize: size.height * 0.02,
-                          ),
+                          text: AppLocalizations.of(context)!.forgot_password,
+                          style: Theme.of(context).textTheme.bodyMedium,
                           children: [
                             TextSpan(
-                                text: " Here!",
-                                style: GoogleFonts.poppins(
-                                  color: Colors.blue,
-                                  fontSize: size.height * 0.02,
-                                ),
+                                text: "  "+AppLocalizations.of(context)!.here,
+                                style: Theme.of(context).textTheme.titleMedium,
                                 recognizer: _tapGestureForgotPassword)
                           ]),
                     ),
@@ -151,18 +142,12 @@ class _AuthPageState extends State<AuthPage> {
                     alignment: Alignment.centerLeft,
                     child: RichText(
                       text: TextSpan(
-                          text: "Don't have an account?",
-                          style: GoogleFonts.poppins(
-                            color: const Color(0xff1D1617),
-                            fontSize: size.height * 0.02,
-                          ),
+                          text: AppLocalizations.of(context)!.do_not_account,
+                          style: Theme.of(context).textTheme.bodyMedium,
                           children: [
                             TextSpan(
-                                text: "  Sign in!",
-                                style: GoogleFonts.poppins(
-                                  color: Colors.blue,
-                                  fontSize: size.height * 0.02,
-                                ),
+                                text: "  "+AppLocalizations.of(context)!.sign_in,
+                                style: Theme.of(context).textTheme.titleMedium,
                                 recognizer: _tapGestureSignin)
                           ]),
                     ),

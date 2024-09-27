@@ -18,7 +18,7 @@ class _WalkPageState extends State<WalkPage> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.sizeOf(context);
-    var walk = context.watch<WalkViewModel>().getWalk();
+    var walk = context.watch<WalkViewModel>().walk;
     var fullName = walk!.who!.firstName! + " " + walk!.who!.lastName!;
     return Scaffold(
       body: Center(

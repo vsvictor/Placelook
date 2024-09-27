@@ -15,15 +15,16 @@ class _DialogOpacityState extends State<DialogOpacity>{
   _DialogOpacityState();
   @override
   Widget build(BuildContext context) {
-    var walk = context.read<WalkViewModel>().getWalk();
+    final walk = context.read<WalkViewModel>().walk;
+    final size = MediaQuery.sizeOf(context);
     return Scaffold(
         body: Center(
           child: CarouselSlider.builder(
               itemCount: walk?.places?.length,
               itemBuilder: (context, index, realIndex){
                 return SizedBox(
-                  width: MediaQuery.sizeOf(context).width,
-                  child: Image.network(walk!.places![index], fit: BoxFit.cover,)
+                  width: size.width,
+                  child: Image.network(walk!.places![index], fit: BoxFit.cover,),
                 );
               },
               options: CarouselOptions(
@@ -31,7 +32,7 @@ class _DialogOpacityState extends State<DialogOpacity>{
                   enlargeCenterPage: true,
                 initialPage: context.read<WalkViewModel>().start,
                 viewportFraction: 1,
-                height: MediaQuery.sizeOf(context).height
+                height: size.height
               ))
         )
     );

@@ -7,17 +7,13 @@ import '../model/walk.dart';
 class WalkViewModel extends ChangeNotifier {
   late final GetAllWalksUseCase _allWalks = GetIt.instance<GetAllWalksUseCase>();
   Walk? _walk;
-  void setWalk(Walk walk) {
-    _walk = walk;
-  }
-
-  Walk? getWalk() {
-    return _walk;
-  }
   Future<Walk?> getWaltByID(String id) async {
     List<Walk>? list = await _allWalks.load();
     var w = list?.where((food) => food?.id == id).first;
     return w;
   }
   int start = 0;
+
+  Walk? get walk => _walk;
+  set walk(Walk? val) => (_walk = val);
 }

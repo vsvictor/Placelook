@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gif/gif.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TopPageWidget extends StatelessWidget {
   final String header;
@@ -15,11 +15,8 @@ class TopPageWidget extends StatelessWidget {
         Padding(
           padding: EdgeInsets.only(top: size.height * 0.02),
           child: Text(
-            "Placelook",
-            style: GoogleFonts.poppins(
-              color: const Color(0xff1D1617),
-              fontSize: size.height * 0.03,
-            ),
+            AppLocalizations.of(context)!.appTitle,
+            style: Theme.of(context).textTheme.headlineMedium,
           ),
         ),
         Padding(
@@ -34,13 +31,14 @@ class TopPageWidget extends StatelessWidget {
         ),
         Padding(
           padding: EdgeInsets.only(top: size.height * 0.02),
-          child: Text(
-            header,
-            style: style ??
-                GoogleFonts.poppins(
-                  color: const Color(0xff1D1617),
-                  fontSize: size.height * 0.05,
-                ),
+          child: Flexible(
+            flex: 1,
+            fit: FlexFit.loose,
+            child: Text(
+              header,
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.headlineLarge,
+            ),
           ),
         ),
       ],
