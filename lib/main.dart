@@ -5,12 +5,16 @@ import 'package:Placelook/domain/usecase/get_user_usecase.dart';
 import 'package:Placelook/domain/usecase/load_user_usecase.dart';
 import 'package:Placelook/domain/usecase/login_usecase.dart';
 import 'package:Placelook/routes/main_routes.dart';
+import 'package:Placelook/themes/dark_theme.dart';
+import 'package:Placelook/themes/light_theme.dart';
 import 'package:Placelook/viewmodel/user_view_model.dart';
 import 'package:Placelook/viewmodel/walk_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:Placelook/api/auth_repository_mock_impl.dart';
 import 'package:Placelook/api/local_repository_impl.dart';
@@ -56,6 +60,10 @@ class _AppState extends State<App> {
         ChangeNotifierProvider(create: (_) => WalkViewModel())
       ],
       child: MaterialApp.router(
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
+        theme: plLightTheme,
+        darkTheme: plDarkTheme,
         routerConfig: router,
       ),
     );
