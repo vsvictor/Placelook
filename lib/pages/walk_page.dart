@@ -62,7 +62,7 @@ class _WalkPageState extends State<WalkPage> {
                           style: Theme.of(context).textTheme.titleMedium,
                         ),
                         Text(
-                          " "+walk.count.toString(),
+                          " " + walk.count.toString(),
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                       ],
@@ -103,7 +103,7 @@ class _WalkPageState extends State<WalkPage> {
                                 style: Theme.of(context).textTheme.titleSmall,
                               ),
                               Text(
-                                "  "+walk.city,
+                                "  " + walk.city,
                                 style: Theme.of(context).textTheme.bodySmall,
                               ),
                             ],
@@ -119,7 +119,7 @@ class _WalkPageState extends State<WalkPage> {
                                 style: Theme.of(context).textTheme.titleSmall,
                               ),
                               Text(
-                                "  "+walk.language.title,
+                                "  " + walk.language.title,
                                 style: Theme.of(context).textTheme.bodySmall,
                               ),
                             ],
@@ -142,8 +142,9 @@ class _WalkPageState extends State<WalkPage> {
                                 style: Theme.of(context).textTheme.titleSmall,
                               ),
                               Text(
-                                "  "+DateFormat('dd.MM.yyyy, kk:mm')
-                                    .format(walk.time ?? DateTime.now()),
+                                "  " +
+                                    DateFormat('dd.MM.yyyy, kk:mm')
+                                        .format(walk.time ?? DateTime.now()),
                                 style: Theme.of(context).textTheme.bodySmall,
                                 textAlign: TextAlign.justify,
                               ),
@@ -159,7 +160,10 @@ class _WalkPageState extends State<WalkPage> {
                                   style: Theme.of(context).textTheme.titleSmall,
                                 ),
                                 Text(
-                                  "  "+(walk.duration ?? 120).toString() + " "+AppLocalizations.of(context)!.minuts,
+                                  "  " +
+                                      (walk.duration ?? 120).toString() +
+                                      " " +
+                                      AppLocalizations.of(context)!.minuts,
                                   style: Theme.of(context).textTheme.bodySmall,
                                   textAlign: TextAlign.justify,
                                 ),
@@ -167,9 +171,15 @@ class _WalkPageState extends State<WalkPage> {
                             ))
                       ],
                     ),
-                    SizedBox(height: 20,),
-                    Text(AppLocalizations.of(context)!.places, style: Theme.of(context).textTheme.titleSmall,),
-                    SizedBox(height: 100,
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                      AppLocalizations.of(context)!.places,
+                      style: Theme.of(context).textTheme.titleSmall,
+                    ),
+                    SizedBox(
+                      height: 100,
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
                         itemCount: walk.places?.length,
@@ -177,13 +187,12 @@ class _WalkPageState extends State<WalkPage> {
                           return Card(
                               color: Color(0x64FFFFFF),
                               child: InkWell(
-                                onTap: (){
-                                context.read<WalkViewModel>().start = index;
+                                onTap: () {
+                                  context.read<WalkViewModel>().start = index;
                                   _onViewPhoto();
                                 },
                                 child: Image.network(walk.places![index]),
-                              )
-                          );
+                              ));
                         },
                       ),
                     ),
@@ -209,7 +218,7 @@ class _WalkPageState extends State<WalkPage> {
                                 style: Theme.of(context).textTheme.titleSmall,
                               ),
                               Text(
-                                "  "+fullName,
+                                "  " + fullName,
                                 style: Theme.of(context).textTheme.bodySmall,
                                 textAlign: TextAlign.center,
                               ),
@@ -225,7 +234,11 @@ class _WalkPageState extends State<WalkPage> {
                                 style: Theme.of(context).textTheme.titleSmall,
                               ),
                               Text(
-                                "  "+walk.who!.rate.toString()+" "+AppLocalizations.of(context)!.of_+" 10",
+                                "  " +
+                                    walk.who!.rate.toString() +
+                                    " " +
+                                    AppLocalizations.of(context)!.of_ +
+                                    " 10",
                                 style: Theme.of(context).textTheme.bodySmall,
                                 textAlign: TextAlign.center,
                               ),
@@ -244,7 +257,7 @@ class _WalkPageState extends State<WalkPage> {
                           style: Theme.of(context).textTheme.titleSmall,
                         ),
                         Text(
-                          "  "+walk.who!.language.title,
+                          "  " + walk.who!.language.title,
                           style: Theme.of(context).textTheme.bodySmall,
                           textAlign: TextAlign.justify,
                         ),
@@ -260,7 +273,9 @@ class _WalkPageState extends State<WalkPage> {
                           style: Theme.of(context).textTheme.titleSmall,
                         ),
                         ContactsWidget(),
-                        SizedBox(height: 50,)
+                        SizedBox(
+                          height: 50,
+                        )
                       ],
                     ),
                   ],
@@ -274,7 +289,7 @@ class _WalkPageState extends State<WalkPage> {
   }
 
   void _onSignUp() async {}
-  void _onViewPhoto() async{
+  void _onViewPhoto() async {
     context.pushNamed(PLRoutes.PHOTOS.name);
   }
 }

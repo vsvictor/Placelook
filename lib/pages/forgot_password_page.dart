@@ -26,7 +26,8 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
               child: SingleChildScrollView(
             child: Column(
               children: [
-                TopPageWidget(AppLocalizations.of(context)!.forgot_password_title),
+                TopPageWidget(
+                    AppLocalizations.of(context)!.forgot_password_title),
                 Padding(
                   padding: EdgeInsets.only(
                       top: size.height * 0.02,
@@ -50,8 +51,9 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                         padding: WidgetStateProperty.all<EdgeInsetsGeometry>(
                             const EdgeInsets.only(
                                 top: 8, left: 64, right: 64, bottom: 8))),
-                    child: Text(AppLocalizations.of(context)!.send,
-                        style: Theme.of(context).textTheme.displayMedium,
+                    child: Text(
+                      AppLocalizations.of(context)!.send,
+                      style: Theme.of(context).textTheme.displayMedium,
                     ),
                     onPressed: () => {},
                   ),
@@ -67,7 +69,8 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                           style: Theme.of(context).textTheme.bodyMedium,
                           children: [
                             TextSpan(
-                                text: "  "+AppLocalizations.of(context)!.log_in,
+                                text:
+                                    "  " + AppLocalizations.of(context)!.log_in,
                                 style: Theme.of(context).textTheme.titleMedium,
                                 recognizer: _tapGestureLogin)
                           ]),

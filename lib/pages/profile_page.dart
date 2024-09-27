@@ -52,8 +52,10 @@ class _ProfilePageState extends State<ProfilePage> {
                         padding: WidgetStateProperty.all<EdgeInsetsGeometry>(
                             const EdgeInsets.only(
                                 top: 8, left: 64, right: 64, bottom: 8))),
-                    child: Text(AppLocalizations.of(context)!.logout,
-                        style: Theme.of(context).textTheme.displayMedium,),
+                    child: Text(
+                      AppLocalizations.of(context)!.logout,
+                      style: Theme.of(context).textTheme.displayMedium,
+                    ),
                     onPressed: () => {_logout()},
                   ),
                 ),
@@ -142,7 +144,10 @@ class _ProfilePageState extends State<ProfilePage> {
                         child: Row(
                           children: [
                             const SizedBox(width: 10),
-                            Text(value, style: Theme.of(context).textTheme.bodyMedium,),
+                            Text(
+                              value,
+                              style: Theme.of(context).textTheme.bodyMedium,
+                            ),
                           ],
                         ),
                       );
@@ -180,7 +185,10 @@ class _ProfilePageState extends State<ProfilePage> {
                         child: Row(
                           children: [
                             const SizedBox(width: 10),
-                            Text(value, style: Theme.of(context).textTheme.bodyMedium,),
+                            Text(
+                              value,
+                              style: Theme.of(context).textTheme.bodyMedium,
+                            ),
                           ],
                         ),
                       );

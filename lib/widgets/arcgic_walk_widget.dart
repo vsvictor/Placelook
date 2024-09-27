@@ -40,10 +40,10 @@ class _ArcGISAuthWidgetState extends State<ArcGISWalkWidget>
         .authenticationManager.arcGISAuthenticationChallengeHandler = this;
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<MapViewModel>().getAllWalks();
-      context.read<MapViewModel>().list?.forEach((w)=>{
-        if(w.id == null) w.generateID(),
-        print("WWWWWWWWWW"+w.toString())
-      });
+      context.read<MapViewModel>().list?.forEach((w) => {
+            if (w.id == null) w.generateID(),
+            print("WWWWWWWWWW" + w.toString())
+          });
     });
   }
 
@@ -76,6 +76,7 @@ class _ArcGISAuthWidgetState extends State<ArcGISWalkWidget>
       },
     );
   }
+
 // World Navigation map - 72be31d1fa6a42fc895d9a3c0fd8aeef
 //https://aspace.maps.arcgis.com/home/item.html?id=bc19c34549de4000bcd91cef929420dc
 // World Navigation map dark - 69ce8ad08a4a430fa8b2f4bd2c016f10 -
@@ -208,8 +209,10 @@ class _ArcGISAuthWidgetState extends State<ArcGISWalkWidget>
               typeWalk:
                   TypeWalk.values.byName(selected.attributes["type"] ?? "FREE"),
               count: int.parse(selected.attributes["peoples"]));*/
-          var walk = await context.read<WalkViewModel>().getWaltByID(selected.attributes["id"]);
-          if(walk != null) {
+          var walk = await context
+              .read<WalkViewModel>()
+              .getWaltByID(selected.attributes["id"]);
+          if (walk != null) {
             context.read<WalkViewModel>().walk = walk;
             context.pushNamed("walk");
           }

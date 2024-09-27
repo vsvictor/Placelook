@@ -100,8 +100,9 @@ class _AuthPageState extends State<AuthPage> {
                         padding: WidgetStateProperty.all<EdgeInsetsGeometry>(
                             const EdgeInsets.only(
                                 top: 8, left: 64, right: 64, bottom: 8))),
-                    child: Text("Login",
-                        style: Theme.of(context).textTheme.displayMedium,
+                    child: Text(
+                      "Login",
+                      style: Theme.of(context).textTheme.displayMedium,
                     ),
                     onPressed: () => {_onLogin()},
                   ),
@@ -117,7 +118,7 @@ class _AuthPageState extends State<AuthPage> {
                           style: Theme.of(context).textTheme.bodyMedium,
                           children: [
                             TextSpan(
-                                text: "  "+AppLocalizations.of(context)!.here,
+                                text: "  " + AppLocalizations.of(context)!.here,
                                 style: Theme.of(context).textTheme.titleMedium,
                                 recognizer: _tapGestureForgotPassword)
                           ]),
@@ -146,7 +147,8 @@ class _AuthPageState extends State<AuthPage> {
                           style: Theme.of(context).textTheme.bodyMedium,
                           children: [
                             TextSpan(
-                                text: "  "+AppLocalizations.of(context)!.sign_in,
+                                text: "  " +
+                                    AppLocalizations.of(context)!.sign_in,
                                 style: Theme.of(context).textTheme.titleMedium,
                                 recognizer: _tapGestureSignin)
                           ]),

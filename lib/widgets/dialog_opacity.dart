@@ -5,13 +5,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class DialogOpacity extends StatefulWidget{
+class DialogOpacity extends StatefulWidget {
   const DialogOpacity({super.key});
-@override
+  @override
   State<StatefulWidget> createState() => _DialogOpacityState();
 }
 
-class _DialogOpacityState extends State<DialogOpacity>{
+class _DialogOpacityState extends State<DialogOpacity> {
   _DialogOpacityState();
   @override
   Widget build(BuildContext context) {
@@ -19,22 +19,22 @@ class _DialogOpacityState extends State<DialogOpacity>{
     final size = MediaQuery.sizeOf(context);
     return Scaffold(
         body: Center(
-          child: CarouselSlider.builder(
-              itemCount: walk?.places?.length,
-              itemBuilder: (context, index, realIndex){
-                return SizedBox(
-                  width: size.width,
-                  child: Image.network(walk!.places![index], fit: BoxFit.cover,),
-                );
-              },
-              options: CarouselOptions(
-                  enableInfiniteScroll: true,
-                  enlargeCenterPage: true,
-                initialPage: context.read<WalkViewModel>().start,
-                viewportFraction: 1,
-                height: size.height
-              ))
-        )
-    );
+            child: CarouselSlider.builder(
+                itemCount: walk?.places?.length,
+                itemBuilder: (context, index, realIndex) {
+                  return SizedBox(
+                    width: size.width,
+                    child: Image.network(
+                      walk!.places![index],
+                      fit: BoxFit.cover,
+                    ),
+                  );
+                },
+                options: CarouselOptions(
+                    enableInfiniteScroll: true,
+                    enlargeCenterPage: true,
+                    initialPage: context.read<WalkViewModel>().start,
+                    viewportFraction: 1,
+                    height: size.height))));
   }
 }

@@ -64,14 +64,12 @@ final router = GoRouter(
                     path: PLRoutes.WALK.path,
                     name: PLRoutes.WALK.name,
                     builder: (contex, state) => WalkPage(),
-                  routes: <RouteBase>[
-                    GoRoute(
-                        path: PLRoutes.PHOTOS.path,
-                      name: PLRoutes.PHOTOS.name,
-                      builder:  (context, state) => DialogOpacity()
-                    )
-                  ]
-                ),
+                    routes: <RouteBase>[
+                      GoRoute(
+                          path: PLRoutes.PHOTOS.path,
+                          name: PLRoutes.PHOTOS.name,
+                          builder: (context, state) => DialogOpacity())
+                    ]),
               ]),
           GoRoute(
             path: PLRoutes.PROFILE.path,

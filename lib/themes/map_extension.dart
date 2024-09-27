@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class MapExtension extends ThemeExtension<MapExtension>{
+class MapExtension extends ThemeExtension<MapExtension> {
   final String name;
   final String mapID;
   MapExtension(this.name, this.mapID);
@@ -10,8 +10,8 @@ class MapExtension extends ThemeExtension<MapExtension>{
   }
 
   @override
-  ThemeExtension<MapExtension> lerp(covariant ThemeExtension<MapExtension>? other, double t) {
+  ThemeExtension<MapExtension> lerp(
+      covariant ThemeExtension<MapExtension>? other, double t) {
     return this;
   }
-  
 }
