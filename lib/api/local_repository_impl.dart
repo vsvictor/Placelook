@@ -25,7 +25,7 @@ class LocalRepositoryImpl extends LocalRepository {
   @override
   void saveUser(User u) async {
     var pref = await SharedPreferences.getInstance();
-    var str = u.toJson().toString();
+    var str = jsonEncode(u.toJson());
     await pref.setString("profile", str);
     print(u.toJson().toString());
   }
