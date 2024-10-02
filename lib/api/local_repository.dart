@@ -1,6 +1,6 @@
-import '../model/user.dart';
+import '../model/profile.dart';
 
 abstract class LocalRepository {
-  Future<User> userFromStogare();
-  void saveUser(User u);
+  Future<Profile> profileFromStogare();
+  void saveProfile(Profile u);
 }

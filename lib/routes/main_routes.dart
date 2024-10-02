@@ -6,7 +6,7 @@ import 'package:Placelook/pages/map_page.dart';
 import 'package:Placelook/pages/profile_page.dart';
 import 'package:Placelook/pages/signin_page.dart';
 import 'package:Placelook/pages/walk_page.dart';
-import 'package:Placelook/viewmodel/user_view_model.dart';
+import 'package:Placelook/viewmodel/profile_view_model.dart';
 import 'package:Placelook/widgets/dialog_opacity.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
@@ -35,7 +35,7 @@ final router = GoRouter(
         name: PLRoutes.ROOT.name,
         builder: (context, staye) => HomePage(),
         redirect: (context, state) {
-          if (context.read<UserViewModel>().user == null) return "/auth";
+          if (context.read<UserViewModel>().profile == null) return "/auth";
         },
         routes: <RouteBase>[
           GoRoute(

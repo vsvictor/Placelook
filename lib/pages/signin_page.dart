@@ -1,9 +1,12 @@
 import 'package:Placelook/main.dart';
+import 'package:Placelook/model/profile.dart';
+import 'package:Placelook/viewmodel/profile_view_model.dart';
 import 'package:Placelook/widgets/top_page_widget.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 
 class SigninPage extends StatefulWidget {
   const SigninPage({super.key});
@@ -12,7 +15,11 @@ class SigninPage extends StatefulWidget {
 }
 
 class _SigninPageState extends State<SigninPage> {
+  late final UserViewModel vm;
   late final TapGestureRecognizer _tapGestureLogin;
+  final TextEditingController teLogin = TextEditingController();
+  final TextEditingController tePassword = TextEditingController();
+  final TextEditingController teConfirm = TextEditingController();
   @override
   void initState() {
     super.initState();
@@ -22,6 +29,7 @@ class _SigninPageState extends State<SigninPage> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    vm = context.read<UserViewModel>();
     return Scaffold(
       body: Center(
         child: Container(
@@ -95,7 +103,10 @@ class _SigninPageState extends State<SigninPage> {
                         AppLocalizations.of(context)!.sign_in,
                         style: Theme.of(context).textTheme.displayMedium,
                       ),
-                      onPressed: () => {},
+                      onPressed: () => {
+                        //_onSignin()
+
+                      },
                     ),
                   ),
                   Padding(
@@ -129,5 +140,12 @@ class _SigninPageState extends State<SigninPage> {
 
   void _onTabLogin() {
     context.pop();
+  }
+  void _onSignin(){
+    var login = teLogin.text;
+    var passowrd = tePassword.text;
+    var confirm = teConfirm.text;
+    if(passowrd == confirm){
+    }
   }
 }

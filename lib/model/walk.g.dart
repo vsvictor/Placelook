@@ -18,7 +18,7 @@ _$WalkImpl _$$WalkImplFromJson(Map<String, dynamic> json) => _$WalkImpl(
           json['time'] == null ? null : DateTime.parse(json['time'] as String),
       who: json['who'] == null
           ? null
-          : User.fromJson(json['who'] as Map<String, dynamic>),
+          : Profile.fromJson(json['who'] as Map<String, dynamic>),
       duration: (json['duration'] as num?)?.toInt() ?? null,
       count: (json['count'] as num?)?.toInt() ?? null,
       places: (json['places'] as List<dynamic>?)

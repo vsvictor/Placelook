@@ -5,7 +5,7 @@ import 'package:Placelook/pages/map_page.dart';
 import 'package:provider/provider.dart';
 
 import '../model/auth_state.dart';
-import '../viewmodel/user_view_model.dart';
+import '../viewmodel/profile_view_model.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -21,8 +21,8 @@ class _HomePageState extends State<HomePage> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<UserViewModel>().fromStorage();
-      print("User data:" + context.read<UserViewModel>().user.toString());
-      if (context.read<UserViewModel>().user != null) {
+      print("User data:" + context.read<UserViewModel>().profile.toString());
+      if (context.read<UserViewModel>().profile != null) {
         context.read<UserViewModel>().state = AuthState.AUTHENTIFICATED;
       }
       //context.read<UserViewModel>().state = AuthState.NONE

@@ -1,6 +1,6 @@
 import 'package:Placelook/api/remote_repository.dart';
 import 'package:Placelook/model/walk.dart';
-import '../model/user.dart';
+import '../model/profile.dart';
 import 'local_repository.dart';
 
 class Repository {
@@ -9,8 +9,8 @@ class Repository {
   Repository(this._remote, this._local);
   Future<String?> login(String login, String password) =>
       _remote.login(login, password);
-  Future<List<User?>> getUsers() => _remote.getUsers();
-  Future<User> userFromStogare() => _local.userFromStogare();
-  void saveUser(User u) => _local.saveUser(u);
+  Future<List<Profile?>?> getUsers() => _remote.getProfiles();
+  Future<Profile> userFromStogare() => _local.profileFromStogare();
+  void saveUser(Profile u) => _local.saveProfile(u);
   Future<List<Walk>?> getAllWalks() => _remote.getAllWalks();
 }

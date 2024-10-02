@@ -1,6 +1,9 @@
-import '../model/user.dart';
+import 'package:Placelook/model/user.dart';
+
+import '../model/profile.dart';
 
 abstract class AuthRepository {
   Future<String?> login(String login, String password);
-  Future<List<User?>> getUsers();
+  Future<List<Profile?>?> getProfiles();
+  //Future<Profile> addProfile(Profile profile);
 }

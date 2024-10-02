@@ -1,7 +1,7 @@
 import 'package:Placelook/model/contact.dart';
 import 'package:Placelook/model/languages.dart';
 import 'package:Placelook/model/role.dart';
-import 'package:Placelook/viewmodel/user_view_model.dart';
+import 'package:Placelook/viewmodel/profile_view_model.dart';
 import 'package:Placelook/widgets/top_page_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -131,7 +131,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     dropdownColor: Theme.of(context).dialogBackgroundColor,
                     onChanged: (String? newSelect) {
                       if (newSelect != null) {
-                        vm?.user?.role =
+                        vm?.profile?.role =
                             Role.values.byName(newSelect.toUpperCase());
                       }
                     },
@@ -152,7 +152,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                       );
                     }).toList(),
-                    value: vm?.user?.role.title,
+                    value: vm?.profile?.role.title,
                   ),
                 ),
                 Padding(
@@ -172,7 +172,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     dropdownColor: Theme.of(context).dialogBackgroundColor,
                     onChanged: (String? newSelect) {
                       if (newSelect != null) {
-                        vm?.user?.language =
+                        vm?.profile?.language =
                             Languages.values.byName(newSelect.toUpperCase());
                       }
                     },
@@ -193,7 +193,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                       );
                     }).toList(),
-                    value: vm?.user?.language.title,
+                    value: vm?.profile?.language.title,
                   ),
                 ),
                 Padding(
@@ -222,10 +222,10 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   void _saveProfile() {
-    if (vm?.user?.id == null) vm?.user?.generateID();
-    vm?.user?.firstName = _teFirstName.text;
-    vm?.user?.lastName = _teLastName.text;
-    vm?.user?.contacts = ([Contact.email(_teEmail.text)]).toList();
+    if (vm?.profile?.id == null) vm?.profile?.generateID();
+    vm?.profile?.firstName = _teFirstName.text;
+    vm?.profile?.lastName = _teLastName.text;
+    vm?.profile?.contacts = ([Contact.email(_teEmail.text)]).toList();
     vm?.save();
   }
 

@@ -32,8 +32,8 @@ mixin _$Walk {
   set location(Location? value) => throw _privateConstructorUsedError;
   DateTime? get time => throw _privateConstructorUsedError;
   set time(DateTime? value) => throw _privateConstructorUsedError;
-  User? get who => throw _privateConstructorUsedError;
-  set who(User? value) => throw _privateConstructorUsedError;
+  Profile? get who => throw _privateConstructorUsedError;
+  set who(Profile? value) => throw _privateConstructorUsedError;
   int? get duration => throw _privateConstructorUsedError;
   set duration(int? value) => throw _privateConstructorUsedError;
   int? get count => throw _privateConstructorUsedError;
@@ -66,7 +66,7 @@ abstract class $WalkCopyWith<$Res> {
       String about,
       Location? location,
       DateTime? time,
-      User? who,
+      Profile? who,
       int? duration,
       int? count,
       List<String>? places,
@@ -74,7 +74,7 @@ abstract class $WalkCopyWith<$Res> {
       TypeWalk typeWalk});
 
   $LocationCopyWith<$Res>? get location;
-  $UserCopyWith<$Res>? get who;
+  $ProfileCopyWith<$Res>? get who;
 }
 
 /// @nodoc
@@ -133,7 +133,7 @@ class _$WalkCopyWithImpl<$Res, $Val extends Walk>
       who: freezed == who
           ? _value.who
           : who // ignore: cast_nullable_to_non_nullable
-              as User?,
+              as Profile?,
       duration: freezed == duration
           ? _value.duration
           : duration // ignore: cast_nullable_to_non_nullable
@@ -175,12 +175,12 @@ class _$WalkCopyWithImpl<$Res, $Val extends Walk>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $UserCopyWith<$Res>? get who {
+  $ProfileCopyWith<$Res>? get who {
     if (_value.who == null) {
       return null;
     }
 
-    return $UserCopyWith<$Res>(_value.who!, (value) {
+    return $ProfileCopyWith<$Res>(_value.who!, (value) {
       return _then(_value.copyWith(who: value) as $Val);
     });
   }
@@ -200,7 +200,7 @@ abstract class _$$WalkImplCopyWith<$Res> implements $WalkCopyWith<$Res> {
       String about,
       Location? location,
       DateTime? time,
-      User? who,
+      Profile? who,
       int? duration,
       int? count,
       List<String>? places,
@@ -210,7 +210,7 @@ abstract class _$$WalkImplCopyWith<$Res> implements $WalkCopyWith<$Res> {
   @override
   $LocationCopyWith<$Res>? get location;
   @override
-  $UserCopyWith<$Res>? get who;
+  $ProfileCopyWith<$Res>? get who;
 }
 
 /// @nodoc
@@ -266,7 +266,7 @@ class __$$WalkImplCopyWithImpl<$Res>
       who: freezed == who
           ? _value.who
           : who // ignore: cast_nullable_to_non_nullable
-              as User?,
+              as Profile?,
       duration: freezed == duration
           ? _value.duration
           : duration // ignore: cast_nullable_to_non_nullable
@@ -332,7 +332,7 @@ class _$WalkImpl extends _Walk {
   DateTime? time;
   @override
   @JsonKey()
-  User? who;
+  Profile? who;
   @override
   @JsonKey()
   int? duration;
@@ -378,7 +378,7 @@ abstract class _Walk extends Walk {
       String about,
       Location? location,
       DateTime? time,
-      User? who,
+      Profile? who,
       int? duration,
       int? count,
       List<String>? places,
@@ -407,8 +407,8 @@ abstract class _Walk extends Walk {
   DateTime? get time;
   set time(DateTime? value);
   @override
-  User? get who;
-  set who(User? value);
+  Profile? get who;
+  set who(Profile? value);
   @override
   int? get duration;
   set duration(int? value);

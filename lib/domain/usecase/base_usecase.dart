@@ -8,7 +8,7 @@ abstract class BaseUseCase<T, P> {
 
 abstract class NoParamUseCase<T> {
   var repo = GetIt.instance<Repository>();
-  Future<T> load();
+  Future<T?> load();
 }
 
 abstract class NoResultUseCase<P> {

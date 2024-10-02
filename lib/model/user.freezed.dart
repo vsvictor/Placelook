@@ -22,18 +22,12 @@ User _$UserFromJson(Map<String, dynamic> json) {
 mixin _$User {
   String? get id => throw _privateConstructorUsedError;
   set id(String? value) => throw _privateConstructorUsedError;
-  String get firstName => throw _privateConstructorUsedError;
-  set firstName(String value) => throw _privateConstructorUsedError;
-  String get lastName => throw _privateConstructorUsedError;
-  set lastName(String value) => throw _privateConstructorUsedError;
-  List<Contact>? get contacts => throw _privateConstructorUsedError;
-  set contacts(List<Contact>? value) => throw _privateConstructorUsedError;
-  Role get role => throw _privateConstructorUsedError;
-  set role(Role value) => throw _privateConstructorUsedError;
-  int get rate => throw _privateConstructorUsedError;
-  set rate(int value) => throw _privateConstructorUsedError;
-  Languages get language => throw _privateConstructorUsedError;
-  set language(Languages value) => throw _privateConstructorUsedError;
+  String get login => throw _privateConstructorUsedError;
+  set login(String value) => throw _privateConstructorUsedError;
+  String get password => throw _privateConstructorUsedError;
+  set password(String value) => throw _privateConstructorUsedError;
+  dynamic get token => throw _privateConstructorUsedError;
+  set token(dynamic value) => throw _privateConstructorUsedError;
 
   /// Serializes this User to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -49,14 +43,7 @@ abstract class $UserCopyWith<$Res> {
   factory $UserCopyWith(User value, $Res Function(User) then) =
       _$UserCopyWithImpl<$Res, User>;
   @useResult
-  $Res call(
-      {String? id,
-      String firstName,
-      String lastName,
-      List<Contact>? contacts,
-      Role role,
-      int rate,
-      Languages language});
+  $Res call({String? id, String login, String password, dynamic token});
 }
 
 /// @nodoc
@@ -75,42 +62,27 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
   @override
   $Res call({
     Object? id = freezed,
-    Object? firstName = null,
-    Object? lastName = null,
-    Object? contacts = freezed,
-    Object? role = null,
-    Object? rate = null,
-    Object? language = null,
+    Object? login = null,
+    Object? password = null,
+    Object? token = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      firstName: null == firstName
-          ? _value.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
+      login: null == login
+          ? _value.login
+          : login // ignore: cast_nullable_to_non_nullable
               as String,
-      lastName: null == lastName
-          ? _value.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
+      password: null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
               as String,
-      contacts: freezed == contacts
-          ? _value.contacts
-          : contacts // ignore: cast_nullable_to_non_nullable
-              as List<Contact>?,
-      role: null == role
-          ? _value.role
-          : role // ignore: cast_nullable_to_non_nullable
-              as Role,
-      rate: null == rate
-          ? _value.rate
-          : rate // ignore: cast_nullable_to_non_nullable
-              as int,
-      language: null == language
-          ? _value.language
-          : language // ignore: cast_nullable_to_non_nullable
-              as Languages,
+      token: freezed == token
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
+              as dynamic,
     ) as $Val);
   }
 }
@@ -122,14 +94,7 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
       __$$UserImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String? id,
-      String firstName,
-      String lastName,
-      List<Contact>? contacts,
-      Role role,
-      int rate,
-      Languages language});
+  $Res call({String? id, String login, String password, dynamic token});
 }
 
 /// @nodoc
@@ -145,57 +110,33 @@ class __$$UserImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? firstName = null,
-    Object? lastName = null,
-    Object? contacts = freezed,
-    Object? role = null,
-    Object? rate = null,
-    Object? language = null,
+    Object? login = null,
+    Object? password = null,
+    Object? token = freezed,
   }) {
     return _then(_$UserImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      firstName: null == firstName
-          ? _value.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
+      login: null == login
+          ? _value.login
+          : login // ignore: cast_nullable_to_non_nullable
               as String,
-      lastName: null == lastName
-          ? _value.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
+      password: null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
               as String,
-      contacts: freezed == contacts
-          ? _value.contacts
-          : contacts // ignore: cast_nullable_to_non_nullable
-              as List<Contact>?,
-      role: null == role
-          ? _value.role
-          : role // ignore: cast_nullable_to_non_nullable
-              as Role,
-      rate: null == rate
-          ? _value.rate
-          : rate // ignore: cast_nullable_to_non_nullable
-              as int,
-      language: null == language
-          ? _value.language
-          : language // ignore: cast_nullable_to_non_nullable
-              as Languages,
+      token: freezed == token ? _value.token! : token,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$UserImpl extends _User with DiagnosticableTreeMixin {
+class _$UserImpl extends _User {
   _$UserImpl(
-      {this.id = null,
-      this.firstName = "",
-      this.lastName = "",
-      required this.contacts,
-      this.role = Role.TRIPPER,
-      this.rate = 0,
-      this.language = Languages.UNDEFINED})
+      {this.id = null, this.login = "", this.password = "", this.token = ""})
       : super._();
 
   factory _$UserImpl.fromJson(Map<String, dynamic> json) =>
@@ -206,39 +147,17 @@ class _$UserImpl extends _User with DiagnosticableTreeMixin {
   String? id;
   @override
   @JsonKey()
-  String firstName;
+  String login;
   @override
   @JsonKey()
-  String lastName;
-  @override
-  List<Contact>? contacts;
+  String password;
   @override
   @JsonKey()
-  Role role;
-  @override
-  @JsonKey()
-  int rate;
-  @override
-  @JsonKey()
-  Languages language;
+  dynamic token;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'User(id: $id, firstName: $firstName, lastName: $lastName, contacts: $contacts, role: $role, rate: $rate, language: $language)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'User'))
-      ..add(DiagnosticsProperty('id', id))
-      ..add(DiagnosticsProperty('firstName', firstName))
-      ..add(DiagnosticsProperty('lastName', lastName))
-      ..add(DiagnosticsProperty('contacts', contacts))
-      ..add(DiagnosticsProperty('role', role))
-      ..add(DiagnosticsProperty('rate', rate))
-      ..add(DiagnosticsProperty('language', language));
+  String toString() {
+    return 'User(id: $id, login: $login, password: $password, token: $token)';
   }
 
   /// Create a copy of User
@@ -258,14 +177,8 @@ class _$UserImpl extends _User with DiagnosticableTreeMixin {
 }
 
 abstract class _User extends User {
-  factory _User(
-      {String? id,
-      String firstName,
-      String lastName,
-      required List<Contact>? contacts,
-      Role role,
-      int rate,
-      Languages language}) = _$UserImpl;
+  factory _User({String? id, String login, String password, dynamic token}) =
+      _$UserImpl;
   _User._() : super._();
 
   factory _User.fromJson(Map<String, dynamic> json) = _$UserImpl.fromJson;
@@ -274,23 +187,14 @@ abstract class _User extends User {
   String? get id;
   set id(String? value);
   @override
-  String get firstName;
-  set firstName(String value);
+  String get login;
+  set login(String value);
   @override
-  String get lastName;
-  set lastName(String value);
+  String get password;
+  set password(String value);
   @override
-  List<Contact>? get contacts;
-  set contacts(List<Contact>? value);
-  @override
-  Role get role;
-  set role(Role value);
-  @override
-  int get rate;
-  set rate(int value);
-  @override
-  Languages get language;
-  set language(Languages value);
+  dynamic get token;
+  set token(dynamic value);
 
   /// Create a copy of User
   /// with the given fields replaced by the non-null parameter values.
