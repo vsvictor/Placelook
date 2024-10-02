@@ -3,7 +3,7 @@ import 'package:Placelook/model/languages.dart';
 import 'package:Placelook/model/type_walk.dart';
 import 'package:Placelook/themes/map_extension.dart';
 import 'package:Placelook/utils/text_style.dart';
-import 'package:Placelook/viewmodel/user_view_model.dart';
+import 'package:Placelook/viewmodel/profile_view_model.dart';
 import 'package:arcgis_maps/arcgis_maps.dart';
 import 'package:flutter/material.dart';
 import 'package:gif/gif.dart';

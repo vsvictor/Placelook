@@ -1,5 +1,5 @@
 import 'package:Placelook/pages/signin_page.dart';
-import 'package:Placelook/viewmodel/user_view_model.dart';
+import 'package:Placelook/viewmodel/profile_view_model.dart';
 import 'package:Placelook/widgets/top_page_widget.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -26,9 +26,9 @@ class _AuthPageState extends State<AuthPage> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (vm.user == null) {
+      if (vm.profile == null) {
         vm.fromStorage();
-        _loginController.text = vm.user?.email ?? "";
+        _loginController.text = vm.profile?.email ?? "";
         vm.login = _loginController.text;
       }
     });
@@ -39,7 +39,7 @@ class _AuthPageState extends State<AuthPage> {
     Size size = MediaQuery.of(context).size;
     vm = Provider.of<UserViewModel>(context);
     if (_loginController.text.trim().isEmpty) {
-      _loginController.text = (vm.user != null) ? vm.user!.email ?? "" : "";
+      _loginController.text = (vm.profile != null) ? vm.profile!.email ?? "" : "";
       vm.login = _loginController.text;
     }
     return Scaffold(
@@ -167,7 +167,7 @@ class _AuthPageState extends State<AuthPage> {
     vm.login = "dvictor74@gmail.com";
     vm.password = "qwerty";
     await vm.startApp();
-    if (vm.user != null) {
+    if (vm.profile != null) {
       context.pushReplacement("/");
     }
   }

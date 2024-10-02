@@ -1,8 +1,9 @@
 import 'package:Placelook/model/type_walk.dart';
-import 'package:Placelook/model/user.dart';
+import 'package:Placelook/model/profile.dart';
 
 import 'package:Placelook/model/languages.dart';
 import 'package:Placelook/model/location.dart';
+import 'package:Placelook/model/user.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:uuid/uuid.dart';
 
@@ -19,7 +20,7 @@ class Walk with _$Walk {
       @Default("") String about,
       @Default(null) Location? location,
       @Default(null) DateTime? time,
-      @Default(null) User? who,
+      @Default(null) Profile? who,
       @Default(null) int? duration,
       @Default(null) int? count,
       @Default(null) List<String>? places,

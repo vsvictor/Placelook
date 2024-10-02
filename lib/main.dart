@@ -1,13 +1,13 @@
 import 'package:Placelook/api/remote_repository.dart';
 import 'package:Placelook/api/walt_repository_mock_impl.dart';
 import 'package:Placelook/domain/usecase/get_all_walks_usecase.dart';
-import 'package:Placelook/domain/usecase/get_user_usecase.dart';
-import 'package:Placelook/domain/usecase/load_user_usecase.dart';
+import 'package:Placelook/domain/usecase/get_profiles_usecase.dart';
+import 'package:Placelook/domain/usecase/load_profile_usecase.dart';
 import 'package:Placelook/domain/usecase/login_usecase.dart';
 import 'package:Placelook/routes/main_routes.dart';
 import 'package:Placelook/themes/dark_theme.dart';
 import 'package:Placelook/themes/light_theme.dart';
-import 'package:Placelook/viewmodel/user_view_model.dart';
+import 'package:Placelook/viewmodel/profile_view_model.dart';
 import 'package:Placelook/viewmodel/walk_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -19,16 +19,16 @@ import 'package:provider/provider.dart';
 import 'package:Placelook/api/auth_repository_mock_impl.dart';
 import 'package:Placelook/api/local_repository_impl.dart';
 import 'package:Placelook/api/repository.dart';
-import 'package:Placelook/domain/usecase/save_user_usecase.dart';
+import 'package:Placelook/domain/usecase/save_profile_usecase.dart';
 
 void setup() {
   GetIt.instance.registerLazySingleton(() => Repository(
       RemoteRepository(AuthRepositoryMockImpl(), WalkRepositoryMockImpl()),
       LocalRepositoryImpl()));
   GetIt.instance.registerLazySingleton(() => LoginUseCase());
-  GetIt.instance.registerLazySingleton(() => GetUserUseCase());
-  GetIt.instance.registerLazySingleton(() => LoadUserUseCase());
-  GetIt.instance.registerLazySingleton(() => SaveUserUsecase());
+  GetIt.instance.registerLazySingleton(() => GetProfilesUseCase());
+  GetIt.instance.registerLazySingleton(() => LoadProfileUseCase());
+  GetIt.instance.registerLazySingleton(() => SaveProfileUsecase());
   GetIt.instance.registerLazySingleton(() => GetAllWalksUseCase());
 }
 
