@@ -5,7 +5,7 @@ import 'package:Placelook/pages/map_page.dart';
 import 'package:provider/provider.dart';
 
 import '../model/auth_state.dart';
-import '../viewmodel/profile_view_model.dart';
+import '../viewmodel/user_view_model.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

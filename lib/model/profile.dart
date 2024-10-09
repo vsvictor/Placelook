@@ -20,7 +20,8 @@ class Profile with _$Profile {
       @Default(Role.TRIPPER) Role role,
       @Default(0) int rate,
       @Default(Languages.UNDEFINED) Languages language}) = _Porfile;
-  factory Profile.fromJson(Map<String, dynamic> json) => _$ProfileFromJson(json);
+  factory Profile.fromJson(Map<String, dynamic> json) =>
+      _$ProfileFromJson(json);
 
   String? get email {
     var res = "";

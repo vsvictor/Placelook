@@ -3,5 +3,5 @@ import 'package:Placelook/model/profile.dart';
 
 class SaveProfileUsecase extends NoResultUseCase<Profile> {
   @override
-  void load(Profile param) => repo.saveUser(param);
+  void load(Profile param) => repo.saveProfile(param);
 }

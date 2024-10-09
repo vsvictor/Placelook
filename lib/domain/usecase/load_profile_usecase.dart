@@ -3,5 +3,5 @@ import 'package:Placelook/model/profile.dart';
 
 class LoadProfileUseCase extends NoParamUseCase<Profile> {
   @override
-  Future<Profile> load() => repo.userFromStogare();
+  Future<Profile> load() => repo.profileFromStogare();
 }

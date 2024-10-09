@@ -13,7 +13,6 @@ class LocalRepositoryImpl extends LocalRepository {
     String? str = await pref.getString("profile");
     if (str != null) {
       var f = jsonDecode(str);
-      //var f = null;
       if (f != null) {
         u = Profile.fromJson(convertMap(f));
       }

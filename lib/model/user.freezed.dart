@@ -20,13 +20,21 @@ User _$UserFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$User {
+  @JsonKey(name: "_id", defaultValue: null)
   String? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: "_id", defaultValue: null)
   set id(String? value) => throw _privateConstructorUsedError;
+  @JsonKey(name: "login")
   String get login => throw _privateConstructorUsedError;
+  @JsonKey(name: "login")
   set login(String value) => throw _privateConstructorUsedError;
+  @JsonKey(name: "password")
   String get password => throw _privateConstructorUsedError;
+  @JsonKey(name: "password")
   set password(String value) => throw _privateConstructorUsedError;
+  @JsonKey(name: "token")
   dynamic get token => throw _privateConstructorUsedError;
+  @JsonKey(name: "token")
   set token(dynamic value) => throw _privateConstructorUsedError;
 
   /// Serializes this User to a JSON map.
@@ -43,7 +51,11 @@ abstract class $UserCopyWith<$Res> {
   factory $UserCopyWith(User value, $Res Function(User) then) =
       _$UserCopyWithImpl<$Res, User>;
   @useResult
-  $Res call({String? id, String login, String password, dynamic token});
+  $Res call(
+      {@JsonKey(name: "_id", defaultValue: null) String? id,
+      @JsonKey(name: "login") String login,
+      @JsonKey(name: "password") String password,
+      @JsonKey(name: "token") dynamic token});
 }
 
 /// @nodoc
@@ -94,7 +106,11 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
       __$$UserImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? id, String login, String password, dynamic token});
+  $Res call(
+      {@JsonKey(name: "_id", defaultValue: null) String? id,
+      @JsonKey(name: "login") String login,
+      @JsonKey(name: "password") String password,
+      @JsonKey(name: "token") dynamic token});
 }
 
 /// @nodoc
@@ -136,23 +152,26 @@ class __$$UserImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$UserImpl extends _User {
   _$UserImpl(
-      {this.id = null, this.login = "", this.password = "", this.token = ""})
+      {@JsonKey(name: "_id", defaultValue: null) this.id,
+      @JsonKey(name: "login") this.login = "",
+      @JsonKey(name: "password") this.password = "",
+      @JsonKey(name: "token") this.token = ""})
       : super._();
 
   factory _$UserImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserImplFromJson(json);
 
   @override
-  @JsonKey()
+  @JsonKey(name: "_id", defaultValue: null)
   String? id;
   @override
-  @JsonKey()
+  @JsonKey(name: "login")
   String login;
   @override
-  @JsonKey()
+  @JsonKey(name: "password")
   String password;
   @override
-  @JsonKey()
+  @JsonKey(name: "token")
   dynamic token;
 
   @override
@@ -177,23 +196,34 @@ class _$UserImpl extends _User {
 }
 
 abstract class _User extends User {
-  factory _User({String? id, String login, String password, dynamic token}) =
-      _$UserImpl;
+  factory _User(
+      {@JsonKey(name: "_id", defaultValue: null) String? id,
+      @JsonKey(name: "login") String login,
+      @JsonKey(name: "password") String password,
+      @JsonKey(name: "token") dynamic token}) = _$UserImpl;
   _User._() : super._();
 
   factory _User.fromJson(Map<String, dynamic> json) = _$UserImpl.fromJson;
 
   @override
+  @JsonKey(name: "_id", defaultValue: null)
   String? get id;
+  @JsonKey(name: "_id", defaultValue: null)
   set id(String? value);
   @override
+  @JsonKey(name: "login")
   String get login;
+  @JsonKey(name: "login")
   set login(String value);
   @override
+  @JsonKey(name: "password")
   String get password;
+  @JsonKey(name: "password")
   set password(String value);
   @override
+  @JsonKey(name: "token")
   dynamic get token;
+  @JsonKey(name: "token")
   set token(dynamic value);
 
   /// Create a copy of User

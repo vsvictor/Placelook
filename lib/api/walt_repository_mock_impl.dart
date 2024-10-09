@@ -7,7 +7,6 @@ import 'package:flutter/services.dart';
 class WalkRepositoryMockImpl extends WalkRepository {
   @override
   Future<List<Walk>?> getAllWalks() async {
-    await Future.delayed(const Duration(milliseconds: 500));
     final resp = await rootBundle.loadString("assets/mock/walks.json");
     List<Walk> data = [];
     var list = jsonDecode(resp);

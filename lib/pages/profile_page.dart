@@ -1,7 +1,7 @@
 import 'package:Placelook/model/contact.dart';
 import 'package:Placelook/model/languages.dart';
 import 'package:Placelook/model/role.dart';
-import 'package:Placelook/viewmodel/profile_view_model.dart';
+import 'package:Placelook/viewmodel/user_view_model.dart';
 import 'package:Placelook/widgets/top_page_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
