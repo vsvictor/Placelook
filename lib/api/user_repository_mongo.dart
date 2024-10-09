@@ -8,7 +8,7 @@ class UserRepositoryMongo extends UserRepository {
   Future<User?> addUser(User user) async {
     var result =
         await DioInstance().dio.post("/users", data: jsonEncode(user.toJson()));
-      var decoded = jsonDecode(result.data);
-      return User.fromJson(decoded);
+    var decoded = jsonDecode(result.data);
+    return User.fromJson(decoded);
   }
 }

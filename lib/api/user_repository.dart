@@ -1,6 +1,5 @@
-
 import '../model/user.dart';
 
-abstract class UserRepository{
-  void addUser(User user, callback(User u));
+abstract class UserRepository {
+  Future<User?> addUser(User user);
 }

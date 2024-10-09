@@ -3,7 +3,7 @@ import 'package:Placelook/model/languages.dart';
 import 'package:Placelook/model/type_walk.dart';
 import 'package:Placelook/themes/map_extension.dart';
 import 'package:Placelook/utils/text_style.dart';
-import 'package:Placelook/viewmodel/profile_view_model.dart';
+import 'package:Placelook/viewmodel/user_view_model.dart';
 import 'package:arcgis_maps/arcgis_maps.dart';
 import 'package:flutter/material.dart';
 import 'package:gif/gif.dart';
@@ -60,6 +60,7 @@ class _ArcGISAuthWidgetState extends State<ArcGISWalkWidget>
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.sizeOf(context);
     return Consumer<MapViewModel>(
       builder: (context, model, child) {
         if (model.list != null) {
@@ -67,10 +68,13 @@ class _ArcGISAuthWidgetState extends State<ArcGISWalkWidget>
         }
         return Scaffold(
           resizeToAvoidBottomInset: false,
-          body: ArcGISMapView(
-            controllerProvider: () => _mapController,
-            onMapViewReady: onMapViewReady,
-            onTap: _onTapFeature,
+          body: ConstrainedBox(
+            constraints: BoxConstraints(maxHeight: size.height),
+            child: ArcGISMapView(
+              controllerProvider: () => _mapController,
+              onMapViewReady: onMapViewReady,
+              onTap: _onTapFeature,
+            ),
           ),
         );
       },

@@ -106,6 +106,9 @@ class UserViewModel extends ChangeNotifier {
 
   void addUser(User u, callback(User? newUser)) async {
     var uu = await _addUserUsecase.load(u);
+    if (uu != null) {
+      _user = uu;
+    }
     callback(uu);
   }
 }

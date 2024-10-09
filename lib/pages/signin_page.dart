@@ -1,6 +1,7 @@
 import 'package:Placelook/main.dart';
 import 'package:Placelook/model/profile.dart';
-import 'package:Placelook/viewmodel/profile_view_model.dart';
+import 'package:Placelook/model/user.dart';
+import 'package:Placelook/viewmodel/user_view_model.dart';
 import 'package:Placelook/widgets/top_page_widget.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +16,7 @@ class SigninPage extends StatefulWidget {
 }
 
 class _SigninPageState extends State<SigninPage> {
-  late final UserViewModel vm;
+  //late final UserViewModel vm;
   late final TapGestureRecognizer _tapGestureLogin;
   final TextEditingController teLogin = TextEditingController();
   final TextEditingController tePassword = TextEditingController();
@@ -29,7 +30,7 @@ class _SigninPageState extends State<SigninPage> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    vm = context.read<UserViewModel>();
+    //vm = context.read<UserViewModel>();
     return Scaffold(
       body: Center(
         child: Container(
@@ -46,6 +47,7 @@ class _SigninPageState extends State<SigninPage> {
                         left: size.width * 0.08,
                         right: size.width * 0.08),
                     child: TextField(
+                      controller: teLogin,
                       decoration: InputDecoration(
                         hintText: AppLocalizations.of(context)!.login_hint,
                         hintStyle: Theme.of(context).textTheme.labelMedium,
@@ -63,6 +65,7 @@ class _SigninPageState extends State<SigninPage> {
                         left: size.width * 0.08,
                         right: size.width * 0.08),
                     child: TextField(
+                      controller: tePassword,
                       decoration: InputDecoration(
                         hintText: AppLocalizations.of(context)!.password_hint,
                         hintStyle: Theme.of(context).textTheme.labelMedium,
@@ -80,6 +83,7 @@ class _SigninPageState extends State<SigninPage> {
                         left: size.width * 0.08,
                         right: size.width * 0.08),
                     child: TextField(
+                      controller: teConfirm,
                       decoration: InputDecoration(
                         hintText:
                             AppLocalizations.of(context)!.confirm_password,
@@ -103,10 +107,7 @@ class _SigninPageState extends State<SigninPage> {
                         AppLocalizations.of(context)!.sign_in,
                         style: Theme.of(context).textTheme.displayMedium,
                       ),
-                      onPressed: () => {
-                        //_onSignin()
-
-                      },
+                      onPressed: () => {_onSignin()},
                     ),
                   ),
                   Padding(
@@ -141,11 +142,17 @@ class _SigninPageState extends State<SigninPage> {
   void _onTabLogin() {
     context.pop();
   }
-  void _onSignin(){
+
+  void _onSignin() {
     var login = teLogin.text;
     var passowrd = tePassword.text;
     var confirm = teConfirm.text;
-    if(passowrd == confirm){
+    if (passowrd == confirm) {
+      User newUser = User(login: login, password: passowrd);
+      context.read<UserViewModel>().addUser(newUser, (u) {
+        print(u.toString());
+        context.pop();
+      });
     }
   }
 }

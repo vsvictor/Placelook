@@ -4,12 +4,12 @@ part 'user.g.dart';
 
 @unfreezed
 @Freezed(makeCollectionsUnmodifiable: false)
-class User with _$User{
+class User with _$User {
   User._();
-  factory User({
-  @Default(null) String? id,
-  @Default("") String login,
-  @Default("") String password,
-  @Default("") token}) = _User;
-factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+  factory User(
+      {@JsonKey(name: "_id", defaultValue: null) String? id,
+      @JsonKey(name: "login") @Default("") String login,
+      @JsonKey(name: "password") @Default("") String password,
+      @JsonKey(name: "token") @Default("") token}) = _User;
+  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 }

@@ -1,5 +1,5 @@
 import 'package:Placelook/pages/signin_page.dart';
-import 'package:Placelook/viewmodel/profile_view_model.dart';
+import 'package:Placelook/viewmodel/user_view_model.dart';
 import 'package:Placelook/widgets/top_page_widget.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -36,129 +36,121 @@ class _AuthPageState extends State<AuthPage> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    Size size = MediaQuery.sizeOf(context);
     vm = Provider.of<UserViewModel>(context);
     if (_loginController.text.trim().isEmpty) {
-      _loginController.text = (vm.profile != null) ? vm.profile!.email ?? "" : "";
+      _loginController.text =
+          (vm.profile != null) ? vm.profile!.email ?? "" : "";
       vm.login = _loginController.text;
     }
     return Scaffold(
-      body: Center(
-        child: Container(
-          width: size.width,
-          height: size.height,
-          child: SafeArea(
-              child: SingleChildScrollView(
-            child: Column(
-              children: [
-                TopPageWidget(AppLocalizations.of(context)!.log_in),
-                Padding(
-                  padding: EdgeInsets.only(
-                      top: size.height * 0.02,
-                      left: size.width * 0.08,
-                      right: size.width * 0.08),
-                  child: TextField(
-                    controller: _loginController,
-                    decoration: InputDecoration(
-                      hintText: AppLocalizations.of(context)!.login_hint,
-                      hintStyle: Theme.of(context).textTheme.labelMedium,
-                      border: OutlineInputBorder(
-                        borderSide: const BorderSide(color: Color(0xff1D1617)),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                    onChanged: (String l) => {
-                      if (l.isNotEmpty) {vm.login = l}
-                    },
-                  ),
+      body: Column(
+        children: [
+          TopPageWidget(AppLocalizations.of(context)!.log_in),
+          Padding(
+            padding: EdgeInsets.only(
+                top: size.height * 0.02,
+                left: size.width * 0.08,
+                right: size.width * 0.08),
+            child: TextField(
+              controller: _loginController,
+              decoration: InputDecoration(
+                hintText: AppLocalizations.of(context)!.login_hint,
+                hintStyle: Theme.of(context).textTheme.labelMedium,
+                border: OutlineInputBorder(
+                  borderSide: const BorderSide(color: Color(0xff1D1617)),
+                  borderRadius: BorderRadius.circular(10),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(
-                      top: size.height * 0.02,
-                      left: size.width * 0.08,
-                      right: size.width * 0.08),
-                  child: TextField(
-                    controller: _passwordController,
-                    obscureText: true,
-                    enableSuggestions: false,
-                    autocorrect: false,
-                    decoration: InputDecoration(
-                      hintText: AppLocalizations.of(context)!.password_hint,
-                      hintStyle: Theme.of(context).textTheme.labelMedium,
-                      border: OutlineInputBorder(
-                        borderSide: const BorderSide(color: Color(0xff1D1617)),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                    onChanged: (String p) => {vm.password = p},
-                  ),
+              ),
+              onChanged: (String l) => {
+                if (l.isNotEmpty) {vm.login = l}
+              },
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(
+                top: size.height * 0.02,
+                left: size.width * 0.08,
+                right: size.width * 0.08),
+            child: TextField(
+              controller: _passwordController,
+              obscureText: true,
+              enableSuggestions: false,
+              autocorrect: false,
+              decoration: InputDecoration(
+                hintText: AppLocalizations.of(context)!.password_hint,
+                hintStyle: Theme.of(context).textTheme.labelMedium,
+                border: OutlineInputBorder(
+                  borderSide: const BorderSide(color: Color(0xff1D1617)),
+                  borderRadius: BorderRadius.circular(10),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(top: size.height * 0.02),
-                  child: ElevatedButton(
-                    style: ButtonStyle(
-                        padding: WidgetStateProperty.all<EdgeInsetsGeometry>(
-                            const EdgeInsets.only(
-                                top: 8, left: 64, right: 64, bottom: 8))),
-                    child: Text(
-                      "Login",
-                      style: Theme.of(context).textTheme.displayMedium,
-                    ),
-                    onPressed: () => {_onLogin()},
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(
-                      top: size.height * 0.025, right: size.width * 0.08),
-                  child: Align(
-                    alignment: Alignment.centerRight,
-                    child: RichText(
-                      text: TextSpan(
-                          text: AppLocalizations.of(context)!.forgot_password,
-                          style: Theme.of(context).textTheme.bodyMedium,
-                          children: [
-                            TextSpan(
-                                text: "  " + AppLocalizations.of(context)!.here,
-                                style: Theme.of(context).textTheme.titleMedium,
-                                recognizer: _tapGestureForgotPassword)
-                          ]),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: size.height * 0.02),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+              ),
+              onChanged: (String p) => {vm.password = p},
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: size.height * 0.02),
+            child: ElevatedButton(
+              style: ButtonStyle(
+                  padding: WidgetStateProperty.all<EdgeInsetsGeometry>(
+                      const EdgeInsets.only(
+                          top: 8, left: 64, right: 64, bottom: 8))),
+              child: Text(
+                "Login",
+                style: Theme.of(context).textTheme.displayMedium,
+              ),
+              onPressed: () => {_onLogin()},
+            ),
+          ),
+          Align(
+            alignment: AlignmentDirectional.centerEnd,
+            child: Padding(
+              padding: EdgeInsets.only(
+                  top: size.height * 0.025, right: size.width * 0.08),
+              child: RichText(
+                text: TextSpan(
+                    text: AppLocalizations.of(context)!.forgot_password,
+                    style: Theme.of(context).textTheme.bodyMedium,
                     children: [
-                      Image.asset("assets/google.png", width: 75, height: 75),
-                      Container(width: 50),
-                      Image.asset("assets/facebook.png", width: 75, height: 75)
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(
-                      top: size.height * 0.04, left: size.width * 0.08),
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: RichText(
-                      text: TextSpan(
-                          text: AppLocalizations.of(context)!.do_not_account,
-                          style: Theme.of(context).textTheme.bodyMedium,
-                          children: [
-                            TextSpan(
-                                text: "  " +
-                                    AppLocalizations.of(context)!.sign_in,
-                                style: Theme.of(context).textTheme.titleMedium,
-                                recognizer: _tapGestureSignin)
-                          ]),
-                    ),
-                  ),
-                ),
+                      TextSpan(
+                          text: "  " + AppLocalizations.of(context)!.here,
+                          style: Theme.of(context).textTheme.titleMedium,
+                          recognizer: _tapGestureForgotPassword)
+                    ]),
+              ),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: size.height * 0.02),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset("assets/google.png", width: 75, height: 75),
+                SizedBox(width: 50),
+                Image.asset("assets/facebook.png", width: 75, height: 75)
               ],
             ),
-          )),
-        ),
+          ),
+          Align(
+            alignment: AlignmentDirectional.centerStart,
+            child: Padding(
+              padding: EdgeInsets.only(
+                  top: size.height * 0.04, left: size.width * 0.08),
+              child: RichText(
+                text: TextSpan(
+                    text: AppLocalizations.of(context)!.do_not_account,
+                    style: Theme.of(context).textTheme.bodyMedium,
+                    children: [
+                      TextSpan(
+                          text: "  ${AppLocalizations.of(context)!.sign_in}",
+                          style: Theme.of(context).textTheme.titleMedium,
+                          recognizer: _tapGestureSignin)
+                    ]),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
