@@ -5,30 +5,42 @@ import 'package:Placelook/model/languages.dart';
 import 'package:Placelook/model/location.dart';
 import 'package:Placelook/model/user.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:uuid/uuid.dart';
+import 'package:hive/hive.dart';
+import 'package:mongo_dart/mongo_dart.dart';
+
+import 'convertors/object_id_string.dart';
 
 part 'walk.freezed.dart';
 part 'walk.g.dart';
 
 @unfreezed
-class Walk with _$Walk {
+@HiveType(typeId: 2)
+class Walk extends HiveObject with _$Walk {
   Walk._();
   factory Walk(
-      {@Default("") String id,
-      @Default("") String name,
-      @Default("") String city,
-      @Default("") String about,
-      @Default(null) Location? location,
-      @Default(null) DateTime? time,
-      @Default(null) Profile? who,
-      @Default(null) int? duration,
-      @Default(null) int? count,
-      @Default(null) List<String>? places,
-      @Default(Languages.UNDEFINED) Languages language,
-      @Default(TypeWalk.FREE) TypeWalk typeWalk}) = _Walk;
+      {@HiveField(0)
+      @JsonKey(name: "_id", defaultValue: null)
+      @ObjectIdString()
+      ObjectId? id,
+      @HiveField(1) @JsonKey(name: "name", defaultValue: "") String? name,
+      @HiveField(2) @JsonKey(name: "city", defaultValue: "") String? city,
+      @HiveField(3) @JsonKey(name: "about", defaultValue: "") String? about,
+      @HiveField(4)
+      @JsonKey(name: "location", defaultValue: null)
+      Location? location,
+      @HiveField(5) @JsonKey(name: "time", defaultValue: null) DateTime? time,
+      @HiveField(6) @JsonKey(name: "who", defaultValue: null) Profile? who,
+      @HiveField(7) @JsonKey(name: "duration", defaultValue: 0) int? duration,
+      @HiveField(8) @JsonKey(name: "count", defaultValue: 0) int? count,
+      @HiveField(9)
+      @JsonKey(name: "places", defaultValue: null)
+      List<String>? places,
+      @HiveField(10)
+      @JsonKey(name: "language", defaultValue: Languages.UNDEFINED)
+      Languages? language,
+      @HiveField(11)
+      @JsonKey(name: "typeWalk", defaultValue: TypeWalk.FREE)
+      TypeWalk? typeWalk}) = _Walk;
 
   factory Walk.fromJson(Map<String, dynamic> json) => _$WalkFromJson(json);
-  void generateID() {
-    id = const Uuid().v4();
-  }
 }
