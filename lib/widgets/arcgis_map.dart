@@ -41,7 +41,7 @@ class _ArcGISAuthWidgetState extends State<ArcGISWalkWidget>
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<MapViewModel>().getAllWalks();
       context.read<MapViewModel>().list?.forEach((w) => {
-            if (w.id == null) w.generateID(),
+            //if (w.id == null) w.generateID(),
             print("WWWWWWWWWW" + w.toString())
           });
     });
@@ -149,21 +149,27 @@ class _ArcGISAuthWidgetState extends State<ArcGISWalkWidget>
     for (var e in data) {
       var f = table.createFeature(
           attributes: {
-            "id": e.id,
+            "id": e.id?.toHexString(),
             "name": e.name,
             "city": e.city,
             "about": e.about,
             "time": e.time,
-            "guidID": e.who?.id ?? "",
+            "guidID": e.who?.id?.toHexString() ?? "",
             "duratiom": e.duration,
             "peoples": e.count.toString(),
-            "language": e.language.name,
-            "type": e.typeWalk.name,
+            "language": e.language?.name,
+            "type": e.typeWalk?.name,
           },
           geometry:
               ArcGISPoint(x: e.location!.longitude, y: e.location!.latitude));
       table.addFeature(f);
-      print("Added:" + f.toString());
+      print("Added:" + f.toString() + "\n");
+/*
+      print("Attributes");
+      f.attributes.forEach((key, data){
+        print(key+":"+data??"NODATA");
+      });
+*/
     }
   }
 
@@ -197,22 +203,7 @@ class _ArcGISAuthWidgetState extends State<ArcGISWalkWidget>
       if (features.isNotEmpty) {
         fLayer.selectFeatures(features: features);
         var selected = features.first;
-        //if (mounted) _showBottomSheet(selected);
         if (mounted) {
-/*          var walk = Walk(
-              id: selected.attributes["id"],
-              name: selected.attributes["name"],
-              city: selected.attributes["city"],
-              about: selected.attributes["about"],
-              location: selected.attributes["location"],
-              time: selected.attributes["time"],
-              who: await vmUser.getUserByID(selected.attributes["guidID"]),
-              duration: selected.attributes["duration"],
-              language: Languages.values
-                  .byName(selected.attributes["language"] ?? "UKRANIAN"),
-              typeWalk:
-                  TypeWalk.values.byName(selected.attributes["type"] ?? "FREE"),
-              count: int.parse(selected.attributes["peoples"]));*/
           var walk = await context
               .read<WalkViewModel>()
               .getWaltByID(selected.attributes["id"]);

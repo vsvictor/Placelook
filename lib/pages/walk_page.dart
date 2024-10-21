@@ -1,3 +1,4 @@
+import 'package:Placelook/model/walk.dart';
 import 'package:Placelook/viewmodel/walk_view_model.dart';
 import 'package:Placelook/widgets/contacts_widget.dart';
 import 'package:Placelook/widgets/top_page_widget.dart';
@@ -34,7 +35,7 @@ class _WalkPageState extends State<WalkPage> {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    TopPageWidget(walk.name),
+                    TopPageWidget(walk.name ?? ""),
                     Padding(
                       padding: EdgeInsets.only(top: size.height * 0.02),
                       child: ElevatedButton(
@@ -48,7 +49,7 @@ class _WalkPageState extends State<WalkPage> {
                                         bottom: 8))),
                         child: Text(AppLocalizations.of(context)!.sign_up,
                             style: Theme.of(context).textTheme.displayMedium),
-                        onPressed: () => {_onSignUp()},
+                        onPressed: () => {_onSignUp(walk)},
                       ),
                     ),
                     SizedBox(
@@ -82,7 +83,7 @@ class _WalkPageState extends State<WalkPage> {
                       children: [
                         Flexible(
                           child: Text(
-                            walk.about,
+                            walk.about ?? "",
                             style: Theme.of(context).textTheme.bodySmall,
                           ),
                         ),
@@ -103,7 +104,7 @@ class _WalkPageState extends State<WalkPage> {
                                 style: Theme.of(context).textTheme.titleSmall,
                               ),
                               Text(
-                                "  " + walk.city,
+                                "  ${walk.city}",
                                 style: Theme.of(context).textTheme.bodySmall,
                               ),
                             ],
@@ -119,7 +120,7 @@ class _WalkPageState extends State<WalkPage> {
                                 style: Theme.of(context).textTheme.titleSmall,
                               ),
                               Text(
-                                "  " + walk.language.title,
+                                "  ${walk.language?.title}",
                                 style: Theme.of(context).textTheme.bodySmall,
                               ),
                             ],
@@ -257,7 +258,7 @@ class _WalkPageState extends State<WalkPage> {
                           style: Theme.of(context).textTheme.titleSmall,
                         ),
                         Text(
-                          "  " + walk.who!.language.title,
+                          "  " + walk.who!.language!.title ?? "",
                           style: Theme.of(context).textTheme.bodySmall,
                           textAlign: TextAlign.justify,
                         ),
@@ -288,7 +289,10 @@ class _WalkPageState extends State<WalkPage> {
     );
   }
 
-  void _onSignUp() async {}
+  void _onSignUp(Walk w) async {
+    context.read<WalkViewModel>().signWalk(w);
+  }
+
   void _onViewPhoto() async {
     context.pushNamed(PLRoutes.PHOTOS.name);
   }
